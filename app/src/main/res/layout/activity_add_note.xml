@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".teachermain.AddNoteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relTitle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="Add New Note"
+            android:textColor="#504646"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+
+        <ImageButton
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:id="@+id/delete"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:tint="@color/black"
+            android:visibility="invisible"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relTitle"
+        android:layout_marginVertical="26dp"
+        android:background="@color/white"
+        android:backgroundTint="#DCF8FB"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="Title"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Note..."
+            android:minLines="15"
+            android:textSize="20sp"
+            android:gravity="top"
+            android:id="@+id/note"
+            android:padding="12dp"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/titleBar"
+        android:text="Save"
+        android:id="@+id/save"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="150dp"
+        android:foregroundGravity="center"/>
+
+    </LinearLayout>
+</ScrollView>

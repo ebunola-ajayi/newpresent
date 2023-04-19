@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".studentprofile.StudentAttendanceActivity">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1,2,3"
+        android:id="@+id/container"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/studentName"
+            android:textSize="18sp"
+            android:text="Hello"
+            android:textColor="#101B5C"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="Select a Month">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoCompleteMonth"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <TableRow>
+
+            <TextView
+                android:text="Date"
+                android:textSize="16dp"
+                android:textColor="#101B5C"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"/>
+
+            <TextView
+                android:text="Attendance"
+                android:textSize="16dp"
+                android:textColor="#101B5C"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_column="1"/>
+
+
+        </TableRow>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"/>
+
+</TableLayout>
+
+
+</ScrollView>
+

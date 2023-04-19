@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".parentmain.ParentRegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:src="@drawable/presenticon"/>
+
+    <EditText
+        android:id="@+id/edtxtFirstName"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
+        android:hint="First Name *" />
+
+    <EditText
+        android:id="@+id/edtxtLastName"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Last Name" />
+
+    <EditText
+        android:id="@+id/edtxtEmail"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Email *" />
+
+   <!-- <EditText
+        android:id="@+id/username"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Username *" />-->
+
+        <EditText
+            android:id="@+id/specialID"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Parent Special ID *" />
+
+    <EditText
+        android:id="@+id/edtxtChildID"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Child ID *" />
+
+        <EditText
+            android:id="@+id/classGradeET"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Class Grade (2nd Class) *" />
+
+        <EditText
+            android:id="@+id/classIDET"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Class ID*" />
+
+
+
+        <EditText
+            android:id="@+id/schoolIDET"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="School ID *" />
+
+
+    <EditText
+        android:id="@+id/edtxtPassword"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Password *" />
+
+
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Register" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Already Have An Account? Login Here"
+        android:id="@+id/switchToLogin"
+        android:textStyle="bold"/>
+
+
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".parentmain.ParentLoginActivity">
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:src="@drawable/presenticon"/>
+
+    <TextView
+        android:id="@+id/loginTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="PARENT LOGIN"
+        />
+
+    <EditText
+        android:id="@+id/emailEdTxt"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Email *" />
+
+    <EditText
+        android:id="@+id/passwordEdTxt"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Password *" />
+
+
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="login"
+        android:layout_gravity="center"
+        android:backgroundTint="#0FC6DD" />
+
+
+
+    <TextView
+        android:id="@+id/registerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="70dp"
+        android:text="New Parent? Register Here"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".teacheracademics.SubjectAddRecordActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Academic Record"
+        android:textStyle="bold"
+        android:textColor="#5F72DD"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Name"
+        android:id="@+id/studentName"
+        android:textStyle="bold"
+        android:textColor="#5F72DD"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Topic"
+        android:id="@+id/topic"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/noteET"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:hint="John found this topic difficult..." />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/gradeET"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="number"
+        android:hint="%" />
+
+
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_gravity="center"
+            android:id="@+id/saveBtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+
+
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
