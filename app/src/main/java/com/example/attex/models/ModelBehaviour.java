@@ -3,7 +3,7 @@ package com.example.attex.models;
 public class ModelBehaviour {
 
     String studentID;
-    String teacherID;
+    String classID;
     String firstName;
     String lastName;
     String feedback;
@@ -11,9 +11,9 @@ public class ModelBehaviour {
     String comment;
     String behaviourID;
 
-    public ModelBehaviour(String studentID, String teacherID, String firstName, String lastName, String feedback, String date, String comment, String behaviourID) {
+    public ModelBehaviour(String studentID, String classID, String firstName, String lastName, String feedback, String date, String comment, String behaviourID) {
         this.studentID = studentID;
-        this.teacherID = teacherID;
+        this.classID = classID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.feedback = feedback;
@@ -24,6 +24,14 @@ public class ModelBehaviour {
 
     public ModelBehaviour(){
 
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
     }
 
     public String getBehaviourID() {
@@ -40,14 +48,6 @@ public class ModelBehaviour {
 
     public void setStudentID(String studentID) {
         this.studentID = studentID;
-    }
-
-    public String getTeacherID() {
-        return teacherID;
-    }
-
-    public void setTeacherID(String teacherID) {
-        this.teacherID = teacherID;
     }
 
     public String getFirstName() {

@@ -7,13 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.widget.TextView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.ModelBehaviour;
 import com.example.attex.models.ModelStudent;
-import com.example.attex.studentprofile.StudentBehaviourAdapter;
 import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,7 +37,7 @@ public class TeachersStudentListActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -49,11 +46,8 @@ public class TeachersStudentListActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
         String classID = i.getStringExtra("classID");
-        System.out.println(classID);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

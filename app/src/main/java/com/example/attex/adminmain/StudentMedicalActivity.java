@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelMedical;
-import com.example.attex.parentmain.MedicalListAdapter;
 import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +37,7 @@ public class StudentMedicalActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;

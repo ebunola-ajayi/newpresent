@@ -10,19 +10,13 @@ import android.widget.TextView;
 
 import com.example.attex.R;
 import com.example.attex.parentmain.ParentViewBehaviourActivity;
-import com.example.attex.studentprofile.StudentProfileActivity;
+import com.example.attex.studentprofile.StudentAttendanceActivity;
 import com.example.attex.studentprofile.StudentSubjectsActivity;
 
 public class AdminStudentProfileActivity extends AppCompatActivity {
 
-    ImageView viewAttendance;
-    ImageView viewAca;
-    ImageView viewBehav;
-    ImageView studentDetails;
-    ImageView medical;
-
-    TextView studentName;
-    TextView studentNumber;
+    ImageView viewAttendance, viewAca, viewBehav, studentDetails, medical;
+    TextView studentName, studentNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +41,7 @@ public class AdminStudentProfileActivity extends AppCompatActivity {
         viewAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminStudentProfileActivity.this, StudentSubjectsActivity.class);
+                Intent intent = new Intent(AdminStudentProfileActivity.this, StudentAttendanceActivity.class);
                 intent.putExtra("classID", classID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);
@@ -113,10 +107,6 @@ public class AdminStudentProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
 
     }
 }

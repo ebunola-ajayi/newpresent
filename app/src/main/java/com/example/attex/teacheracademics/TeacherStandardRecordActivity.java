@@ -22,8 +22,7 @@ import java.util.HashMap;
 public class TeacherStandardRecordActivity extends AppCompatActivity {
 
     TextView studentName;
-    EditText noteET;
-    EditText gradeET;
+    EditText noteET, gradeET;
     Button record;
 
     @Override
@@ -33,44 +32,28 @@ public class TeacherStandardRecordActivity extends AppCompatActivity {
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
-
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String studentID = i.getStringExtra("studentID");
-        System.out.println("record " + studentID);
+        String subject = i.getStringExtra("subject");
+        String teacherID = i.getStringExtra("classID");
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
+        String firstName = i.getStringExtra("firstName");
+        String lastName = i.getStringExtra("lastName");
 
-        Intent i2 = getIntent();
-        String teacherID = i2.getStringExtra("teacherID");
-        System.out.println(teacherID);
-
-        Intent i3 = getIntent();
-        String schoolID = i3.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i4 = getIntent();
-        String classGrade = i4.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i5 = getIntent();
-        String firstName = i5.getStringExtra("firstName");
-        Intent i6 = getIntent();
-        String lastName = i6.getStringExtra("lastName");
-
-
-
-
+        studentName = findViewById(R.id.studentName);
+        studentName.setText(firstName + " " + lastName);
 
 
         noteET = findViewById(R.id.noteET);
         gradeET = findViewById(R.id.gradeET);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(teacherID).child(studentID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(teacherID).child(subject).child(studentID);
 
 
         record = findViewById(R.id.recordBtn);
@@ -83,6 +66,7 @@ public class TeacherStandardRecordActivity extends AppCompatActivity {
 
                 HashMap<String, Object> examHashMap = new HashMap<>();
                 examHashMap.put("grade", grade);
+                examHashMap.put("subject", subject);
                 examHashMap.put("note", note);
                 examHashMap.put("studentName", studentName);
                 examHashMap.put("studentID", studentID);

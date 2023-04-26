@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.teachermain.TeacherLoginActivity;
 import com.example.attex.models.ModelTeacher;
@@ -24,38 +25,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TeacherGradeFragment extends Fragment {
 
-    ImageView maths;
-    ImageView science;
-    ImageView english;
-    ImageView irish;
-    ImageView geography;
-    ImageView history;
-    ImageView viewExam;
-    public static final String SUBJECT = "subject";
-
-    public static final String TEACHER_ID = "teacherID";
-
+    ImageView maths, science, english, irish, geography, history, viewExam;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_teacher_grade, container, false);
         View view = inflater.inflate(R.layout.fragment_teacher_grade, container, false);
-
-
-
-
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
 
-
         if(currentUser==null){
-            Intent intent=new Intent(getActivity(), TeacherLoginActivity.class);
+            Intent intent=new Intent(getActivity(), InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
@@ -65,26 +47,23 @@ public class TeacherGradeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelTeacher teacher=snapshot.getValue(ModelTeacher.class);
-                if(teacher!=null)/*&&ifstudent.className=user.className*/{
-                    //mainName.setText("Welcome "+teacher.firstName + " " + teacher.lastName);
-
-                    String teacher_ID = teacher.getTeacherID();
+                if(teacher!=null){
+                    String classID = teacher.getClassID();
                     String schoolID = teacher.getSchoolID();
                     String classGrade = teacher.getClassGrade();
 
 
-                    //i puth this here cus i need the string id as an intent
+                    //onClickListeners are here as classID is needed as an intent value
                     maths = view.findViewById(R.id.maths);
                     maths.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             String subject = "Maths";
-
                             Intent intent = new Intent(getActivity(), SubjectOptionActivity.class);
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -100,7 +79,7 @@ public class TeacherGradeFragment extends Fragment {
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -115,7 +94,7 @@ public class TeacherGradeFragment extends Fragment {
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -129,7 +108,7 @@ public class TeacherGradeFragment extends Fragment {
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -145,7 +124,7 @@ public class TeacherGradeFragment extends Fragment {
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -159,7 +138,7 @@ public class TeacherGradeFragment extends Fragment {
                             intent.putExtra("subjectName", subject);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });
@@ -168,10 +147,10 @@ public class TeacherGradeFragment extends Fragment {
                     viewExam.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), TeacherStandardOptionsActivity.class);
+                            Intent intent = new Intent(getActivity(), TeacherViewStandardSubjectActivity.class);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
-                            intent.putExtra("teacherID", teacher_ID);
+                            intent.putExtra("classID", classID);
                             startActivity(intent);
                         }
                     });

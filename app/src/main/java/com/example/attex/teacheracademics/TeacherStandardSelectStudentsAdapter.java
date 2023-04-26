@@ -19,16 +19,15 @@ public class TeacherStandardSelectStudentsAdapter extends RecyclerView.Adapter<T
 
     private final List<ModelStudent> studentsList;
     private final Context context;
-    String classGrade;
-    String schoolID;
-    String teacherID;
+    String classGrade, schoolID, classID, subject;
 
-    public TeacherStandardSelectStudentsAdapter(List<ModelStudent> studentsList, Context context, String classGrade, String schoolID, String teacherID) {
+    public TeacherStandardSelectStudentsAdapter(List<ModelStudent> studentsList, Context context, String classGrade, String schoolID, String classID, String subject) {
         this.studentsList = studentsList;
         this.context = context;
         this.classGrade = classGrade;
         this.schoolID = schoolID;
-        this.teacherID = teacherID;
+        this.classID = classID;
+        this.subject = subject;
     }
 
     @NonNull
@@ -50,18 +49,13 @@ public class TeacherStandardSelectStudentsAdapter extends RecyclerView.Adapter<T
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TeacherStandardRecordActivity.class);
-
-
-
-
                 intent.putExtra("studentID", student.getStudentID());
                 intent.putExtra("firstName", student.getFirstName());
                 intent.putExtra("lastName", student.getLastName());
-                intent.putExtra("teacherID", teacherID);
+                intent.putExtra("classID", classID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);
-                //intent.putExtra("subject", );
-
+                intent.putExtra("subject", subject);
                 context.startActivity(intent);
             }
         });

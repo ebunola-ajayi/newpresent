@@ -56,13 +56,15 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
 
     private void registerParent() {
+        Intent i = getIntent();
+        String schoolID = i.getStringExtra("schoolID");
         EditText edtxtFirstName =findViewById(R.id.edtxtFirstName);
         EditText edtxtLastName =findViewById(R.id.edtxtLastName);
         EditText edtxtEmail =findViewById(R.id.edtxtEmail);
         EditText edtxtPassword =findViewById(R.id.edtxtPassword);
         EditText edtxtChildID =findViewById(R.id.edtxtChildID);
         EditText username = findViewById(R.id.username);
-        EditText schoolIDET = findViewById(R.id.schoolIDET);
+        //EditText schoolIDET = findViewById(R.id.schoolIDET);
         EditText classGradeET = findViewById(R.id.classGradeET);
         EditText classIDET = findViewById(R.id.classIDET);
 
@@ -73,7 +75,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
         String parentPassword = edtxtPassword.getText().toString();
         String childID = edtxtChildID.getText().toString();
        // String parentUsername = username.getText().toString();
-        String schoolID = schoolIDET.getText().toString();
+        //String schoolID = schoolIDET.getText().toString();
         String classGrade = classGradeET.getText().toString();
         String classID = classIDET.getText().toString();
         //IF CHILD ID DOESNT EXIST THROW ERROR
@@ -97,6 +99,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
                     parentHashmap.put("parentFirstName", parentFirstName);
                     parentHashmap.put("parentLastName", parentLastName);
                     parentHashmap.put("parentEmail", parentEmail);
+                    parentHashmap.put("email", parentEmail);
                     parentHashmap.put("parentID", parentID);
                     parentHashmap.put("schoolID", schoolID);
                     parentHashmap.put("classGrade", classGrade);

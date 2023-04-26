@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelNote;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,40 +44,28 @@ public class AddNoteActivity extends AppCompatActivity {
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
         if(currentUser==null){
-            Intent intent=new Intent(this, TeacherLoginActivity.class);
+            Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
+
         }
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
+        String schoolID = i.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
         System.out.println(classID);
 
 
         //from editing
-        Intent i4 = getIntent();
-        String noteID = i3.getStringExtra("noteID");
-        System.out.println("NoteID" + noteID);
-
-        Intent i5= getIntent();
-        String noteTitle = i5.getStringExtra("noteTitle");
-        System.out.println(noteTitle);
-
-        //Intent i = getIntent();
-        String note = i.getStringExtra("note");
-        System.out.println(note);
+        Intent i2 = getIntent();
+        String noteID = i2.getStringExtra("noteID");
+        String noteTitle = i2.getStringExtra("noteTitle");
+        String note = i2.getStringExtra("note");
+        String noteDate = i2.getStringExtra("noteDate");
+        System.out.println(noteDate);
 
 
-
+        delete = findViewById(R.id.delete);
         title = findViewById(R.id.title);
         noteTitleET = findViewById(R.id.noteTitle);
         noteET = findViewById(R.id.note);
@@ -85,14 +74,12 @@ public class AddNoteActivity extends AppCompatActivity {
             isEditting = true;
         }
 
-        delete = findViewById(R.id.delete);
 
 
-       // title.setText(noteTitle);
-        noteET.setText(note);
-        noteTitleET.setText(noteTitle);
         if(isEditting){
             title.setText("Edit Note");
+            noteET.setText(note);
+            noteTitleET.setText(noteTitle);
             delete.setVisibility(View.VISIBLE);
         }
 
@@ -110,7 +97,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
 
-//lead this into a new method
+        //lead this into a new method
         save = findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,9 +110,9 @@ public class AddNoteActivity extends AppCompatActivity {
 
                     ModelNote notes = new ModelNote();
 
-                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+                    /*SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
                     Date todayDate = new Date();
-                    String date = currentDate.format(todayDate);
+                    String date = currentDate.format(todayDate);*/
 
                     Timestamp timestamp = notes.getTimestamp();
 
@@ -133,7 +120,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
                     edittedHashmap.put("noteTitle", editNoteTitle);
                     edittedHashmap.put("note", editNoteET);
-                    edittedHashmap.put("date", date);
+                    edittedHashmap.put("date", noteDate);
                     edittedHashmap.put("noteID", noteID);
                     edittedHashmap.put("timestamp", timestamp);
                     reference.child(noteID).setValue(edittedHashmap);
@@ -167,41 +154,11 @@ public class AddNoteActivity extends AppCompatActivity {
                         noteHashmap.put("date", date);
                         noteHashmap.put("timestamp", timestamp);
 
-                        //note.setTimestamp(Timestamp.now())
                         String theID = reference.push().getKey();
                         noteHashmap.put("noteID", theID);
                         reference.child(theID).setValue(noteHashmap);
-                        //reference.push().setValue(noteHashmap);
-                       // reference.setValue(noteHashmap);
                 }
 
-                /*ModelNote notes = new ModelNote();
-
-                String noteTitle = noteTitleET.getText().toString();
-                String note = noteET.getText().toString();
-
-                SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
-                Date todayDate = new Date();
-                String date = currentDate.format(todayDate);
-                Timestamp timestamp = notes.getTimestamp();
-
-                if (note.isEmpty()){
-                    Toast.makeText(AddNoteActivity.this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
-                } else if (noteTitle.isEmpty()){
-                    Toast.makeText(AddNoteActivity.this, "Please Enter a Title", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AddNoteActivity.this, "Note Added", Toast.LENGTH_SHORT).show();
-
-                    HashMap<String, Object> noteHashmap = new HashMap<>();
-
-                    noteHashmap.put("noteTitle", noteTitle);
-                    noteHashmap.put("note", note);
-                    noteHashmap.put("date", date);
-                    noteHashmap.put("timestamp", timestamp);
-
-                    //note.setTimestamp(Timestamp.now())
-
-                    reference.push().setValue(noteHashmap);*/
 
                 }
 

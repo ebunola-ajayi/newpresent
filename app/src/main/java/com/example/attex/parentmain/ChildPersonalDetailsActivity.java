@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,19 +44,9 @@ public class ChildPersonalDetailsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i2 = getIntent();
-        String classGrade = i2.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
-
-        Intent i5 = getIntent();
-        String studentID = i5.getStringExtra("studentID");
-        System.out.println(studentID);
+        String classGrade = i.getStringExtra("classGrade");
+        String classID = i.getStringExtra("classID");
+        String studentID = i.getStringExtra("studentID");
 
 
         firstName = findViewById(R.id.firstName);

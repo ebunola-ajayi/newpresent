@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.models.ModelParent;
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 public class ListParentsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    TextView hello;
     ListParentsAdapter adapter;
     ArrayList<ModelParent> parentList;
 
@@ -36,28 +36,16 @@ public class ListParentsActivity extends AppCompatActivity {
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
-
-
         if(currentUser==null){
             Intent intent=new Intent(ListParentsActivity.this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
-        hello = findViewById(R.id.hello);
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-
-        Intent i2 = getIntent();
-        String classID = i2.getStringExtra("teacherID");
-        System.out.println(classID);
-
-        Intent i3 = getIntent();
-        String classGrade = i3.getStringExtra("classGrade");
+        String classID = i.getStringExtra("classID");
+        String classGrade = i.getStringExtra("classGrade");
         System.out.println(classGrade);
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -86,13 +74,9 @@ public class ListParentsActivity extends AppCompatActivity {
                     ModelParent parent  = snapshot.getValue(ModelParent.class);
                     System.out.println(parent);
                     parentList.add(parent);
-                    //name.setText(student.firstName);
-
-
-
                 }
-                //adapter.notifyDataSetChanged();
             } else {
+                Toast.makeText(ListParentsActivity.this, "No Parents Found", Toast.LENGTH_SHORT).show();
             }
             adapter.notifyDataSetChanged();
         }

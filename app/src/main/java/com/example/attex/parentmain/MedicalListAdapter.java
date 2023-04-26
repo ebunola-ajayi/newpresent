@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
-import com.example.attex.models.ModelBehaviour;
 import com.example.attex.models.ModelMedical;
-import com.example.attex.teachermain.AddNoteActivity;
 
 import java.util.List;
 

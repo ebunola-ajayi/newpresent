@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -104,7 +104,6 @@ public class AdminStudentDetailsActivity extends AppCompatActivity {
                         String county = countyET.getText().toString();
 
                         HashMap<String, Object> edittedHashmap = new HashMap<>();
-
                         edittedHashmap.put("firstName", firstName);
                         edittedHashmap.put("lastName", lastName);
                         edittedHashmap.put("middleName", middleName);
@@ -124,7 +123,9 @@ public class AdminStudentDetailsActivity extends AppCompatActivity {
                         edittedHashmap.put("studentID", studentID);
                         edittedHashmap.put("teacherEmail", teacherEmail);
 
+
                         reference.setValue(edittedHashmap);
+                        Toast.makeText(AdminStudentDetailsActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
 
                     }
                 });

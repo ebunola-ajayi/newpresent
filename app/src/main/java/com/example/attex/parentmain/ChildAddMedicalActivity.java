@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.teachermain.AddNoteActivity;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -92,6 +90,7 @@ public class ChildAddMedicalActivity extends AppCompatActivity {
                 reference.removeValue();
                 medTitleET.setText("");
                 noteET.setText("");
+                Toast.makeText(ChildAddMedicalActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -108,13 +107,6 @@ public class ChildAddMedicalActivity extends AppCompatActivity {
                 String medicalType1 = adapterView.getItemAtPosition(i).toString();
                 System.out.println(medicalType1);
 
-              /*  if(isEditting){
-                    *//*medicalType1 = medicalType;
-                    autoCompleteTextView.setText(medicalType1);*//*
-                    autoCompleteTextView.setVisibility(View.INVISIBLE);
-                }*/
-
-
                 String finalMedicalType = medicalType1;
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -126,7 +118,6 @@ public class ChildAddMedicalActivity extends AppCompatActivity {
                             String editMedicalNote = noteET.getText().toString();
 
                             HashMap<String, Object> edittedHashmap = new HashMap<>();
-
                             edittedHashmap.put("note", editMedicalNote);
                             edittedHashmap.put("medicalTitle", editMedicalTitle);
                             edittedHashmap.put("medicalType", medicalType);
@@ -139,10 +130,9 @@ public class ChildAddMedicalActivity extends AppCompatActivity {
                         } else {
                             String note = noteET.getText().toString();
                             String medTitle = medTitleET.getText().toString();
-
                             String medicalID = reference.push().getKey();
-                            HashMap<String, Object> medicalHashmap = new HashMap<>();
 
+                            HashMap<String, Object> medicalHashmap = new HashMap<>();
                             medicalHashmap.put("note", note);
                             medicalHashmap.put("medicalTitle", medTitle);
                             medicalHashmap.put("medicalType", finalMedicalType);

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.adminacademics.AdminSelectClass2Activity;
 import com.example.attex.models.ModelAdmin;
 import com.example.attex.R;
@@ -26,37 +27,24 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminHomeFragment extends Fragment {
 
-    TextView schoolIDTV;
-    TextView schoolNameTV;
-    TextView schoolEmailTV;
+    TextView schoolIDTV, schoolNameTV, schoolEmailTV;
+    ImageView viewGrades, viewClasses, viewTeachers, viewStudents, attendanceRecord, viewMemos, addStudents;
 
-    ImageView viewGrades;
-    ImageView viewClasses;
-    ImageView viewTeachers;
-    ImageView viewStudents;
-
-    public static String ADMINID = "admin ID";
 
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_admin_home, container, false);
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
 
-        ADMINID = currentUser.getUid();
-
 
         if(currentUser==null){
-            Intent intent=new Intent(getActivity(), AdminLoginActivity.class);
+            Intent intent=new Intent(getActivity(), InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         schoolIDTV = view.findViewById(R.id.schoolIDTV);
@@ -81,6 +69,16 @@ public class AdminHomeFragment extends Fragment {
                     schoolEmailTV.setText(admin.getAdminEmail());
                 }
 
+
+                addStudents = view.findViewById(R.id.addStudents);
+                addStudents.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), AdminSelectClass7Activity.class);
+                        intent.putExtra("schoolID", admin.getSchoolID());
+                        startActivity(intent);
+                    }
+                });
 
                 viewGrades = view.findViewById(R.id.viewGrades);
                 viewGrades.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +116,26 @@ public class AdminHomeFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), AdminSelectClass5Activity.class);
+                        intent.putExtra("schoolID", schoolID);
+                        startActivity(intent);
+                    }
+                });
+
+                attendanceRecord = view.findViewById(R.id.attendanceRecord);
+                attendanceRecord.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), AdminSelectClass6Activity.class);
+                        intent.putExtra("schoolID", schoolID);
+                        startActivity(intent);
+                    }
+                });
+
+                viewMemos = view.findViewById(R.id.viewMemos);
+                viewMemos.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), AdminMemoActivity.class);
                         intent.putExtra("schoolID", schoolID);
                         startActivity(intent);
                     }

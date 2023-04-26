@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.adminmain.AdminLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,9 +20,6 @@ public class AdminSelectClass2Activity extends AppCompatActivity {
     String[] classes = {"Junior Infants", "Senior Infants", "1st Class", "2nd Class", "3rd Class", "4th Class", "5th Class", "6th Class"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapter;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +33,8 @@ public class AdminSelectClass2Activity extends AppCompatActivity {
 
 
         if(currentUser==null){
-            Intent intent=new Intent(this, AdminLoginActivity.class);
+            Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
@@ -60,13 +54,6 @@ public class AdminSelectClass2Activity extends AppCompatActivity {
                 intent.putExtra("classGrade", item);
                 intent.putExtra("schoolID", schoolID);
                 startActivity(intent);
-               /* next = findViewById(R.id.next);
-                next.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });*/
 
             }
         });

@@ -7,7 +7,6 @@
     android:id="@+id/scroll"
     tools:context=".teachermain.TeacherHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -177,10 +176,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/specialNeeds"
+                    android:id="@+id/learningDisability"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/specialneeds" />
+                    android:src="@drawable/learndb" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -192,10 +191,10 @@
             android:layout_margin="10dp">
 
             <ImageView
-                android:id="@+id/school"
+                android:id="@+id/schoolMemos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/schoolicon" />
+                android:src="@drawable/schoolmemos" />
 
         </androidx.cardview.widget.CardView>
 

@@ -35,7 +35,6 @@ public class SubjectViewAcademicActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
 
 
         if(currentUser == null){
@@ -45,44 +44,27 @@ public class SubjectViewAcademicActivity extends AppCompatActivity {
             return;
         }
 
-        Intent i2 = getIntent();
-        String teacherID = i2.getStringExtra("classID");
-        System.out.println(teacherID);
-
-        Intent i3 = getIntent();
-        String subject = i3.getStringExtra("subject");
-        System.out.println(subject);
-
-        Intent i4 = getIntent();
-        String schoolID = i4.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i5 = getIntent();
-        String classGrade = i5.getStringExtra("classGrade");
-        System.out.println(classGrade);
+        Intent i = getIntent();
+        String classID = i.getStringExtra("classID");
+        String subject = i.getStringExtra("subject");
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
 
 
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //get teacher's class id
-        DatabaseReference reference = database.getReference("AcademicSubjects").child(schoolID).child(classGrade).child(teacherID).child(subject);
-
         subjectList = new ArrayList<>();
-        adapter = new SubjectViewAcademicAdapter(subjectList, this, teacherID, subject, schoolID, classGrade);
+        adapter = new SubjectViewAcademicAdapter(subjectList, this, classID, subject, schoolID, classGrade);
         recyclerView.setAdapter(adapter);
 
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("AcademicSubjects").child(schoolID).child(classGrade).child(classID).child(subject);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    System.out.println(dataSnapshot.getValue());
                     ModelAcademics topic = dataSnapshot.getValue(ModelAcademics.class);
-
-                    //String newid = student.getStudentID();
-                    //System.out.println("Line 56" + task.toString());
                     subjectList.add(topic);
                 }
                 adapter.notifyDataSetChanged();

@@ -10,7 +10,6 @@ import android.os.Bundle;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.ModelStudent;
 import com.example.attex.models.ModelTeacher;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,10 +34,6 @@ public class AdminListClassesActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
-
-        // ADMINID = currentUser.getUid();
-
-
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
@@ -61,7 +56,6 @@ public class AdminListClassesActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ModelTeacher listOfClasses = dataSnapshot.getValue(ModelTeacher.class);
-
                     classList.add(listOfClasses);
                 }
                 adapter.notifyDataSetChanged();

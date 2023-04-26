@@ -14,13 +14,48 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POSITIVE BEHAVOUR"
+                android:id="@+id/positiveButton"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="NEGATIVE BEHAVOUR"
+                android:id="@+id/negativeButton"/>
+
+        </LinearLayout>
+
+
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#DCF8FB"
-            android:layout_below="@+id/relTitle"
-            android:id="@+id/recyclerView"/>
+            android:visibility="visible"
+            android:id="@+id/recyclerView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/recyclerView2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/recyclerView3" />
+
 
     </LinearLayout>
-
 </ScrollView>

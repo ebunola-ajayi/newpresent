@@ -19,10 +19,7 @@ public class SubjectViewAcademicAdapter extends RecyclerView.Adapter<SubjectView
     private final List<ModelAcademics> subjectList;
     private final Context context;
 
-    String teacherID;
-    String subject;
-    String schoolID;
-    String classGrade;
+    String teacherID, subject, schoolID, classGrade;
 
     public SubjectViewAcademicAdapter(List<ModelAcademics> subjectList, Context context, String teacherID, String subject, String schoolID, String classGrade) {
         this.subjectList = subjectList;

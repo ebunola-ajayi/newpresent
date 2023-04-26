@@ -18,31 +18,27 @@ import java.util.List;
 
 public class ViewStudentsAdapter extends RecyclerView.Adapter<ViewStudentsAdapter.ViewStudentsViewHolder>{
 
-    //Context context;
-   // ArrayList<ModelStudent> studentList;
-
     private final List<ModelStudent> studentList;
     private final Context context;
+    String schoolID, classGrade, classID;
 
-    public ViewStudentsAdapter(Context context, List<ModelStudent> studentList){ //ArrayList<Student> presentList
-        //super(context, R.layout.list_students, studentList);
+    public ViewStudentsAdapter(Context context, List<ModelStudent> studentList, String schoolID, String classGrade, String classID){
         this.context= context;
         this.studentList = studentList;
-        //this.presentList = presentList;
+        this.schoolID = schoolID;
+        this.classGrade = classGrade;
+        this.classID = classID;
     }
 
     @NonNull
     @Override
     public ViewStudentsAdapter.ViewStudentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        /*View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_layout, parent, false);
-        return new ViewStudentsViewHolder(view);*/
         return new ViewStudentsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_layout, null));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewStudentsViewHolder holder, int position) {
-        //getting single item/ user details from list
-        ModelStudent student = studentList.get(position);
+         ModelStudent student = studentList.get(position);
 
         //setting student details to text view
         holder.firstNameTxt.setText(student.getFirstName());
@@ -54,6 +50,9 @@ public class ViewStudentsAdapter extends RecyclerView.Adapter<ViewStudentsAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, StudentProfileActivity.class);
+                intent.putExtra("schoolID", schoolID);
+                intent.putExtra("classGrade", classGrade);
+                intent.putExtra("classID", classID);
                 intent.putExtra("studentID", student.getStudentID());
                 intent.putExtra("firstName", student.getFirstName());
                 intent.putExtra("lastName", student.getLastName());
@@ -68,16 +67,11 @@ public class ViewStudentsAdapter extends RecyclerView.Adapter<ViewStudentsAdapte
     }
 
     public static class ViewStudentsViewHolder extends RecyclerView.ViewHolder{
-//        TextView firstNameTxt;
-//        TextView lastNameTxt;
-//        TextView idTxt;
-//        TextView dobTxt;
          TextView firstNameTxt, lastNameTxt, idTxt, dobTxt;
 
         public ViewStudentsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //getting textvies from student_list_layout
             firstNameTxt = itemView.findViewById(R.id.tvForeName);
             lastNameTxt = itemView.findViewById(R.id.tvLastName);
             idTxt = itemView.findViewById(R.id.tvStudentNo);

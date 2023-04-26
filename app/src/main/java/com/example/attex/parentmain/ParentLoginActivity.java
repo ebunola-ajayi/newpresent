@@ -52,7 +52,7 @@ public class ParentLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //registerTV();
-                Intent intent = new Intent(ParentLoginActivity.this, ParentRegisterActivity.class);
+                Intent intent = new Intent(ParentLoginActivity.this, ParentEnterSchoolIDActivity.class);
                 startActivity(intent);
             }
         });
@@ -107,10 +107,6 @@ public class ParentLoginActivity extends AppCompatActivity {
                                 }
                             });
 
-
-
-
-                            //enterchildIDPage();
                         } else {
                             Toast.makeText(ParentLoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                         }
@@ -119,23 +115,4 @@ public class ParentLoginActivity extends AppCompatActivity {
 
     }
 
-
-
-   /* private void registerTV() {
-        Intent intent = new Intent(this, ParentRegisterActivity.class);
-        startActivity(intent);
-
-    }*/
-
-   /* private void enterchildIDPage(){
-        Intent intent = new Intent(this, EnterChildIDActivity.class);
-
-        startActivity(intent);
-        //finish();
-    }*/
-   /* private void showMainPage(){
-        Intent intent = new Intent(this, ParentMain.class);
-        startActivity(intent);
-        finish();
-    }*/
 }

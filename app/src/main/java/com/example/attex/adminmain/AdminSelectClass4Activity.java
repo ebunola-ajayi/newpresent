@@ -28,14 +28,9 @@ public class AdminSelectClass4Activity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
 
-        // ADMINID = currentUser.getUid();
-
-
         if(currentUser==null){
             Intent intent=new Intent(this, AdminLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
@@ -55,13 +50,6 @@ public class AdminSelectClass4Activity extends AppCompatActivity {
                 intent.putExtra("classGrade", item);
                 intent.putExtra("schoolID", schoolID);
                 startActivity(intent);
-               /* next = findViewById(R.id.next);
-                next.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });*/
 
             }
         });

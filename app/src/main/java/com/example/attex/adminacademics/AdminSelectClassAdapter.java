@@ -20,8 +20,7 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
     private final List<ModelTeacher> classList;
     private final Context context;
 
-    String classGrade;
-    String schoolID;
+    String classGrade, schoolID;
 
     public AdminSelectClassAdapter(List<ModelTeacher> classList, Context context, String classGrade, String schoolID) {
         this.classList = classList;
@@ -40,13 +39,13 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
     public void onBindViewHolder(@NonNull AdminSelectClassAdapter.AdminSelectClassViewHolder holder, int position) {
         ModelTeacher className = classList.get(position);
 
-        holder.teacherID.setText(className.getTeacherID());
+        holder.teacherID.setText(className.getClassID());
 
         holder.teacherID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AdminViewResultsActivity.class);
-                intent.putExtra("classID", className.getTeacherID());
+                intent.putExtra("classID", className.getClassID());
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);
                 context.startActivity(intent);
@@ -67,7 +66,6 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
         public AdminSelectClassViewHolder(@NonNull View itemView) {
             super(itemView);
 
-           // className = itemView.findViewById(className);
             teacherID = itemView.findViewById(R.id.className);
         }
     }

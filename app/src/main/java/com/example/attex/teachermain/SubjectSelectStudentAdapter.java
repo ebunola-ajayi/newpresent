@@ -20,16 +20,8 @@ public class SubjectSelectStudentAdapter extends RecyclerView.Adapter<SubjectSel
 
     private final List<ModelStudent> studentsList;
     private final Context context;
+    String subject, topic, classGrade, classID, schoolID;
 
-
-
-    String subject;
-    String topic;
-    String classGrade;
-    String classID;
-    String schoolID;
-
-    //subject name will be in the activity passed through as an intent
     public SubjectSelectStudentAdapter(List<ModelStudent> studentsList, Context context, String subject, String topic, String classGrade, String classID, String schoolID) {
         this.studentsList = studentsList;
         this.context = context;
@@ -54,16 +46,10 @@ public class SubjectSelectStudentAdapter extends RecyclerView.Adapter<SubjectSel
         holder.lastName.setText(student.getLastName());
         holder.id.setText(student.getStudentID());
 
-       // holder.topic.setText();
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SubjectAddRecordActivity.class);
-
-
-
-
                 intent.putExtra("studentID", student.getStudentID());
                 intent.putExtra("firstName", student.getFirstName());
                 intent.putExtra("lastName", student.getLastName());
@@ -72,8 +58,6 @@ public class SubjectSelectStudentAdapter extends RecyclerView.Adapter<SubjectSel
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("subject", subject);
                 intent.putExtra("topic", topic);
-                //intent.putExtra("subject", );
-
                 context.startActivity(intent);
             }
         });
@@ -95,7 +79,6 @@ public class SubjectSelectStudentAdapter extends RecyclerView.Adapter<SubjectSel
             firstName = itemView.findViewById(R.id.firstName);
             lastName = itemView.findViewById(R.id.lastName);
             id = itemView.findViewById(R.id.studentNo);
-
             subject = itemView.findViewById(R.id.subject);
             topic = itemView.findViewById(R.id.topic);
         }

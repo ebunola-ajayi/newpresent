@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
 import com.example.attex.teachermain.TeacherLoginActivity;
@@ -34,11 +35,8 @@ public class TeacherStandardSelectStudentsActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
-
-
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -53,16 +51,14 @@ public class TeacherStandardSelectStudentsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
+        String schoolID = i.getStringExtra("schoolID");
+        String teacherID = i.getStringExtra("classID");
+        String subject = i.getStringExtra("subject");
 
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-
-        Intent i3 = getIntent();
-        String teacherID = i3.getStringExtra("teacherID");
 
 
         studentLists = new ArrayList<>();
-        adapter = new TeacherStandardSelectStudentsAdapter(studentLists, this, classGrade, schoolID, teacherID);
+        adapter = new TeacherStandardSelectStudentsAdapter(studentLists, this, classGrade, schoolID, teacherID, subject);
         recyclerView.setAdapter(adapter);
 
         reference.addValueEventListener(new ValueEventListener() {

@@ -34,7 +34,6 @@ public class StudentViewTopicsActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
         if(currentUser == null){
             Intent intent = new Intent(this, TeacherLoginActivity.class);
             startActivity(intent);
@@ -45,23 +44,11 @@ public class StudentViewTopicsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classID = i.getStringExtra("classID");
-        System.out.println(classID);
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
+        String studentID = i.getStringExtra("studentID");
+        String subject = i.getStringExtra("subject");
 
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classGrade = i3.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i4 = getIntent();
-        String studentID = i4.getStringExtra("studentID");
-        System.out.println(studentID);
-
-        Intent i5 = getIntent();
-        String subject = i5.getStringExtra("subject");
-        System.out.println(subject);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

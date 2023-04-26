@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
-import com.example.attex.studentprofile.StudentProfileActivity;
-import com.example.attex.teachermain.ViewStudentsAdapter;
 
 import java.util.List;
 

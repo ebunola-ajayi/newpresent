@@ -1,4 +1,4 @@
-package com.example.attex.parentmain;
+package com.example.attex.parentacademics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ParentViewStandardResultActivity extends AppCompatActivity {
 
-    TextView title;
-    TextView grade;
-    TextView comment;
+    TextView title, grade, comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,29 +33,17 @@ public class ParentViewStandardResultActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
         Intent i = getIntent();
         String studentID = i.getStringExtra("studentID");
-        System.out.println(studentID);
-
-        Intent i2 = getIntent();
-        String classID = i2.getStringExtra("classID");
-        System.out.println(classID);
-
-        Intent i3 = getIntent();
-        String classGrade = i3.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i4 = getIntent();
-        String schoolID = i4.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
+        String classGrade = i.getStringExtra("classGrade");
+        String schoolID = i.getStringExtra("schoolID");
         System.out.println(schoolID);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(studentID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(studentID);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

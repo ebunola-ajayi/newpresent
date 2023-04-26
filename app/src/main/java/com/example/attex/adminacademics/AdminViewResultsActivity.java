@@ -32,8 +32,7 @@ import java.util.ArrayList;
 
 public class AdminViewResultsActivity extends AppCompatActivity {
 
-    Button listView;
-    Button chartView;
+    Button listView, chartView;
     BarChart barChart;
     TextView averageTV;
 
@@ -54,21 +53,13 @@ public class AdminViewResultsActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
+        String schoolID = i.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -82,11 +73,9 @@ public class AdminViewResultsActivity extends AppCompatActivity {
             }
         });
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID);
 
         resultList = new ArrayList<>();
         adapter = new TeacherStandardResultAdapter(resultList, this);

@@ -40,7 +40,7 @@ public class AdminListClassesAdapter extends RecyclerView.Adapter<AdminListClass
     public void onBindViewHolder(@NonNull AdminListClassesViewHolder holder, int position) {
         ModelTeacher classes = classList.get(position);
 
-        holder.className.setText(classes.getLastName() + " - " + classes.getTeacherID());
+        holder.className.setText(classes.getLastName() + " - " + classes.getClassID());
     }
 
     @Override

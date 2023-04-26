@@ -14,12 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StudentSubjectsActivity extends AppCompatActivity {
 
-    ImageView maths;
-    ImageView history;
-    ImageView irish;
-    ImageView geography;
-    ImageView english;
-    ImageView science;
+    ImageView maths, history, irish, geography, english, science;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +23,6 @@ public class StudentSubjectsActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
         if(currentUser == null){
             Intent intent = new Intent(this, TeacherLoginActivity.class);
             startActivity(intent);
@@ -38,22 +32,11 @@ public class StudentSubjectsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classID = i.getStringExtra("classID");
-        System.out.println(classID);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classGrade = i3.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i4 = getIntent();
-        String studentID = i3.getStringExtra("studentID");
-        System.out.println(studentID);
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
+        String studentID = i.getStringExtra("studentID");
 
 
-//SubjectViewAcademicAdapter
         maths = findViewById(R.id.maths);
         maths.setOnClickListener(new View.OnClickListener() {
             @Override

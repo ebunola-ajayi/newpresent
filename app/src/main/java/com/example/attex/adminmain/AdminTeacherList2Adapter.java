@@ -20,8 +20,7 @@ public class AdminTeacherList2Adapter extends RecyclerView.Adapter<AdminTeacherL
     private final List<ModelTeacher> teacherList;
     private final Context context;
 
-    String schoolID;
-    String classGrade;
+    String schoolID, classGrade;
 
     public AdminTeacherList2Adapter(List<ModelTeacher> teacherList, Context context, String schoolID, String classGrade) {
         this.teacherList = teacherList;
@@ -40,14 +39,14 @@ public class AdminTeacherList2Adapter extends RecyclerView.Adapter<AdminTeacherL
     public void onBindViewHolder(@NonNull AdminTeacherList2Adapter.AdminTeacherList2ViewHolder holder, int position) {
         ModelTeacher teachers = teacherList.get(position);
 
-        String teacherID = teachers.getTeacherID();
-        holder.lastName.setText(teachers.getTeacherName() + " - " + teachers.getTeacherID());
+        String classID = teachers.getClassID();
+        holder.lastName.setText(teachers.getTeacherName() + " - " + teachers.getClassID());
 
         holder.lastName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TeachersStudentListActivity.class);
-                intent.putExtra("classID", teacherID);
+                intent.putExtra("classID", classID);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
                 context.startActivity(intent);

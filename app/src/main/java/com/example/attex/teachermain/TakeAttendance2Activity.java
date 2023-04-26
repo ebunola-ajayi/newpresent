@@ -9,13 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelAttendance;
-import com.example.attex.models.ModelNote;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,7 +36,7 @@ public class TakeAttendance2Activity extends AppCompatActivity {
     ArrayList<ModelAttendance> attendanceList;
 
     Button submit;
-    EditText dateET;
+    TextView dateET;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +69,7 @@ public class TakeAttendance2Activity extends AppCompatActivity {
 
         }
 
+        //intent details
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
         String schoolID = i.getStringExtra("schoolID");
@@ -79,15 +77,12 @@ public class TakeAttendance2Activity extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(schoolID).child(classGrade).child(classID);
 
-
         //RCV details
         attendanceList = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TakeAttendance2Adapter(attendanceList, this);
         recyclerView.setAdapter(adapter);
-
-
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -106,8 +101,6 @@ public class TakeAttendance2Activity extends AppCompatActivity {
 
             }
         });
-
-
 
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -143,19 +136,15 @@ public class TakeAttendance2Activity extends AppCompatActivity {
 
                     Toast.makeText(TakeAttendance2Activity.this, "Attendance Saved", Toast.LENGTH_SHORT).show();
 
-                    //this worked!!
+                    //attendance for the whole class
                     ref.child(studentID).setValue(attendanceHashMap);
+                    //attendance record for each individual student
                     ref2.child(studentID).child(year).child(currentMonth).child(date).setValue(studentAttHashMap);
 
                 }
 
             }
         });
-
-
-
-
-
 
     }
 }

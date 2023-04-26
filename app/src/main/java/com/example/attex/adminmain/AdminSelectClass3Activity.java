@@ -10,9 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.adminacademics.AdminSelectClass2Activity;
-import com.example.attex.adminacademics.AdminSelectTeachersClassActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,15 +29,9 @@ public class AdminSelectClass3Activity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
-
-        // ADMINID = currentUser.getUid();
-
-
         if(currentUser==null){
-            Intent intent=new Intent(this, AdminLoginActivity.class);
+            Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
@@ -58,13 +51,6 @@ public class AdminSelectClass3Activity extends AppCompatActivity {
                 intent.putExtra("classGrade", item);
                 intent.putExtra("schoolID", schoolID);
                 startActivity(intent);
-               /* next = findViewById(R.id.next);
-                next.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });*/
 
             }
         });

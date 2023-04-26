@@ -14,16 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AdminViewTestOptionsActivity extends AppCompatActivity {
 
-    Button juniorInfants;
-    Button seniorInfants;
-    Button firstClass;
-    Button secondClass;
-    Button thirdClass;
-    Button fourthClass;
-    Button fifthClass;
-    Button sixthClass;
-
-
+    Button juniorInfants, seniorInfants, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -23,10 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class TeacherRegisterActivity extends AppCompatActivity {
-
+//ENTER SCHOOLID FIRST
     private FirebaseAuth mAuth;
-
-    //public static final String EXTRA_NAME = "username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +74,13 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         String password = etPassword.getText().toString();
         String tUsername = username.getText().toString();
         String teacherName = tName.getText().toString();
-        String teacherID = teachID.getText().toString();
+        String classID = teachID.getText().toString();
         String schoolID = schoolIDET.getText().toString();
         String classGrade = classGradeET.getText().toString();   // add conditions for this
 
 
         //error message for teacher name - cant contain space
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || tUsername.isEmpty() || teacherName.isEmpty() || teacherID.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || tUsername.isEmpty() || teacherName.isEmpty() || classID.isEmpty()) {
             Toast.makeText(this, "Please enter value for all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -101,12 +99,12 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                             teacherHashmap.put("email", email);
                             teacherHashmap.put("teacherUsername", tUsername);
                             teacherHashmap.put("teacherName", teacherName);
-                            teacherHashmap.put("teacherID", teacherID);
+                            teacherHashmap.put("classID", classID);
                             teacherHashmap.put("schoolID", schoolID);
                             teacherHashmap.put("classGrade", classGrade);
 
 
-                            DatabaseReference reference =FirebaseDatabase.getInstance().getReference("Teachers").child(schoolID).child(classGrade).child(teacherID);
+                            DatabaseReference reference =FirebaseDatabase.getInstance().getReference("Teachers").child(schoolID).child(classGrade).child(classID);
                                     reference.setValue(teacherHashmap);
 
                             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("TeacherDetails").child(FirebaseAuth.getInstance().getCurrentUser().getUid());

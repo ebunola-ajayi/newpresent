@@ -15,12 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AdminTestDetailsActivity extends AppCompatActivity {
 
-    EditText classgradeET;
-    EditText subjectET;
-    EditText yearET;
+    EditText classgradeET, subjectET, yearET;
     Button next;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +29,10 @@ public class AdminTestDetailsActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
 
         classgradeET = findViewById(R.id.classgrade);
         subjectET = findViewById(R.id.subject);

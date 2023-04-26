@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,9 +22,7 @@ import java.util.HashMap;
 public class SubjectAddRecordActivity extends AppCompatActivity {
 
     TextView nameET;
-    EditText noteET;
-    EditText gradeET;
-    EditText topicET;
+    EditText noteET, gradeET, topicET;
     Button saveBtn;
 
 
@@ -34,57 +33,23 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
-
-
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
         }
 
-        /*intent.putExtra("topic", topic);
-                intent.putExtra("teacherID", teacherID);
-                intent.putExtra("schoolID", schoolID);
-                intent.putExtra("subject", subject);
-                intent.putExtra("classGrade", classGrade);*/
 
-        Intent i5;
-        i5 = getIntent();
-        String subject = i5.getStringExtra("subject");
-      //  System.out.println(subject);
-
-        Intent i6;
-        i6 = getIntent();
-        String topic = i6.getStringExtra("topic");
-        System.out.println(subject + ", " + topic);
-
-        Intent i7;
-        i7 = getIntent();
-        String schoolID = i7.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i8;
-        i8 = getIntent();
-        String classGrade = i8.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i;
-        i = getIntent();
+        Intent i = getIntent();
+        String subject = i.getStringExtra("subject");
+        String topic = i.getStringExtra("topic");
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
         String studentID = i.getStringExtra("studentID");
-
-        Intent i2;
-        i2 = getIntent();
-        String firstName = i2.getStringExtra("firstName");
-
-        Intent i3;
-        i3 = getIntent();
-        String lastName = i3.getStringExtra("lastName");
-
-        Intent i4;
-        i4 = getIntent();
-        String classID = i4.getStringExtra("classID");
+        String firstName = i.getStringExtra("firstName");
+        String lastName = i.getStringExtra("lastName");
+        String classID = i.getStringExtra("classID");
 
         nameET = findViewById(R.id.studentName);
         nameET.setText(firstName + " " + lastName);
@@ -93,13 +58,6 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
         gradeET = findViewById(R.id.gradeET);
         topicET = findViewById(R.id.topic);
         topicET.setText(topic);
-
-
-     //  Intent intent2 = getIntent();
-       // String sub = intent2.getStringExtra(SubjectSelectStudentActivity.SUBJECT);
-
-
-        //add to db!
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic);
 
@@ -128,9 +86,7 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
                 HashMap<String, Object> subjectHashmap = new HashMap<>();
                 subjectHashmap.put("topic", topic);
 
-                //Maths >Geometry, Algebra, Functions
                 ref.setValue(subjectHashmap);
-                //ref.setValue(topic);
                 ref.push();
 
             }

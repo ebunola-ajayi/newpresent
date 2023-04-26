@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelTeacher;
-import com.example.attex.teacheracademics.TeacherStandardSelectStudentsAdapter;
 
 import java.util.List;
 
@@ -41,14 +40,14 @@ public class AdminTeacherListAdapter extends RecyclerView.Adapter<AdminTeacherLi
     public void onBindViewHolder(@NonNull AdminTeacherListAdapter.AdminTeacherListViewHolder holder, int position) {
         ModelTeacher teachers = teacherList.get(position);
 
-        String teacherID = teachers.getTeacherID();
-        holder.lastName.setText(teachers.getTeacherName() + " - " + teachers.getTeacherID());
+        String classID = teachers.getClassID();
+        holder.lastName.setText(teachers.getTeacherName() + " - " + teachers.getClassID());
 
         holder.lastName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AdminTeacherProfileActivity.class);
-                intent.putExtra("classID", teacherID);
+                intent.putExtra("classID", classID);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
                 context.startActivity(intent);

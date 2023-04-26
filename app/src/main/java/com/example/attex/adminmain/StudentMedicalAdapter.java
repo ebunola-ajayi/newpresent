@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelMedical;
-import com.example.attex.parentmain.MedicalListAdapter;
 
 import java.util.List;
 

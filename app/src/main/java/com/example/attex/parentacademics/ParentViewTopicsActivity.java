@@ -1,4 +1,4 @@
-package com.example.attex.parentmain;
+package com.example.attex.parentacademics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,6 @@ import android.os.Bundle;
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelAcademics;
-import com.example.attex.parentmain.ParentViewSubjectsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,26 +45,11 @@ public class ParentViewTopicsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i2 = getIntent();
-        String classGrade = i2.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
-
-       // Intent i4 = getIntent();
-       // String subject = i4.getStringExtra("subject");
-
-        Intent i5 = getIntent();
+        String classGrade = i.getStringExtra("classGrade");
+        String classID = i.getStringExtra("classID");
         String studentID = i.getStringExtra("studentID");
-        System.out.println("topic" +studentID);
+        String subject = i.getStringExtra("subject");
 
-        Intent i6 = getIntent();
-        String subject = i6.getStringExtra("subject");
-        System.out.println(subject);
 
 
         recyclerView = findViewById(R.id.recyclerView);

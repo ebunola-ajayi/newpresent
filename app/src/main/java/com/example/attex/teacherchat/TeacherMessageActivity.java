@@ -1,4 +1,4 @@
-package com.example.attex.teachermain;
+package com.example.attex.teacherchat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.TeacherMessageAdapter;
 import com.example.attex.models.ModelChat;
 import com.example.attex.models.ModelParent;
+import com.example.attex.teachermain.TeacherMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,14 +36,11 @@ public class TeacherMessageActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView parentUsername;
-
     FirebaseUser fUser;
     DatabaseReference reference, ref;
     Intent intent;
-
     ImageButton sendBtn;
     EditText sendTxt;
-
     TeacherMessageAdapter messageAdapter;
     List<ModelChat> mchat;
 
@@ -66,9 +64,8 @@ public class TeacherMessageActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -80,9 +77,9 @@ public class TeacherMessageActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
         imageView = findViewById(R.id.imageView);
         parentUsername = findViewById(R.id.parentUsername);
-
         sendBtn = findViewById(R.id.sendBTN);
         sendTxt = findViewById(R.id.send_text);
         imageView.setImageResource(R.drawable.profitem);
@@ -92,10 +89,6 @@ public class TeacherMessageActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String parentEmail = i.getStringExtra("parentEmail");
-
-
-
-        //String pID = intent.getStringExtra(TeacherMainActivity.)
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         String myEmail = fUser.getEmail();
@@ -118,16 +111,13 @@ public class TeacherMessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelParent parent = snapshot.getValue(ModelParent.class);
-                parentUsername.setText(parent.getParentUsername());
+                parentUsername.setText(parent.getEmail());
                 String parentID = parent.getParentID();
-                System.out.println(parentID + " " + parentEmail);
-               // readMessage(fUser.getUid(), parentID, parent.getParentID());
-                readMessage(myEmail, parentEmail, parent.getParentID());
+                readMessage(myEmail, parentEmail, parentID);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
@@ -165,11 +155,7 @@ public class TeacherMessageActivity extends AppCompatActivity {
                     System.out.println("receiver " + receiver);
 
                    if(chat.getReceiver().equals(myEmail) && chat.getSender().equals(parentEmail) || chat.getReceiver().equals(parentEmail) && chat.getSender().equals(myEmail)) {
-                        //if(chat.getSender().equalsIgnoreCase(myEmail) && chat.getReceiver().equalsIgnoreCase(parentEmail)){
                             mchat.add(chat);
-
-                       // }
-
                    }
 
                     messageAdapter = new TeacherMessageAdapter(TeacherMessageActivity.this, mchat);
@@ -186,19 +172,5 @@ public class TeacherMessageActivity extends AppCompatActivity {
 
 
     }
-
-
-
-    //SEND A NEW MESSAGE THEN DO IF STATEMENT
-
-
-
-
-
-
-
-
-
-
 
 }

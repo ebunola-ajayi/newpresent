@@ -30,11 +30,8 @@ public class AdminMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding1 = ActivityAdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding1.getRoot());
-        //setContentView(R.layout.activity_admin_main);
 
         replaceFragment(new AdminHomeFragment());
-
-
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -55,12 +52,9 @@ public class AdminMainActivity extends AppCompatActivity {
                 case R.id.academicItem:
                     replaceFragment(new AdminAcademicsFragment());
                     break;
-                /*case R.id.gradeItem:
-                    replaceFragment(new TeacherGradeFragment());
-                    break;*/
-                /*case R.id.profileItem:
-                    replaceFragment(new ProfileFragment());
-                    break;*/
+                case R.id.profileItem:
+                    replaceFragment(new AdminProfileFragment());
+                    break;
             }
             return true;
         });

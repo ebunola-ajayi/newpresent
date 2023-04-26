@@ -58,7 +58,7 @@ public class AdminTeacherProfileActivity extends AppCompatActivity {
                 System.out.println(teacher.getEmail());
 
                 teacherNameTV.setText(teacher.getTeacherName());
-                teacherIDTV.setText(teacher.getTeacherID());
+                teacherIDTV.setText(teacher.getClassID());
                 firstNameTV.setText(teacher.getFirstName());
                 lastNameTV.setText(teacher.getLastName());
                 emailTV.setText(teacher.getEmail());

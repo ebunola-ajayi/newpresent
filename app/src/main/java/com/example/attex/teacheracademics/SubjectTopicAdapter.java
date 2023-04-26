@@ -20,7 +20,6 @@ public class SubjectTopicAdapter extends RecyclerView.Adapter<SubjectTopicAdapte
     private final Context context;
 
     public SubjectTopicAdapter(@NonNull Context context, List<ModelSubjectTopics> list) {
-       // super(context);
         this.list = list;
         this.context = context;
     }

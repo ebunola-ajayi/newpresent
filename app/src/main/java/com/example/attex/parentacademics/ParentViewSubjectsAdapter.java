@@ -1,4 +1,4 @@
-package com.example.attex.parentmain;
+package com.example.attex.parentacademics;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,12 +19,7 @@ public class ParentViewSubjectsAdapter extends RecyclerView.Adapter<ParentViewSu
     private final List<ModelAcademics> subjectList;
     private final Context context;
 
-    String schoolID;
-    String classID;
-    String classGrade;
-    String studentID;
-    String subject;
-
+    String schoolID, classID, classGrade, studentID, subject;
 
     public ParentViewSubjectsAdapter(List<ModelAcademics> subjectList, Context context, String schoolID, String classGrade, String classID, String studentID, String subject) {
         this.subjectList = subjectList;

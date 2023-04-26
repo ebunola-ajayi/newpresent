@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
 import com.example.attex.teachermain.TeacherLoginActivity;
@@ -27,8 +28,6 @@ public class ViewStudentActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ViewStudentsAdapter adapter;
     ArrayList<ModelStudent> studentLists;
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-    FirebaseUser currentUser = auth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,27 +36,26 @@ public class ViewStudentActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
-
-
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
         }
 
+        Intent i = getIntent();
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
+        String classID = i.getStringExtra("classID");
+
+        //RCV
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("Students").child(currentUser.getUid());
-
         studentLists = new ArrayList<>();
-        adapter = new ViewStudentsAdapter(this, studentLists);
+        adapter = new ViewStudentsAdapter(this, studentLists, schoolID, classGrade, classID);
         recyclerView.setAdapter(adapter);
 
-
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(schoolID).child(classGrade).child(classID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,8 +63,6 @@ public class ViewStudentActivity extends AppCompatActivity {
                     System.out.println(dataSnapshot.getValue());
                     ModelStudent student = dataSnapshot.getValue(ModelStudent.class);
 
-                    String newid = student.getStudentID();
-                    //System.out.println("Line 56" + task.toString());
                     studentLists.add(student);
                 }
                 adapter.notifyDataSetChanged();

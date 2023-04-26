@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:stretchColumns="1,2,3"
+    android:layout_height="match_parent">
+
+    <TableRow>
+
+
+
+    <TextView
+        android:id="@+id/fullNameTV"
+        android:text=" Full Name"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#2F6A98"
+        android:padding="5dp"
+        android:layout_column="1"/>
+
+
+    <TextView
+        android:id="@+id/attendanceTV"
+        android:layout_marginLeft="20dp"
+        android:text="Attendance"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333E47"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_column="1"/>
+
+    </TableRow>
+
+</TableLayout>

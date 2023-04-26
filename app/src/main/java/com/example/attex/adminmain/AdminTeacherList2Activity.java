@@ -56,7 +56,6 @@ public class AdminTeacherList2Activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ModelTeacher teacher = dataSnapshot.getValue(ModelTeacher.class);
-
                     teacherList.add(teacher);
                 }
                 adapter.notifyDataSetChanged();

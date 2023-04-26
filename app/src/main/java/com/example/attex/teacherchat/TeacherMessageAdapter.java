@@ -1,4 +1,4 @@
-package com.example.attex.models;
+package com.example.attex.teacherchat;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
+import com.example.attex.models.ModelChat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -23,14 +24,12 @@ public class TeacherMessageAdapter extends RecyclerView.Adapter<TeacherMessageAd
 
     private Context mContext;
     private List<ModelChat> mChat;
-    private String imageURL;
 
     FirebaseUser fuser;
 
     public TeacherMessageAdapter(Context mContext, List<ModelChat> mChat) {
         this.mContext = mContext;
         this.mChat = mChat;
-       // this.imageURL = imageURL;
     }
 
 
@@ -72,14 +71,10 @@ public class TeacherMessageAdapter extends RecyclerView.Adapter<TeacherMessageAd
             profile_image = itemView.findViewById(R.id.profile_image);
         }
 
-       // @Override
-
-
     }
 
     public int getItemViewType(int position){
         fuser = FirebaseAuth.getInstance().getCurrentUser();
-        //if(mChat.get(position).getSender().equals(fuser.getUid())){
         if(mChat.get(position).getSender().equals(fuser.getEmail())){
 
             return MSG_TYPE_RIGHT;

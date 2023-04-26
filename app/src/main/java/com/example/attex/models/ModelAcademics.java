@@ -2,14 +2,12 @@ package com.example.attex.models;
 
 public class ModelAcademics {
 
-    //String grade;
-    String grade; // grade will be y
+    String grade;
     String topic;
     String note;
     String studentID;
     String subject;
     String name;
-    //string date
 
     public ModelAcademics(String grade, String studentID, String topic, String note, String subject, String name) { //
         this.grade = grade;

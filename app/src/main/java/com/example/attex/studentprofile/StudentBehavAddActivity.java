@@ -15,44 +15,35 @@ import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class StudentBehavAddActivity extends AppCompatActivity {
 
-    EditText dateET;
-    EditText commentET;
-    EditText feedbackType;
+    EditText dateET, commentET;
     Button saveBtn;
     ImageButton delete;
 
     RadioGroup radioGroup;
     RadioButton radioButton;
-    RadioButton positive;
-    RadioButton negative;
-    TextView textView;
-    TextView behaviourTitle;
-
+    RadioButton positive, negative;
+    TextView textView, behaviourTitle;
 
     boolean isEditting = false;
-
-    //private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_behav_add);
 
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-
-
         if(currentUser == null){
             Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
@@ -64,26 +55,18 @@ public class StudentBehavAddActivity extends AppCompatActivity {
 
         dateET = findViewById(R.id.date);
         commentET = findViewById(R.id.commentET);
-        //feedbackType = findViewById(R.id.feedbackType);
 
         radioGroup = findViewById(R.id.radioGroup);
-        /*int radioID = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioID);*/
         textView = findViewById(R.id.text_view_selected);
 
 
         Intent i = getIntent();
-        //i = getIntent();
         String studentID = i.getStringExtra("studentID");
-        System.out.println(studentID);
         String firstName = i.getStringExtra("firstName");
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
         String lastName = i.getStringExtra("lastName");
-        String teacherID = i.getStringExtra("classID");
-        System.out.println(teacherID);
+        String classID = i.getStringExtra("classID");
 
 
         //from editing
@@ -109,27 +92,27 @@ public class StudentBehavAddActivity extends AppCompatActivity {
             }
         }
 
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+        Date todayDate = new Date();
+        String todaysDate = currentDate.format(todayDate);
+
+        dateET.setText(todaysDate);
+
         delete = findViewById(R.id.delete);
-
-        dateET.setText(date);
-        commentET.setText(comment);
-        /*int radioID1 = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioID1);*/
-
-
-      //  radioButton.setText(feedback);
-
         behaviourTitle = findViewById(R.id.behaviourTitle);
         if(isEditting){
             behaviourTitle.setText("Edit Behaviour Entry");
             delete.setVisibility(View.VISIBLE);
+            dateET.setText(date);
+            commentET.setText(comment);
 
         }
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("BehaviourRecord").child(schoolID).child(classGrade).child(teacherID).child(studentID).child(behaviourID);
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("BehaviourRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(behaviourID);
                 reference1.removeValue();
                 commentET.setText("");
                 dateET.setText("");
@@ -144,7 +127,7 @@ public class StudentBehavAddActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("BehaviourRecord").child(schoolID).child(classGrade).child(teacherID).child(studentID);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("BehaviourRecord").child(schoolID).child(classGrade).child(classID).child(studentID);
 
                 if(isEditting){
                     int radioID1 = radioGroup.getCheckedRadioButtonId();
@@ -153,17 +136,15 @@ public class StudentBehavAddActivity extends AppCompatActivity {
 
                     String editComment = commentET.getText().toString();
                     String editFeedback = radioButton.getText().toString();
-                    String editDate = date;
 
                     HashMap<String, Object> edittedHashmap = new HashMap<>();
-
                     edittedHashmap.put("comment", editComment);
                     edittedHashmap.put("feedback", editFeedback);
                     edittedHashmap.put("date", date);
                     edittedHashmap.put("studentID", studentID);
                     edittedHashmap.put("firstName", firstName);
                     edittedHashmap.put("lastName", lastName);
-                    edittedHashmap.put("teacherID", teacherID);
+                    edittedHashmap.put("classID", classID);
                     edittedHashmap.put("behaviourID", behaviourID);
 
                     reference.child(behaviourID).setValue(edittedHashmap);
@@ -176,18 +157,8 @@ public class StudentBehavAddActivity extends AppCompatActivity {
                     textView.setText("Selected: " + radioButton.getText());
 
                     String feedback1 = radioButton.getText().toString();
-                    System.out.println(feedback1);
-
-
-
                     String date = dateET.getText().toString();
                     String comment = commentET.getText().toString();
-                    //  String feedback = feedbackType.getText().toString();
-
-/*
-                    reference = FirebaseDatabase.getInstance().getReference().child("BehaviourRecord").child(schoolID).child(classGrade).child(teacherID).child(studentID);
-*/
-
                     String behaviourID = reference.push().getKey();
 
                     HashMap<String, Object> behaviorHashmap = new HashMap<>();
@@ -197,7 +168,7 @@ public class StudentBehavAddActivity extends AppCompatActivity {
                     behaviorHashmap.put("studentID", studentID);
                     behaviorHashmap.put("firstName", firstName);
                     behaviorHashmap.put("lastName", lastName);
-                    behaviorHashmap.put("teacherID", teacherID);
+                    behaviorHashmap.put("classID", classID);
                     behaviorHashmap.put("behaviourID", behaviourID);
 
                     // reference.push().setValue(behaviorHashmap);
@@ -208,15 +179,6 @@ public class StudentBehavAddActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-        //for notification
-        //get students parentemail (student.getParentEmail)
-        //if currentUser.email is equal to parents email -> show notification
-
 
     }
 

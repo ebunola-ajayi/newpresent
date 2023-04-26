@@ -1,4 +1,4 @@
-package com.example.attex.parentmain;
+package com.example.attex.parentacademics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,9 +22,7 @@ import java.util.ArrayList;
 
 public class ParentViewTopicGradeActivity extends AppCompatActivity {
 
-    TextView childGrade;
-    TextView comment;
-    TextView title;
+    TextView childGrade, comment, title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,41 +35,17 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
-
-
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i2 = getIntent();
-        String classGrade = i2.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
-
-        // Intent i4 = getIntent();
-        // String subject = i4.getStringExtra("subject");
-
-        Intent i5 = getIntent();
+        String classGrade = i.getStringExtra("classGrade");
+        String classID = i.getStringExtra("classID");
         String studentID = i.getStringExtra("studentID");
-        System.out.println(studentID);
+        String subject = i.getStringExtra("subject");
+        String topic = i.getStringExtra("topic");
 
-        Intent i6 = getIntent();
-        String subject = i6.getStringExtra("subject");
-        System.out.println(subject);
-
-        Intent i7 = getIntent();
-        String topic = i7.getStringExtra("topic");
-        System.out.println(topic);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic).child(studentID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic).child(studentID);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,8 +60,6 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
                 comment = findViewById(R.id.comment);
                 comment.setText("Feedback: " + grade.getNote());
 
-
-
             }
 
             @Override
@@ -97,7 +69,7 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
         });
         ArrayList<Float> list = new ArrayList<>();
 
-        DatabaseReference ref = database.getReference("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -109,18 +81,6 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
                     float gradeValue = Float.parseFloat(grade);
 
                     list.add(gradeValue);
-
-                    /*float totalAverage = 0;
-                    for (int i=0; i<list.size(); i++){
-                        totalAverage = totalAverage + list.get(i);
-                    }
-
-                    float avg = totalAverage / list.size();
-                    System.out.println(avg);
-                    String avgString = Float.toString(avg);
-
-                    TextView averageTV = findViewById(R.id.averageTV);
-                    averageTV.setText("Class Average: " + avgString);*/
                 }
                 float totalAverage = 0;
                 for (int i=0; i<list.size(); i++){

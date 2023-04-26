@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.TeacherMessageAdapter;
+import com.example.attex.teacherchat.TeacherMessageAdapter;
 import com.example.attex.models.ModelChat;
 import com.example.attex.models.ModelTeacher;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,12 +34,8 @@ import java.util.List;
 public class ParentMessageActivity extends AppCompatActivity {
 
     TextView teacherUsername;
-    private List<ModelTeacher> mTeacher;
-    ImageView sendBTN;
-    ImageView imageView;
+    ImageView sendBTN, imageView;
     EditText send_text;
-    FirebaseUser fUser;
-    FirebaseAuth auth;
     DatabaseReference ref;
 
     RecyclerView recyclerView;
@@ -73,19 +69,13 @@ public class ParentMessageActivity extends AppCompatActivity {
             }
         });
 
-        //String myEmail = fUser.getUid();
 
         String myEmail =  auth.getCurrentUser().getEmail();
-        System.out.println(myEmail);
 
 
         Intent i2 = getIntent();
-        String teacherID = i2.getStringExtra("teacherID");
-        System.out.println(teacherID);
-
-        Intent i3 = getIntent();
-        String teacherEmail = i3.getStringExtra("teacherEmail");
-        System.out.println(teacherEmail);
+        String teacherID = i2.getStringExtra("classID");
+        String teacherEmail = i2.getStringExtra("teacherEmail");
 
 
 
@@ -98,14 +88,8 @@ public class ParentMessageActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         teacherUsername = findViewById(R.id.teacherUsername);
         imageView.setImageResource(R.drawable.profitem);
-
-
-
-
         send_text = findViewById(R.id.send_text);
 
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
-        //String myEmail = fUser.getEmail();
 
         sendBTN = findViewById(R.id.sendBTN);
         sendBTN.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +113,6 @@ public class ParentMessageActivity extends AppCompatActivity {
                 ModelTeacher teacher = snapshot.getValue(ModelTeacher.class);
                 readMessage(myEmail, teacherEmail);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -170,17 +153,12 @@ public class ParentMessageActivity extends AppCompatActivity {
                     System.out.println("receiver " + receiver +teacherEmail);
 
                     if(chat.getReceiver().equals(myEmail) && chat.getSender().equals(teacherEmail) || chat.getReceiver().equals(teacherEmail) && chat.getSender().equals(myEmail)) {
-                        //if(chat.getSender().equalsIgnoreCase(myEmail) && chat.getReceiver().equalsIgnoreCase(parentEmail)){
                         mchat.add(chat);
-
                     }
-
-                    // }
 
                     adapter = new TeacherMessageAdapter(ParentMessageActivity.this, mchat);
                     recyclerView.setAdapter(adapter);
                 }
-               // adapter.notifyDataSetChanged();
 
             }
 

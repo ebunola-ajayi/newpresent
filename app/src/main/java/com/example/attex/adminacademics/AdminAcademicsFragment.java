@@ -23,13 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AdminAcademicsFragment extends Fragment {
-    ImageView createtest;
-    ImageView viewTest;
-    ImageView testResult;
+    ImageView createtest, viewTest, testResult;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_academics, container, false);
 
@@ -39,8 +36,6 @@ public class AdminAcademicsFragment extends Fragment {
         if(currentUser==null){
             Intent intent=new Intent(getActivity(), InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
@@ -86,17 +81,11 @@ public class AdminAcademicsFragment extends Fragment {
                     }
                 });
 
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-
-
-
 
         return view;
     }

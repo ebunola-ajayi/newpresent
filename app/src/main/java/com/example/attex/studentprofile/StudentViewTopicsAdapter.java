@@ -20,11 +20,7 @@ public class StudentViewTopicsAdapter extends RecyclerView.Adapter<StudentViewTo
     private final List<ModelAcademics> topicList;
     private final Context context;
 
-    String schoolID;
-    String classGrade;
-    String classID;
-    String studentID;
-    String subject;
+    String schoolID, classGrade, classID, studentID, subject;
 
     public StudentViewTopicsAdapter(List<ModelAcademics> topicList, Context context, String schoolID, String classGrade, String classID, String studentID, String subject) {
         this.topicList = topicList;

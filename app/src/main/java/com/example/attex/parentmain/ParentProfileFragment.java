@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -25,13 +27,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 
 public class ParentProfileFragment extends Fragment {
 
-    ImageView imageView;
-    EditText firstName, lastName;
-    TextView childClassGrade, classIDTV, schoolName;
-    String schoolID, studentID, classID, classGrade;
+    EditText firstNameET, lastNameET;
+    TextView classGradeTV, classIDTV, schoolIDTV;
+    Button update;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,15 +49,18 @@ public class ParentProfileFragment extends Fragment {
             startActivity(intent);
         }
 
-        imageView = view.findViewById(R.id.imageView);
-        firstName = view.findViewById(R.id.firstName);
-        lastName = view.findViewById(R.id.lastName);
-        childClassGrade = view.findViewById(R.id.childClassGrade);
+        //add intents from mainfragment
+        Intent i =getActivity().getIntent();
+        String studentID = i.getStringExtra("studentID");
+        String classID = i.getStringExtra("classID");
+        String schoolID = i.getStringExtra("schoolID");
+        String classGrade = i.getStringExtra("classGrade");
+
+        firstNameET = view.findViewById(R.id.firstNameET);
+        lastNameET = view.findViewById(R.id.lastNameET);
+        classGradeTV = view.findViewById(R.id.classGradeTV);
         classIDTV = view.findViewById(R.id.classIDTV);
-        schoolName = view.findViewById(R.id.schoolName);
-
-
-
+        schoolIDTV = view.findViewById(R.id.schoolIDTV);
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Parents").child(currentUser.getUid());
@@ -62,18 +68,10 @@ public class ParentProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelParent parent = snapshot.getValue(ModelParent.class);
-
-                firstName.setText(parent.getpFirstName());
-                lastName.setText(parent.getpSurName());
-                childClassGrade.setText(parent.getClassGrade());
+                firstNameET.setText(parent.getFirstName());
+                lastNameET.setText(parent.getLastName());
+                classGradeTV.setText(parent.getClassGrade());
                 classIDTV.setText(parent.getClassID());
-                schoolID = parent.getSchoolID();
-                classID = parent.getClassID();
-                studentID = parent.getStudentID();
-                classGrade = parent.getClassGrade();
-
-                System.out.println(schoolID + studentID + classID + classGrade);
-
             }
 
 
@@ -82,23 +80,22 @@ public class ParentProfileFragment extends Fragment {
             }
         });
 
-
-       /* DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("StudentDetails").child(schoolID).child(classGrade).child(classID).child(studentID);
-        reference1.addValueEventListener(new ValueEventListener() {
+        update = view.findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ModelStudent student = snapshot.getValue(ModelStudent.class);
-                System.out.println(student.getAddressLine1());
+            public void onClick(View view) {
+                String firstName = firstNameET.getText().toString();
+                String lastName = lastNameET.getText().toString();
+                HashMap<String, Object> edittedHashmap = new HashMap<>();
+
+                edittedHashmap.put("firstName", firstName);
+                edittedHashmap.put("lastName", lastName);
+
+                reference.updateChildren(edittedHashmap);
+                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-
-
-                //smartdraw
+        });
+        
 
         return view;
     }

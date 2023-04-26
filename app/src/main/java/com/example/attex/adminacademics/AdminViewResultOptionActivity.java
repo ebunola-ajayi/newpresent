@@ -21,14 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminViewResultOptionActivity extends AppCompatActivity {
 
-    Button juniorInfants;
-    Button seniorInfants;
-    Button firstClass;
-    Button secondClass;
-    Button thirdClass;
-    Button fourthClass;
-    Button fifthClass;
-    Button sixthClass;
+    Button juniorInfants, seniorInfants, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +34,6 @@ public class AdminViewResultOptionActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
@@ -52,9 +43,6 @@ public class AdminViewResultOptionActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelTeacher teacher = snapshot.getValue(ModelTeacher.class);
-
-                String teacherID = teacher.getTeacherID();
-
             }
 
             @Override

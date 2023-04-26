@@ -24,17 +24,6 @@
         android:textStyle="bold"/>
 
 
-    <EditText
-        android:id="@+id/schoolName"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingTop="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:hint="School Name *" />
 
     <EditText
         android:id="@+id/adminEmail"

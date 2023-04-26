@@ -1,4 +1,4 @@
-package com.example.attex.parentmain;
+package com.example.attex.parentacademics;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +14,7 @@ import com.example.attex.R;
 
 public class ParentAcademicsFragment extends Fragment {
 
-    ImageView maths;
-    ImageView science;
-    ImageView english;
-    ImageView irish;
-    ImageView history;
-    ImageView geography;
-    ImageView standardTest;
-
+    ImageView maths, science, english, irish, history, geography, standardTest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,19 +24,9 @@ public class ParentAcademicsFragment extends Fragment {
 
         Intent i = getActivity().getIntent();
         String studentID = i.getStringExtra("studentID");
-        System.out.println(studentID);
-
-        Intent i2 = getActivity().getIntent();
-        String classID = i2.getStringExtra("classID");
-        System.out.println(classID);
-
-        Intent i3 = getActivity().getIntent();
-        String classGrade = i3.getStringExtra("classGrade2");
-        System.out.println(classGrade);
-
-        Intent i4 = getActivity().getIntent();
-        String schoolID = i4.getStringExtra("schoolID2");
-        System.out.println(schoolID);
+        String classID = i.getStringExtra("classID");
+        String classGrade = i.getStringExtra("classGrade");
+        String schoolID = i.getStringExtra("schoolID");
 
         maths = view.findViewById(R.id.maths);
         maths.setOnClickListener(new View.OnClickListener() {

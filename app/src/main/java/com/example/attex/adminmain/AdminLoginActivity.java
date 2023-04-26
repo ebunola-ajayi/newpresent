@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.attex.R;
-import com.example.attex.adminacademics.AdminRegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,9 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AdminLoginActivity extends AppCompatActivity {
 
 
-    EditText schoolNameET;
-    EditText adminEmailET;
-    EditText passwordET;
+    EditText adminEmailET, passwordET;
     Button loginButton;
     TextView registerLink;
 
@@ -35,7 +32,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_login);
 
         mAuth = FirebaseAuth.getInstance();
-        //if user exists or not
         if (mAuth.getCurrentUser() != null){
             finish();
             return;
@@ -60,15 +56,13 @@ public class AdminLoginActivity extends AppCompatActivity {
     }
 
     private void authenticateAdmin(){
-        schoolNameET = findViewById(R.id.schoolName);
         adminEmailET = findViewById(R.id.adminEmail);
         passwordET = findViewById(R.id.password);
 
-        String schoolName = schoolNameET.getText().toString();
         String adminEmail = adminEmailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        if(schoolName.isEmpty() || adminEmail.isEmpty() || password.isEmpty()){
+        if(adminEmail.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             return;
         }

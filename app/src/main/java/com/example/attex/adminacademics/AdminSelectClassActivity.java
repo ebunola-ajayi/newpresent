@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import com.example.attex.models.ModelTeacher;
 import com.example.attex.R;
@@ -47,12 +46,7 @@ public class AdminSelectClassActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
+        String schoolID = i.getStringExtra("schoolID");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,11 +66,8 @@ public class AdminSelectClassActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ModelTeacher teacher = dataSnapshot.getValue(ModelTeacher.class);
-                    String teacherID = teacher.getTeacherID();
-
                     classList.add(teacher);
                 }
-                //ModelTeacher teacher = dataSnapshot.getValue(ModelTeacher.class);
                 adapter.notifyDataSetChanged();
             }
 

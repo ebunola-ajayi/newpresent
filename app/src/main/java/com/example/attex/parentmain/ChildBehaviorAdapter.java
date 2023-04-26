@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelBehaviour;
-import com.example.attex.studentprofile.StudentBehaviourAdapter;
 
 import java.util.List;
 

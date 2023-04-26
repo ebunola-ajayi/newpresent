@@ -15,8 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class TeacherStandardOptionsActivity extends AppCompatActivity {
 
     Button viewExam;
-    Button recordResult;
-    Button viewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +27,13 @@ public class TeacherStandardOptionsActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String teacherID = i3.getStringExtra("teacherID");
-        System.out.println(teacherID);
+        String schoolID = i.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
+        String subject = i.getStringExtra("subject");
 
         viewExam = findViewById(R.id.viewExam);
         viewExam.setOnClickListener(new View.OnClickListener() {
@@ -52,33 +42,11 @@ public class TeacherStandardOptionsActivity extends AppCompatActivity {
                 Intent intent = new Intent(TeacherStandardOptionsActivity.this, TeacherViewStandardActivity.class);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
+                intent.putExtra("subject", subject);
+                intent.putExtra("classID", classID);
                 startActivity(intent);
             }
         });
 
-        viewResult = findViewById(R.id.viewResult);
-        viewResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TeacherStandardOptionsActivity.this, TeacherViewStandardResultActivity.class);
-                intent.putExtra("schoolID", schoolID);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("teacherID", teacherID);
-                startActivity(intent);
-            }
-        });
-
-
-        recordResult = findViewById(R.id.recordResult);
-        recordResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TeacherStandardOptionsActivity.this, TeacherStandardSelectStudentsActivity.class);
-                intent.putExtra("schoolID", schoolID);
-                intent.putExtra("teacherID", teacherID);
-                intent.putExtra("classGrade", classGrade);
-                startActivity(intent);
-            }
-        });
     }
 }

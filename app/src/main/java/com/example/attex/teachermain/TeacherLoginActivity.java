@@ -82,13 +82,6 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 });
     }
 
-    /*private void showMainActivity(){
-        Intent intent = new Intent(this, TeacherMainActivity.class);
-        intent.putExtra(EXTRA_NAME, username);
-        startActivity(intent);
-        finish();
-    }*/
-
     private void registerPage(){
         Intent intent = new Intent(this, TeacherRegisterActivity.class);
         startActivity(intent);

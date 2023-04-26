@@ -12,13 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.ModelNote;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.example.attex.models.ModelAttendance;
-import com.example.attex.teachermain.TeacherNotesAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class StudentAttendanceActivity extends AppCompatActivity {
 
@@ -38,6 +35,10 @@ public class StudentAttendanceActivity extends AppCompatActivity {
     String[] months = {"January", "February", "March", "April", "May", "June", "September", "October", "November", "December"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapter;
+
+    //lists for present values and absent values
+    ArrayList<ModelAttendance> presentList;
+    ArrayList<ModelAttendance> absentList;
 
 
     RecyclerView recyclerView;
@@ -53,7 +54,6 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
         if(currentUser == null){
             Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
@@ -67,10 +67,11 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         String schoolID = i.getStringExtra("schoolID");
         String classGrade = i.getStringExtra("classGrade");
         String classID = i.getStringExtra("classID");
-        String studentFullName = i.getStringExtra("studentName");
+        String firstName = i.getStringExtra("firstName");
+        String lastName = i.getStringExtra("lastName");
 
         studentName = findViewById(R.id.studentName);
-        studentName.setText(studentFullName);
+        studentName.setText(firstName + " " + lastName);
 
         //RCV
         recyclerView = findViewById(R.id.recyclerView);
@@ -79,13 +80,14 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         attendanceAdapter = new StudenceAttendanceAdapter(attendanceList, this);
         recyclerView.setAdapter(attendanceAdapter);
 
+
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
-       // int lastYear = calendar.get(Calendar.YEAR - 1);
-
         year = Integer.toString(currentYear);
-        //int lastYear =
 
+
+        presentList = new ArrayList<>();
+        absentList = new ArrayList<>();
 
 
 
@@ -99,7 +101,10 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                 String monthSelected = adapterView.getItemAtPosition(i).toString();
                 System.out.println(monthSelected);
 
+                //make recycler view of attendance history visible for month selected
                 recyclerView.setVisibility(View.VISIBLE);
+
+                //if the month selected is september - december, subtract the year by 1, as these months are in the previous year
                 if(monthSelected.equals("September") || monthSelected.equals("October") || monthSelected.equals("November") || monthSelected.equals("December")){
                     int last_Year = currentYear -1;
                     String lastYear = Integer.toString(last_Year);
@@ -107,6 +112,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                     System.out.println("Last Year: " + year);
                 } else {
 
+                    //fetching and populating data for the rcv
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("AttendanceRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(year).child(monthSelected);
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -114,77 +120,100 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 ModelAttendance attendance = dataSnapshot.getValue(ModelAttendance.class);
                                 attendanceList.add(attendance);
-                                System.out.println(attendance);
-
                             }
                             attendanceAdapter.notifyDataSetChanged();
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    }); //close addValueEventListenser
+
+
+                    //query for fetching data where attendance = present
+                    Query query = FirebaseDatabase.getInstance().getReference("AttendanceRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(year).child(monthSelected)
+                            .orderByChild("attendance")
+                            .equalTo("Present");
+
+                    //declare value event listener
+                     ValueEventListener valueEventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            presentList.clear();
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    ModelAttendance present  = snapshot.getValue(ModelAttendance.class);
+                                    presentList.add(present); //add these values to the present list
+                                }
+                            } else {
+                                System.out.println("No Present Days");
+                                Toast.makeText(StudentAttendanceActivity.this, "No Present Days", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    };//close value event listener
+                    //add this to query
+                    query.addListenerForSingleValueEvent(valueEventListener);
+
+
+                    //query for fetching data where attendance = absent
+                    Query query2 = FirebaseDatabase.getInstance().getReference("AttendanceRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(year).child(monthSelected)
+                            .orderByChild("attendance")
+                            .equalTo("Absent");
+
+                    //declare value event listener
+                    ValueEventListener valueEventListener2 = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            absentList.clear();
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    ModelAttendance absent  = snapshot.getValue(ModelAttendance.class);
+                                    absentList.add(absent);
+                                    calculateAverage(presentList.size(), absentList.size());
+                                }
+                            } else {
+                                System.out.println("No Absent Days");
+                                Toast.makeText(StudentAttendanceActivity.this, "No Absent Days", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    });
-                }
+                    }; //close valueEventListener2
 
-                //if selected month = Sep || Oct || Nov || Dec : current year -1;
+                    //add valueEventLister2 to query2
+                    query2.addListenerForSingleValueEvent(valueEventListener2);
 
-               /* recyclerView.setVisibility(View.VISIBLE);
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("AttendanceRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(year).child(monthSelected);
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                      for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                          ModelAttendance attendance = dataSnapshot.getValue(ModelAttendance.class);
-                          attendanceList.add(attendance);
-                          System.out.println(attendance);
-
-                      }
-                      attendanceAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
-
-
-
-
+                }//end else
 
             }
+
+
         });
-
-
 
     }
 
 
-   /* public void blah(String schoolID, String classGrade, String classID, String studentID, String monthSelected){
-        Calendar calendar = Calendar.getInstance();
-        String currentMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
-        int currentYear = calendar.get(Calendar.YEAR);
-        String year = Integer.toString(currentYear);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("AttendanceRecord").child(schoolID).child(classGrade).child(classID).child(studentID).child(year).child(monthSelected);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    ModelAttendance attendance = snapshot.getValue(ModelAttendance.class);
-                    attendanceList.add(attendance);
-                    System.out.println(attendance);
 
-               // }
-                attendanceAdapter.notifyDataSetChanged();
-            }
+    private void calculateAverage(int present, int absent) {
+        double a = absent;
+        double p = present;
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        double totalAtt = a + p;
+        double pPercent = p / totalAtt;
+        double pPercent2 = pPercent * 100;
+        System.out.println(present + "+ " + absent);
+        System.out.println(pPercent2 + "%");
+        Toast.makeText(this, "Attendance Average For This Month: " + pPercent2 + "%", Toast.LENGTH_SHORT).show();
+    }
 
-            }
-        });
-    }*/
+
+
 
 
 

@@ -7,12 +7,10 @@ public class ModelStudent {
     public String middleName;
     public String dateOfBirth;
     public String studentID;
-    public String teacherID; //change to classID
     public String parent1Name;
     public String parent2Name;
     public String parentEmail1;
     public String parentEmail2;
-    public String parentUsername2;
     public String parent1No;
     public String parent2No;
     public String schoolID;
@@ -24,23 +22,20 @@ public class ModelStudent {
     public String county;
 
 
-
     public ModelStudent(){
 
     }
 
-    public ModelStudent(String firstName, String lastName, String middleName, String dateOfBirth, String studentID, String teacherID, String parent1Name, String parent2Name, String parentEmail1, String parentEmail2, String parentUsername2, String parent1No, String parent2No, String schoolID, String classGrade, String classID, String teacherEmail, String addressLine1, String addressLine2, String county) {
+    public ModelStudent(String firstName, String lastName, String middleName, String dateOfBirth, String studentID, String parent1Name, String parent2Name, String parentEmail1, String parentEmail2, String parent1No, String parent2No, String schoolID, String classGrade, String classID, String teacherEmail, String addressLine1, String addressLine2, String county) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.dateOfBirth = dateOfBirth;
         this.studentID = studentID;
-        this.teacherID = teacherID;
         this.parent1Name = parent1Name;
         this.parent2Name = parent2Name;
         this.parentEmail1 = parentEmail1;
         this.parentEmail2 = parentEmail2;
-        this.parentUsername2 = parentUsername2;
         this.parent1No = parent1No;
         this.parent2No = parent2No;
         this.schoolID = schoolID;
@@ -148,14 +143,6 @@ public class ModelStudent {
         this.parentEmail1 = parentEmail;
     }
 
-    public String getParentUsername2() {
-        return parentUsername2;
-    }
-
-    public void setParentUsername2(String parentUsername2) {
-        this.parentUsername2 = parentUsername2;
-    }
-
     public String getParent1No() {
         return parent1No;
     }
@@ -170,14 +157,6 @@ public class ModelStudent {
 
     public void setParent2No(String parent2No) {
         this.parent2No = parent2No;
-    }
-
-    public String getTeacherID() {
-        return teacherID;
-    }
-
-    public void setTeacherID(String teacherID) {
-        this.teacherID = teacherID;
     }
 
     public String getFirstName() {

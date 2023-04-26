@@ -2,39 +2,57 @@ package com.example.attex.models;
 
 public class ModelParent {
 
-    public String pFirstName;
-    public String pSurName;
-    public String pEmail;
-    public String pChildID;
-    public String parentUsername;
-    public String parentID;
-    public String schoolID;
-    public String classGrade;
-    public String classID;
-    public String childFirstName;
-    public String childLastName;
-    public String parentEmail;
-    public String studentID;
-    public String schoolName;
 
-    public ModelParent(String pFirstName, String pSurName, String pEmail, String pChildID, String parentUsername, String parentID, String schoolID, String classGrade, String classID, String childFirstName, String childLastName, String parentEmail, String studentID) {
-        this.pFirstName = pFirstName;
-        this.pSurName = pSurName;
-        this.pEmail = pEmail;
-        this.pChildID = pChildID;
-        this.parentUsername = parentUsername;
+    String firstName;
+    String lastName;
+    String email;
+    String studentID;
+    String parentID;
+    String schoolID;
+    String classGrade;
+    String classID;
+    String childFirstName;
+    String childLastName;
+
+    public ModelParent(String firstName, String lastName, String email, String studentID, String parentID, String schoolID, String classGrade, String classID, String childFirstName, String childLastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.studentID = studentID;
         this.parentID = parentID;
         this.schoolID = schoolID;
         this.classGrade = classGrade;
         this.classID = classID;
         this.childFirstName = childFirstName;
         this.childLastName = childLastName;
-        this.parentEmail = parentEmail;
-        this.studentID = studentID;
     }
 
     public ModelParent(){
 
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getStudentID() {
@@ -45,44 +63,12 @@ public class ModelParent {
         this.studentID = studentID;
     }
 
-    public String getParentEmail() {
-        return parentEmail;
+    public String getParentID() {
+        return parentID;
     }
 
-    public void setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
-    }
-
-    public String getChildLastName() {
-        return childLastName;
-    }
-
-    public void setChildLastName(String childLastName) {
-        this.childLastName = childLastName;
-    }
-
-    public String getChildFirstName() {
-        return childFirstName;
-    }
-
-    public void setChildFirstName(String childFirstName) {
-        this.childFirstName = childFirstName;
-    }
-
-    public String getClassID() {
-        return classID;
-    }
-
-    public void setClassID(String classID) {
-        this.classID = classID;
-    }
-
-    public String getClassGrade() {
-        return classGrade;
-    }
-
-    public void setClassGrade(String classGrade) {
-        this.classGrade = classGrade;
+    public void setParentID(String parentID) {
+        this.parentID = parentID;
     }
 
     public String getSchoolID() {
@@ -93,51 +79,35 @@ public class ModelParent {
         this.schoolID = schoolID;
     }
 
-    public String getParentID() {
-        return parentID;
+    public String getClassGrade() {
+        return classGrade;
     }
 
-    public void setParentID(String parentID) {
-        this.parentID = parentID;
+    public void setClassGrade(String classGrade) {
+        this.classGrade = classGrade;
     }
 
-    public String getParentUsername() {
-        return parentUsername;
+    public String getClassID() {
+        return classID;
     }
 
-    public void setParentUsername(String parentUsername) {
-        this.parentUsername = parentUsername;
+    public void setClassID(String classID) {
+        this.classID = classID;
     }
 
-    public String getpFirstName() {
-        return pFirstName;
+    public String getChildFirstName() {
+        return childFirstName;
     }
 
-    public void setpFirstName(String pFirstName) {
-        this.pFirstName = pFirstName;
+    public void setChildFirstName(String childFirstName) {
+        this.childFirstName = childFirstName;
     }
 
-    public String getpSurName() {
-        return pSurName;
+    public String getChildLastName() {
+        return childLastName;
     }
 
-    public void setpSurName(String pSurName) {
-        this.pSurName = pSurName;
-    }
-
-    public String getpEmail() {
-        return pEmail;
-    }
-
-    public void setpEmail(String pEmail) {
-        this.pEmail = pEmail;
-    }
-
-    public String getpChildID() {
-        return pChildID;
-    }
-
-    public void setpChildID(String pChildID) {
-        this.pChildID = pChildID;
+    public void setChildLastName(String childLastName) {
+        this.childLastName = childLastName;
     }
 }

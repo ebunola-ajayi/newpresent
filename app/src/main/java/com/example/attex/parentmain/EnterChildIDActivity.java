@@ -25,13 +25,6 @@ import java.util.List;
 public class EnterChildIDActivity extends AppCompatActivity {
 
     EditText childIDET;
-   // EditText tID;
-
-    public static final String CHILD_ID = "childID";
-    public static final String TEACHER_ID = "teacherID";
-
-    EditText name;
-    //String cid = childIDET.getText().toString();
     Button enterBtn;
     private List<ModelStudent> mStudents;
 
@@ -52,21 +45,6 @@ public class EnterChildIDActivity extends AppCompatActivity {
             finish();
             return;
         }
-
-     /*   Intent i = getIntent();
-        String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i2 = getIntent();
-        String classGrade = i2.getStringExtra("classGrade");
-        System.out.println(classGrade);*/
-
-       /* Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
-
-*/
-
 
         enterBtn = findViewById(R.id.enter);
         enterBtn.setOnClickListener(new View.OnClickListener() {
@@ -159,19 +137,15 @@ public class EnterChildIDActivity extends AppCompatActivity {
                     //String teacher_id = tID.getText().toString();
 
                     String studentID = student.getStudentID();
-                    System.out.println("HEYYY" + studentID);
                     String schoolID2 = student.getSchoolID();
-                    System.out.println("HEYYY" + schoolID2);
                     String classID = student.getClassID();
-                    System.out.println("HEYYY" + classID);
                     String classGrade2 = student.getClassGrade();
-                    System.out.println("HEYYY" + classGrade2);
 
                     Intent intent = new Intent(EnterChildIDActivity.this, ParentMainActivity.class);
                     intent.putExtra("studentID", studentID);
-                    intent.putExtra("schoolID2", schoolID2);
+                    intent.putExtra("schoolID", schoolID2);
                     intent.putExtra("classID", classID);
-                    intent.putExtra("classGrade2", classGrade2);
+                    intent.putExtra("classGrade", classGrade2);
 
                     startActivity(intent);
 

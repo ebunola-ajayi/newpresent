@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
-import com.example.attex.models.ModelAcademics;
 import com.example.attex.models.ModelAttendance;
-import com.example.attex.teachermain.TeacherNotesAdapter;
 
 import java.util.List;
 

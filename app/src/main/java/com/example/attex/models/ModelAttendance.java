@@ -6,20 +6,16 @@ public class ModelAttendance {
     String lastName;
     String studentID;
     String date;
-    String teacherID; //change to classID
     String classID;
     String attendance;
-    public Boolean absent;
 
-    public ModelAttendance(String firstName, String lastName, String studentID, String date, String attendance, String teacherID) {
+    public ModelAttendance(String firstName, String lastName, String studentID, String date, String attendance, String classID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
         this.date = date;
-        //this.classID = classID;
+        this.classID = classID;
         this.attendance = attendance;
-        this.teacherID = teacherID;
-        //this.absent = absent;
     }
 
     public ModelAttendance(){
@@ -34,21 +30,6 @@ public class ModelAttendance {
         this.classID = classID;
     }
 
-    public String getTeacherID() {
-        return teacherID;
-    }
-
-    public void setTeacherID(String teacherID) {
-        this.teacherID = teacherID;
-    }
-
-    public Boolean getAbsent() {
-        return absent;
-    }
-
-    public void setAbsent(Boolean absent) {
-        this.absent = absent;
-    }
 
     public String getFirstName() {
         return firstName;

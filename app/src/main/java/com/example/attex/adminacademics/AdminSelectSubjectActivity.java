@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.teacheracademics.SubjectViewAcademicActivity;
 import com.example.attex.teachermain.TeacherLoginActivity;
@@ -26,7 +27,7 @@ public class AdminSelectSubjectActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if(currentUser == null){
-            Intent intent = new Intent(this, TeacherLoginActivity.class);
+            Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -34,15 +35,8 @@ public class AdminSelectSubjectActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
+        String schoolID = i.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
 
         maths = findViewById(R.id.mathss);
         maths.setOnClickListener(new View.OnClickListener() {

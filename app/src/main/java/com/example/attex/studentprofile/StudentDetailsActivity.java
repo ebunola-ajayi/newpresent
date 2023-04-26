@@ -5,11 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.attex.R;
 import com.example.attex.teachermain.TeacherLoginActivity;
@@ -35,7 +31,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
         if(currentUser == null){
             Intent intent = new Intent(this, TeacherLoginActivity.class);
             startActivity(intent);

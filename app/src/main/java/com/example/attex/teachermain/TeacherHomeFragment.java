@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.adminmain.AdminMainActivity;
 import com.example.attex.models.ModelTeacher;
+import com.example.attex.parentmain.SchoolMemosActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,22 +27,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TeacherHomeFragment extends Fragment {
 
-    ImageView viewStudents;
-    ImageView addStudents;
-    ImageView attendance;
-    ImageView school;
-   // ImageView chat;
-    ImageView specialNeeds;
-    ImageView attendanceRecord;
-    ImageView note;
+    ImageView viewStudents, addStudents, attendance, school, learningDisability, attendanceRecord, note;
     TextView mainName;
-
-    public static final String TEACHER_ID = "teacherID";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.fragment_home, container, false);
         View view = inflater.inflate(R.layout.fragment_teacher_home, container, false);
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
@@ -48,30 +40,13 @@ public class TeacherHomeFragment extends Fragment {
 
 
         if(currentUser==null){
-            Intent intent=new Intent(getActivity(), TeacherLoginActivity.class);
+            Intent intent=new Intent(getActivity(), InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
         String hello = AdminMainActivity.ADMINID;
         System.out.println(hello);
-
-
-
-
-
-
-
-       /* attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TakeAttendanceActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
 
 
         mainName = view.findViewById(R.id.mainName);
@@ -82,10 +57,9 @@ public class TeacherHomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelTeacher teacher=snapshot.getValue(ModelTeacher.class);
-                if(teacher!=null)/*&&ifstudent.className=user.className*/{
-                   // mainName.setText("Welcome "+teacher.firstName + " " + teacher.lastName);
+                if(teacher!=null){
                     mainName.setText("Welcome "+teacher.getFirstName() + " " + teacher.getLastName());
-                    String teacherID = teacher.getTeacherID();
+                    String classID = teacher.getClassID();
                     String schoolID = teacher.getSchoolID();
                     String classGrade = teacher.getClassGrade();
 
@@ -95,7 +69,7 @@ public class TeacherHomeFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(getActivity(), TakeAttendance2Activity.class);
-                            intent.putExtra("classID", teacherID);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
@@ -107,7 +81,7 @@ public class TeacherHomeFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getActivity(), ViewStudentActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
@@ -118,8 +92,8 @@ public class TeacherHomeFragment extends Fragment {
                     attendanceRecord.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), AttendanceHistoryActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            Intent intent = new Intent(getActivity(), ChooseDateActivity.class);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
@@ -131,7 +105,7 @@ public class TeacherHomeFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getActivity(), AddStudentActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
@@ -143,60 +117,35 @@ public class TeacherHomeFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(getActivity(), TeacherNotesActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
                         }
                     });
 
-                   /* test = view.findViewById(R.id.test);
-                    test.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            //StandardTest
-                            Intent intent = new Intent(getActivity(), TestActivity.class);
-                            intent.putExtra("classID", teacherID);
-                            intent.putExtra("schoolID", schoolID);
-                            intent.putExtra("classGrade", classGrade);
-                            startActivity(intent);
-                        }
-                    });*/
 
-                    specialNeeds = view.findViewById(R.id.specialNeeds);
-                    specialNeeds.setOnClickListener(new View.OnClickListener() {
+                    learningDisability = view.findViewById(R.id.learningDisability);
+                    learningDisability.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(getActivity(), LearningDisabilityListActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
                         }
                     });
 
-                    school = view.findViewById(R.id.school);
+                    school = view.findViewById(R.id.schoolMemos);
                     school.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
-                        }
-                    });
-
-
-                    /*chat = view.findViewById(R.id.chat);
-                    chat.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), TeacherChatOptionsActivity.class);
-                            intent.putExtra("classID", teacherID);
+                            Intent intent = new Intent(getActivity(), SchoolMemosActivity.class);
                             intent.putExtra("schoolID", schoolID);
-                            intent.putExtra("classGrade", classGrade);
                             startActivity(intent);
                         }
-                    });*/
-
-
+                    });
 
                 }
             }

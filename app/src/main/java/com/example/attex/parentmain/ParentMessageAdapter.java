@@ -24,14 +24,12 @@ public class ParentMessageAdapter extends RecyclerView.Adapter<ParentMessageAdap
 
     private Context mContext;
     private List<ModelChat> mChat;
-    private String imageURL;
 
     FirebaseUser fuser;
 
-    public ParentMessageAdapter(Context mContext, List<ModelChat> mChat, String imageURL) {
+    public ParentMessageAdapter(Context mContext, List<ModelChat> mChat) {
         this.mContext = mContext;
         this.mChat = mChat;
-        this.imageURL = imageURL;
     }
 
     @NonNull

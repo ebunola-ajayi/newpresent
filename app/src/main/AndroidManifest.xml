@@ -13,7 +13,84 @@
         android:theme="@style/Theme.ATTEX"
         tools:targetApi="31">
         <activity
+            android:name=".parentmain.ParentEnterSchoolIDActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminAddStudentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminClassListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminSelectClass7Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminMemoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminAddMemoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".teacheracademics.TeacherViewStandardSubjectActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".teachermain.LearningDisabilityDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminTeacherList3Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".adminmain.AdminSelectClass6Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".teachermain.AttendanceHistoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".teachermain.ChooseDateActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -90,13 +167,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".studentprofile.StudentMedicalInfoActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".adminmain.AdminTeacherProfileActivity"
             android:exported="false">
             <meta-data
@@ -132,7 +202,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".parentmain.SchoolDetailsActivity"
+            android:name=".parentmain.SchoolMemosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -216,35 +286,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".teachermain.TeacherMessageParentActivity"
+            android:name=".parentacademics.ParentViewStandardResultActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".parentmain.ParentViewStandardResultActivity"
+            android:name=".parentacademics.ParentViewTopicGradeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".parentmain.ParentViewTopicGradeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".parentmain.ParentViewTopicsActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".parentmain.ParentAcademicActivity"
+            android:name=".parentacademics.ParentViewTopicsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -342,7 +398,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".adminacademics.AdminRegisterActivity"
+            android:name=".adminmain.AdminRegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -433,7 +489,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".teachermain.TeacherMessageActivity"
+            android:name=".teacherchat.TeacherMessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

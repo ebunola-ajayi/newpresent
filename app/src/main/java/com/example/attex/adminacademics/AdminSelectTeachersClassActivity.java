@@ -11,7 +11,6 @@ import android.os.Bundle;
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelTeacher;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,11 +44,7 @@ public class AdminSelectTeachersClassActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
+        String schoolID = i.getStringExtra("schoolID");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,15 +53,13 @@ public class AdminSelectTeachersClassActivity extends AppCompatActivity {
         adapter = new AdminSelectTeachersClassAdapter(classList, this, classGrade, schoolID);
         recyclerView.setAdapter(adapter);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("Teachers").child(schoolID).child(classGrade);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Teachers").child(schoolID).child(classGrade);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ModelTeacher teacher = dataSnapshot.getValue(ModelTeacher.class);
-                    String teacherID = teacher.getTeacherID();
                     classList.add(teacher);
                 }
                 adapter.notifyDataSetChanged();

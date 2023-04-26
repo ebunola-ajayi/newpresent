@@ -24,18 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AdminViewTestActivity extends AppCompatActivity {
 
     TextView title;
-
-    EditText question1;
-    EditText question2;
-    EditText question3;
-    EditText question4;
-    EditText question5;
-    EditText question6;
-    EditText question7;
-    EditText question8;
-    EditText question9;
-    EditText question10;
-
+    EditText question1, question2, question3, question4, question5, question6, question7, question8, question9, question10;
     Button update;
 
     @Override
@@ -49,21 +38,15 @@ public class AdminViewTestActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
 
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
+        String schoolID = i.getStringExtra("schoolID");
 
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference reference=database.getReference("StandardExam").child(schoolID).child(classGrade).child("English");
-
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExam").child(schoolID).child(classGrade).child("English");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,7 +84,6 @@ public class AdminViewTestActivity extends AppCompatActivity {
                         String newQuestion;
                     }
                 });
-
 
             }
 

@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -21,18 +21,7 @@ import java.util.HashMap;
 public class AdminCreateTestActivity extends AppCompatActivity {
 
     TextView titleET;
-
-    EditText question1ET;
-    EditText question2ET;
-    EditText question3ET;
-    EditText question4ET;
-    EditText question5ET;
-    EditText question6ET;
-    EditText question7ET;
-    EditText question8ET;
-    EditText question9ET;
-    EditText question10ET;
-
+    EditText question1ET, question2ET, question3ET, question4ET, question5ET, question6ET, question7ET, question8ET, question9ET, question10ET;
     Button save;
 
     @Override
@@ -44,27 +33,15 @@ public class AdminCreateTestActivity extends AppCompatActivity {
         FirebaseUser currentUser=auth.getCurrentUser();
 
         if(currentUser==null){
-            Intent intent=new Intent(this, TeacherLoginActivity.class);
+            Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
-
-        Intent i2 = getIntent();
-        String subject = i2.getStringExtra("subject");
-        System.out.println(subject);
-
-        Intent i3 = getIntent();
-        String year = i3.getStringExtra("year");
-        System.out.println(year);
-
-        Intent i4 = getIntent();
-        String schoolID = i4.getStringExtra("schoolID");
-        System.out.println(schoolID);
+        String subject = i.getStringExtra("subject");
+        String year = i.getStringExtra("year");
+        String schoolID = i.getStringExtra("schoolID");
 
         titleET = findViewById(R.id.title);
         titleET.setText(classGrade + " - " + subject);
@@ -102,6 +79,7 @@ public class AdminCreateTestActivity extends AppCompatActivity {
                 HashMap<String, Object> examQuestionsHashmap = new HashMap<>();
                 examQuestionsHashmap.put("academicYear", year);
                 examQuestionsHashmap.put("title", title);
+                examQuestionsHashmap.put("subject", subject);
                 examQuestionsHashmap.put("question1", question1);
                 examQuestionsHashmap.put("question2", question2);
                 examQuestionsHashmap.put("question3", question3);

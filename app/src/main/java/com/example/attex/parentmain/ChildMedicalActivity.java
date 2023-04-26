@@ -11,9 +11,6 @@ import android.view.View;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelMedical;
-import com.example.attex.models.ModelNote;
-import com.example.attex.studentprofile.StudentBehavAddActivity;
-import com.example.attex.studentprofile.StudentBehaviourActivity;
 import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;

@@ -13,17 +13,6 @@
         android:text="View Exam"
         android:id="@+id/viewExam"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Record Results of Standard Exam"
-        android:id="@+id/recordResult"/>
 
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Results of Standard Exam"
-        android:id="@+id/viewResult"/>
 
 </LinearLayout>

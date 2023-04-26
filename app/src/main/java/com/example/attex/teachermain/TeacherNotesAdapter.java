@@ -21,7 +21,7 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
     private final List<ModelNote> noteList;
     private final Context context;
 
-    String schoolID, classGrade, classID; /*noteID;*/
+    String schoolID, classGrade, classID;
 
     public TeacherNotesAdapter(List<ModelNote> noteList, Context context, String schoolID, String classGrade, String classID) {
         this.noteList = noteList;
@@ -29,7 +29,6 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
         this.schoolID = schoolID;
         this.classGrade = classGrade;
         this.classID = classID;
-        //this.noteID = noteID;
     }
 
     @NonNull
@@ -46,12 +45,15 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
         holder.noteTitle.setText(notes.getNoteTitle());
         holder.date.setText(notes.getDate());
 
+        String noteDate = notes.getDate();
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddNoteActivity.class);
                 intent.putExtra("noteTitle", notes.getNoteTitle());
                 intent.putExtra("note", notes.getNote());
+                intent.putExtra("noteDate", noteDate);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("classID", classID);
@@ -68,7 +70,6 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
     }
 
     public static class TeacherNotesViewHolder extends RecyclerView.ViewHolder{
-
         TextView note, noteTitle, date;
 
         public TeacherNotesViewHolder(@NonNull View itemView) {

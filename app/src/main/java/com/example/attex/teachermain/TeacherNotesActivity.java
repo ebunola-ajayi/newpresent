@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelNote;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,33 +37,24 @@ public class TeacherNotesActivity extends AppCompatActivity {
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
-
-
         if(currentUser==null){
-            Intent intent=new Intent(this, TeacherLoginActivity.class);
+            Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
-        System.out.println(classGrade);
+        String schoolID = i.getStringExtra("schoolID");
+        String classID = i.getStringExtra("classID");
 
-        Intent i2 = getIntent();
-        String schoolID = i2.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i3 = getIntent();
-        String classID = i3.getStringExtra("classID");
-        System.out.println(classID);
 
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         noteList = new ArrayList<>();
+        adapter = new TeacherNotesAdapter(noteList, TeacherNotesActivity.this, schoolID, classGrade, classID);
         recyclerView.setAdapter(adapter);
+
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(schoolID).child(classGrade).child(classID);
@@ -72,11 +64,9 @@ public class TeacherNotesActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ModelNote note = dataSnapshot.getValue(ModelNote.class);
                     noteList.add(note);
-                   //* String id =  dataSnapshot.getKey();
-                    //System.out.println(id);*//*
 
                     //added adapter here cus i needed the id for each note (for editing)
-                    adapter = new TeacherNotesAdapter(noteList, TeacherNotesActivity.this, schoolID, classGrade, classID);
+
                     recyclerView.setAdapter(adapter);
                 }
                 adapter.notifyDataSetChanged();
@@ -87,16 +77,6 @@ public class TeacherNotesActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
 
 
 

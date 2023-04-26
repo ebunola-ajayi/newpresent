@@ -1,4 +1,4 @@
-package com.example.attex.adminacademics;
+package com.example.attex.adminmain;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.attex.R;
-import com.example.attex.adminmain.AdminLoginActivity;
-import com.example.attex.adminmain.AdminMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,10 +23,7 @@ import java.util.HashMap;
 public class AdminRegisterActivity extends AppCompatActivity {
 
 
-    EditText schoolNameET;
-    EditText schoolIDET;
-    EditText adminEmailET;
-    EditText passwordET;
+    EditText schoolNameET, schoolIDET, adminEmailET, passwordET;
     Button regButton;
     TextView loginLink;
 
@@ -97,6 +92,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
                     adminHashmap.put("schoolName", schoolName);
                     adminHashmap.put("schoolID", schoolID);
                     adminHashmap.put("adminEmail", adminEmail);
+                    adminHashmap.put("adminID", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     FirebaseDatabase.getInstance().getReference("Admin").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(adminHashmap).addOnCompleteListener(new OnCompleteListener<Void>() {

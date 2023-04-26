@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelBehaviour;
-import com.example.attex.teachermain.AddNoteActivity;
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class StudentBehaviourAdapter extends RecyclerView.Adapter<StudentBehavio
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("classID", classID);
                 intent.putExtra("studentID", studentID);
-                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Note Selected", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }
         });
