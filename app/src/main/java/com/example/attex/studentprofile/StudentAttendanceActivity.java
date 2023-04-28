@@ -42,7 +42,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    TextView studentName;
+    TextView studentNameTV;
     String year;
     StudenceAttendanceAdapter attendanceAdapter;
     ArrayList<ModelAttendance> attendanceList;
@@ -69,9 +69,10 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         String classID = i.getStringExtra("classID");
         String firstName = i.getStringExtra("firstName");
         String lastName = i.getStringExtra("lastName");
+        String studentName = i.getStringExtra("studentName");
 
-        studentName = findViewById(R.id.studentName);
-        studentName.setText(firstName + " " + lastName);
+        studentNameTV = findViewById(R.id.studentName);
+        studentNameTV.setText(studentName);
 
         //RCV
         recyclerView = findViewById(R.id.recyclerView);
@@ -117,11 +118,20 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(snapshot.exists()){
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                    ModelAttendance attendance = dataSnapshot.getValue(ModelAttendance.class);
+                                    attendanceList.add(attendance);
+                                }
+                                attendanceAdapter.notifyDataSetChanged();
+                            }else {
+                                Toast.makeText(StudentAttendanceActivity.this, "No Data For Month Selected", Toast.LENGTH_SHORT).show();
+                            }
+                        /*    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 ModelAttendance attendance = dataSnapshot.getValue(ModelAttendance.class);
                                 attendanceList.add(attendance);
                             }
-                            attendanceAdapter.notifyDataSetChanged();
+                            attendanceAdapter.notifyDataSetChanged();*/
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {

@@ -13,9 +13,11 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
         android:id="@+id/relTitle">
 
         <TextView
@@ -32,13 +34,12 @@
             android:layout_height="36dp"
             android:id="@+id/delete"
             android:src="@drawable/ic_baseline_delete_24"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             app:tint="@color/black"
-            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:visibility="gone"
             android:background="?attr/selectableItemBackgroundBorderless"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/titleBar"
@@ -50,6 +51,16 @@
         android:backgroundTint="#DCF8FB"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <EditText
+            android:id="@+id/subjectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="Subject"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/noteTitle"

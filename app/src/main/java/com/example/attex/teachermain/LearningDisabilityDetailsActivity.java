@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class LearningDisabilityDetailsActivity extends AppCompatActivity {
 
-    TextView titleTV, shortDescTV, listofsym, linkTV;
+    TextView titleTV, shortDescTV, linkTV;
     ListView listView;
 
     @Override
@@ -44,7 +44,6 @@ public class LearningDisabilityDetailsActivity extends AppCompatActivity {
         shortDescTV = findViewById(R.id.shortDescTV);
         shortDescTV.setText(shortDesc);
 
-        listofsym = findViewById(R.id.listofsym);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
                 (this, R.layout.layout_symptoms, R.id.symptomTV, symptoms);

@@ -39,7 +39,7 @@ public class AdminSelectTeachersClassAdapter extends RecyclerView.Adapter<AdminS
     public void onBindViewHolder(@NonNull AdminSelectTeachersClassAdapter.AdminSelectTeachersClassViewHolder holder, int position) {
         ModelTeacher className = classList.get(position);
 
-        holder.teacherID.setText(className.getLastName() +  className.getClassID());
+        holder.teacherID.setText(className.getTeacherName());
 
         holder.teacherID.setOnClickListener(new View.OnClickListener() {
             @Override

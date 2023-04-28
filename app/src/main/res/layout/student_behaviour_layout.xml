@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scroll"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="15dp"
+    android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/image"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/bprogress"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image"
+        android:id="@+id/feedbackTV"
+        android:text="Feedback Type"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-  Date"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_toEndOf="@+id/feedbackTV"
+        android:id="@+id/dateTV"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Memo details here..........................."
+        android:textColor="@color/black"
+        android:id="@+id/commentTV"
+        android:textSize="18dp"
+        android:layout_below="@+id/feedbackTV"
+        android:layout_toEndOf="@+id/image"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dateTV"
-            android:text="Date"
-            android:textSize="22sp"
-            android:textColor="#4458BA"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/feedbackTV"
-            android:text="Feedback Type"
-            android:textSize="22sp"
-            android:textColor="#4458BA"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:id="@+id/commentTV"
-            android:text="Comment"
-            android:layout_marginBottom="20dp"
-            android:textColor="#222845"/>
-
-    </LinearLayout>
+        android:layout_height="2dp"
+        android:id="@+id/line1"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/commentTV"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:orientation="horizontal" />
 
 
-</ScrollView>
+</RelativeLayout>

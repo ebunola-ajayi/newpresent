@@ -36,7 +36,7 @@ public class SchoolMemoAdapter extends RecyclerView.Adapter<SchoolMemoAdapter.Sc
 
         holder.memoTitleTV.setText(memo.getMemoTitle());
         holder.memoTV.setText(memo.getMemo());
-        holder.memoDateTV.setText(memo.getDate());
+        holder.memoDateTV.setText("  - " + memo.getDate());
     }
 
     @Override

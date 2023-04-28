@@ -37,6 +37,7 @@ public class ListParentsAdapter extends RecyclerView.Adapter<ListParentsAdapter.
 
         holder.parentOf.setText("Parent Of: " + parent.getChildFirstName() + " " + parent.getChildLastName());
         holder.parentEmail.setText(parent.getEmail());
+        holder.studentID.setText("Student ID: " + parent.getStudentID());
         String parentID = parent.getParentID();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +65,7 @@ public class ListParentsAdapter extends RecyclerView.Adapter<ListParentsAdapter.
             super(itemView);
 
             parentOf = itemView.findViewById(R.id.parentOf);
-            studentID = itemView.findViewById(R.id.studentID);
+            studentID = itemView.findViewById(R.id.studentNo);
             parentEmail = itemView.findViewById(R.id.parentEmail);
         }
     }

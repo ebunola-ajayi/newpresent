@@ -20,6 +20,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:ems="10"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:paddingTop="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"
@@ -152,12 +154,5 @@
             android:id="@+id/update"
             android:layout_gravity="center"/>
 
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:id="@+id/cancel"
-            android:layout_gravity="center"/>
     </LinearLayout>
 </ScrollView>

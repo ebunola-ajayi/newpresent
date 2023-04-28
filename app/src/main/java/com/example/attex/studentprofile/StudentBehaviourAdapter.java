@@ -44,10 +44,10 @@ public class StudentBehaviourAdapter extends RecyclerView.Adapter<StudentBehavio
         ModelBehaviour behaviour = behaviourList.get(position);
 
         holder.dateTV.setText(behaviour.getDate());
-        holder.feedbackTV.setText(behaviour.getFeedback());
+        holder.feedbackTV.setText(behaviour.getFeedback() + "  -  ");
         holder.commentTV.setText(behaviour.getComment());
 
-        holder.dateTV.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, StudentBehavAddActivity.class);

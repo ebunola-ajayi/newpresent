@@ -62,7 +62,6 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         EditText etLastName = findViewById(R.id.edtxtLastName);
         EditText etEmail = findViewById(R.id.edtxtEmail);
         EditText etPassword = findViewById(R.id.edtxtPassword);
-        EditText username = findViewById(R.id.username);
         EditText tName = findViewById(R.id.teacherName);
         EditText teachID = findViewById(R.id.teachID);
         EditText schoolIDET = findViewById(R.id.schoolID);
@@ -72,7 +71,6 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         String lastName = etLastName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        String tUsername = username.getText().toString();
         String teacherName = tName.getText().toString();
         String classID = teachID.getText().toString();
         String schoolID = schoolIDET.getText().toString();
@@ -80,7 +78,7 @@ public class TeacherRegisterActivity extends AppCompatActivity {
 
 
         //error message for teacher name - cant contain space
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || tUsername.isEmpty() || teacherName.isEmpty() || classID.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || teacherName.isEmpty() || classID.isEmpty()) {
             Toast.makeText(this, "Please enter value for all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -97,7 +95,6 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                             teacherHashmap.put("firstName", firstName);
                             teacherHashmap.put("lastName", lastName);
                             teacherHashmap.put("email", email);
-                            teacherHashmap.put("teacherUsername", tUsername);
                             teacherHashmap.put("teacherName", teacherName);
                             teacherHashmap.put("classID", classID);
                             teacherHashmap.put("schoolID", schoolID);

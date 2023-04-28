@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -109,24 +110,36 @@ public class TeacherProfileFragment extends Fragment {
                 String classID = classIDTV.getText().toString();
                 String email = emailTV.getText().toString();
 
+                if(firstName.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A First Name", Toast.LENGTH_SHORT).show();
+                    firstNameET.requestFocus();
+                }else if(lastName.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A Last Name", Toast.LENGTH_SHORT).show();
+                    lastNameET.requestFocus();
+                }else if(teacherName.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A Teacher Name (Ms. / Mr.)", Toast.LENGTH_SHORT).show();
+                    teacherNameET.requestFocus();
+                }else if (number.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A Contact Number", Toast.LENGTH_SHORT).show();
+                    numberET.requestFocus();
+                }else {
 
+                    HashMap<String, Object> edittedHashmap = new HashMap<>();
+                    edittedHashmap.put("firstName", firstName);
+                    edittedHashmap.put("lastName", lastName);
+                    edittedHashmap.put("teacherName", teacherName);
+                    edittedHashmap.put("dateOfBirth", dateOfBirth);
+                    edittedHashmap.put("number", number);
+                    edittedHashmap.put("addressLine1", addressLine1);
+                    edittedHashmap.put("addressLine2", addressLine2);
+                    edittedHashmap.put("schoolID", schoolID);
+                    edittedHashmap.put("classGrade", classGrade);
+                    edittedHashmap.put("classID", classID);
+                    edittedHashmap.put("email", email);
 
-                HashMap<String, Object> edittedHashmap = new HashMap<>();
-                edittedHashmap.put("firstName", firstName);
-                edittedHashmap.put("lastName", lastName);
-                edittedHashmap.put("teacherName", teacherName);
-                edittedHashmap.put("dateOfBirth", dateOfBirth);
-                edittedHashmap.put("number", number);
-                edittedHashmap.put("addressLine1", addressLine1);
-                edittedHashmap.put("addressLine2", addressLine2);
-                edittedHashmap.put("schoolID", schoolID);
-                edittedHashmap.put("classGrade", classGrade);
-                edittedHashmap.put("classID", classID);
-                edittedHashmap.put("email", email);
-
-                reference.setValue(edittedHashmap);
-
-
+                    reference.setValue(edittedHashmap);
+                    Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

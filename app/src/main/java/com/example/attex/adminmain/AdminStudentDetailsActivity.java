@@ -103,29 +103,68 @@ public class AdminStudentDetailsActivity extends AppCompatActivity {
                         String addressLine2No = addressLine2ET.getText().toString();
                         String county = countyET.getText().toString();
 
-                        HashMap<String, Object> edittedHashmap = new HashMap<>();
-                        edittedHashmap.put("firstName", firstName);
-                        edittedHashmap.put("lastName", lastName);
-                        edittedHashmap.put("middleName", middleName);
-                        edittedHashmap.put("dateOfBirth", dateOfBirth);
-                        edittedHashmap.put("parent1Name", parent1Name);
-                        edittedHashmap.put("parent2Name", parent2Name);
-                        edittedHashmap.put("parent1No", parent1No);
-                        edittedHashmap.put("parent2No", parent2No);
-                        edittedHashmap.put("parentEmail1", parent1Email);
-                        edittedHashmap.put("parentEmail2", parent2Email);
-                        edittedHashmap.put("addressLine1", addressLine1No);
-                        edittedHashmap.put("addressLine2", addressLine2No);
-                        edittedHashmap.put("county", county);
-                        edittedHashmap.put("schoolID", schoolID);
-                        edittedHashmap.put("classGrade", classGrade);
-                        edittedHashmap.put("classID", classID);
-                        edittedHashmap.put("studentID", studentID);
-                        edittedHashmap.put("teacherEmail", teacherEmail);
+                        if(firstName.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A First Name", Toast.LENGTH_SHORT).show();
+                            firstNameET.requestFocus();
+
+                        }else if(lastName.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter a Last Name", Toast.LENGTH_SHORT).show();
+                            lastNameET.requestFocus();
+
+                        }else if(dateOfBirth.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A Date Of Birth (DD/MM/YY)", Toast.LENGTH_SHORT).show();
+                            dobET.requestFocus();
+
+                        }else if(parent1Name.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A Parent/ Guardian Name", Toast.LENGTH_SHORT).show();
+                            parent1NameET.requestFocus();
+
+                        }else if(parent1No.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A Parent/ Guardian Number", Toast.LENGTH_SHORT).show();
+                            parent1NoET.requestFocus();
+
+                        }else if(parent1Email.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A Parent/ Guardian Email", Toast.LENGTH_SHORT).show();
+                            parent1EmailET.requestFocus();
+
+                        }else if(addressLine1No.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter an Adress", Toast.LENGTH_SHORT).show();
+                            addressLine1ET.requestFocus();
+
+                        }else if(county.isEmpty()){
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Please Enter A County", Toast.LENGTH_SHORT).show();
+                            countyET.requestFocus();
+
+                        }else{
+                            HashMap<String, Object> edittedHashmap = new HashMap<>();
+                            edittedHashmap.put("firstName", firstName);
+                            edittedHashmap.put("lastName", lastName);
+                            edittedHashmap.put("middleName", middleName);
+                            edittedHashmap.put("dateOfBirth", dateOfBirth);
+                            edittedHashmap.put("parent1Name", parent1Name);
+                            edittedHashmap.put("parent2Name", parent2Name);
+                            edittedHashmap.put("parent1No", parent1No);
+                            edittedHashmap.put("parent2No", parent2No);
+                            edittedHashmap.put("parentEmail1", parent1Email);
+                            edittedHashmap.put("parentEmail2", parent2Email);
+                            edittedHashmap.put("addressLine1", addressLine1No);
+                            edittedHashmap.put("addressLine2", addressLine2No);
+                            edittedHashmap.put("county", county);
+                            edittedHashmap.put("schoolID", schoolID);
+                            edittedHashmap.put("classGrade", classGrade);
+                            edittedHashmap.put("classID", classID);
+                            edittedHashmap.put("studentID", studentID);
+                            edittedHashmap.put("teacherEmail", teacherEmail);
 
 
-                        reference.setValue(edittedHashmap);
-                        Toast.makeText(AdminStudentDetailsActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                            reference.setValue(edittedHashmap);
+                            Toast.makeText(AdminStudentDetailsActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+
+
 
                     }
                 });

@@ -28,8 +28,7 @@ import java.util.HashMap;
 
 public class AddNoteActivity extends AppCompatActivity {
 
-    EditText noteTitleET;
-    EditText noteET;
+    EditText noteTitleET, noteET, subjectTitle;
     Button save;
     ImageButton delete;
     TextView title;
@@ -62,6 +61,7 @@ public class AddNoteActivity extends AppCompatActivity {
         String noteTitle = i2.getStringExtra("noteTitle");
         String note = i2.getStringExtra("note");
         String noteDate = i2.getStringExtra("noteDate");
+        String subject = i2.getStringExtra("subject");
         System.out.println(noteDate);
 
 
@@ -69,6 +69,7 @@ public class AddNoteActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         noteTitleET = findViewById(R.id.noteTitle);
         noteET = findViewById(R.id.note);
+        subjectTitle = findViewById(R.id.subjectTitle);
 
         if(noteID!=null && !noteID.isEmpty()){
             isEditting = true;
@@ -80,6 +81,7 @@ public class AddNoteActivity extends AppCompatActivity {
             title.setText("Edit Note");
             noteET.setText(note);
             noteTitleET.setText(noteTitle);
+            subjectTitle.setText(subject);
             delete.setVisibility(View.VISIBLE);
         }
 
@@ -90,6 +92,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 reference1.removeValue();
                 noteET.setText("");
                 noteTitleET.setText("");
+                subjectTitle.setText("");
                 Toast.makeText(AddNoteActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
             }
         });
@@ -102,29 +105,40 @@ public class AddNoteActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(schoolID).child(classGrade).child(classID);
 
                 if(isEditting){
                     String editNoteTitle = noteTitleET.getText().toString();
                     String editNoteET = noteET.getText().toString();
+                    String editSubject = subjectTitle.getText().toString();
 
-                    ModelNote notes = new ModelNote();
+                  /*  if(!editSubject.equalsIgnoreCase("English") || !editSubject.equalsIgnoreCase("Irish") || !editSubject.equalsIgnoreCase("Maths") || !editSubject.equalsIgnoreCase("Science") || !editSubject.equalsIgnoreCase("Geography") || !editSubject.equalsIgnoreCase("History") || editSubject.isEmpty()){
+                        Toast.makeText(AddNoteActivity.this, "Please Enter A Subject", Toast.LENGTH_SHORT).show();
 
-                    /*SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
-                    Date todayDate = new Date();
-                    String date = currentDate.format(todayDate);*/
+                    } else */if(editNoteTitle.isEmpty()){
+                        Toast.makeText(AddNoteActivity.this, "Please Enter A Title", Toast.LENGTH_SHORT).show();
 
-                    Timestamp timestamp = notes.getTimestamp();
+                    } else if(editNoteET.isEmpty()){
+                        Toast.makeText(AddNoteActivity.this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
 
-                    HashMap<String, Object> edittedHashmap = new HashMap<>();
+                    } else {
+                        ModelNote notes = new ModelNote();
 
-                    edittedHashmap.put("noteTitle", editNoteTitle);
-                    edittedHashmap.put("note", editNoteET);
-                    edittedHashmap.put("date", noteDate);
-                    edittedHashmap.put("noteID", noteID);
-                    edittedHashmap.put("timestamp", timestamp);
-                    reference.child(noteID).setValue(edittedHashmap);
-                    Toast.makeText(AddNoteActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+                        Timestamp timestamp = notes.getTimestamp();
+                        HashMap<String, Object> edittedHashmap = new HashMap<>();
+                        edittedHashmap.put("noteTitle", editNoteTitle);
+                        edittedHashmap.put("note", editNoteET);
+                        edittedHashmap.put("date", noteDate);
+                        edittedHashmap.put("noteID", noteID);
+                        edittedHashmap.put("subject", editSubject);
+                        edittedHashmap.put("timestamp", timestamp);
+
+                        reference.child(noteID).setValue(edittedHashmap);
+                        Toast.makeText(AddNoteActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
 
@@ -134,6 +148,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
                     String noteTitle = noteTitleET.getText().toString();
                     String note = noteET.getText().toString();
+                    String subject = subjectTitle.getText().toString();
 
                     SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
                     Date todayDate = new Date();
@@ -142,9 +157,13 @@ public class AddNoteActivity extends AppCompatActivity {
 
                     if (note.isEmpty()){
                         Toast.makeText(AddNoteActivity.this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
+                        noteET.requestFocus();
                     } else if (noteTitle.isEmpty()){
-                        Toast.makeText(AddNoteActivity.this, "Please Enter a Title", Toast.LENGTH_SHORT).show();
-                    } else {
+                        Toast.makeText(AddNoteActivity.this, "Please Enter A Title", Toast.LENGTH_SHORT).show();
+                        noteTitleET.requestFocus();
+                    }/* else if(!subject.equalsIgnoreCase("English") || !subject.equalsIgnoreCase("Irish") || !subject.equalsIgnoreCase("Maths") || !subject.equalsIgnoreCase("Science") || !subject.equalsIgnoreCase("Geography") || !subject.equalsIgnoreCase("History") || subject.isEmpty()){
+                        Toast.makeText(AddNoteActivity.this, "Please Enter A Subject", Toast.LENGTH_SHORT).show();
+                    }*/ else {
                         Toast.makeText(AddNoteActivity.this, "Note Added", Toast.LENGTH_SHORT).show();
 
                         HashMap<String, Object> noteHashmap = new HashMap<>();
@@ -152,6 +171,7 @@ public class AddNoteActivity extends AppCompatActivity {
                         noteHashmap.put("noteTitle", noteTitle);
                         noteHashmap.put("note", note);
                         noteHashmap.put("date", date);
+                        noteHashmap.put("subject", subject);
                         noteHashmap.put("timestamp", timestamp);
 
                         String theID = reference.push().getKey();

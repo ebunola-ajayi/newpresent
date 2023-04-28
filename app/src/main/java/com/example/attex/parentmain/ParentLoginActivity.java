@@ -52,7 +52,7 @@ public class ParentLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //registerTV();
-                Intent intent = new Intent(ParentLoginActivity.this, ParentEnterSchoolIDActivity.class);
+                Intent intent = new Intent(ParentLoginActivity.this, ParentRegisterActivity.class);
                 startActivity(intent);
             }
         });

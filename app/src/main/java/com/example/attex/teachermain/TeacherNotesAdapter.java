@@ -43,7 +43,8 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
 
         holder.note.setText(notes.getNote());
         holder.noteTitle.setText(notes.getNoteTitle());
-        holder.date.setText(notes.getDate());
+        holder.date.setText("  -  " + notes.getDate());
+        holder.subjectTV.setText(notes.getSubject());
 
         String noteDate = notes.getDate();
 
@@ -53,6 +54,7 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
                 Intent intent = new Intent(context, AddNoteActivity.class);
                 intent.putExtra("noteTitle", notes.getNoteTitle());
                 intent.putExtra("note", notes.getNote());
+                intent.putExtra("subject", notes.getSubject());
                 intent.putExtra("noteDate", noteDate);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
@@ -70,7 +72,7 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
     }
 
     public static class TeacherNotesViewHolder extends RecyclerView.ViewHolder{
-        TextView note, noteTitle, date;
+        TextView note,noteTitle, date, subjectTV;
 
         public TeacherNotesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +80,7 @@ public class TeacherNotesAdapter extends RecyclerView.Adapter<TeacherNotesAdapte
             note = itemView.findViewById(R.id.note);
             noteTitle = itemView.findViewById(R.id.noteTitle);
             date = itemView.findViewById(R.id.date);
+            subjectTV = itemView.findViewById(R.id.subjectTV);
         }
     }
 }

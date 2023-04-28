@@ -62,7 +62,7 @@ public class TakeAttendance2Activity extends AppCompatActivity {
         System.out.println(currentMonth + year);
 
         dateET = findViewById(R.id.date);
-        dateET.setText(date);
+        dateET.setText("ATTENDANCE - " + date);
 
         if(date.contains("/") || !date.contains("-")){
             Toast.makeText(this, "Date Format Must Be: DD-MM-YYYY", Toast.LENGTH_SHORT).show();

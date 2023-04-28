@@ -75,7 +75,8 @@ public class AdminViewResultsActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID);
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child("IDC133").child("2nd Class").child("FALANGE2023");
 
         resultList = new ArrayList<>();
         adapter = new TeacherStandardResultAdapter(resultList, this);

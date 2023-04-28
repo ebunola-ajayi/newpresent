@@ -13,6 +13,14 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#504646"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="Select Subject"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,6 +28,8 @@
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -176,7 +186,7 @@
                         android:id="@+id/standardTest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/testresult"/>
+                        android:src="@drawable/standardresult"/>
 
                 </RelativeLayout>
 

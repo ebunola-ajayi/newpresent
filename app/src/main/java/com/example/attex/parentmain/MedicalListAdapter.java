@@ -41,7 +41,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
     public void onBindViewHolder(@NonNull MedicalListAdapter.MedicalListViewHolder holder, int position) {
         ModelMedical medical = medicalList.get(position);
 
-        holder.medicalType.setText(medical.getMedicalType());
+        holder.medicalType.setText(medical.getMedicalType() + " - ");
         holder.medicalTitle.setText(medical.getMedicalTitle());
         holder.note.setText(medical.getNote());
 

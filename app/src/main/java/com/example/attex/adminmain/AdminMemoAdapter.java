@@ -37,7 +37,7 @@ public class AdminMemoAdapter extends RecyclerView.Adapter<AdminMemoAdapter.Admi
     public void onBindViewHolder(@NonNull AdminMemoAdapter.AdminMemoViewHolder holder, int position) {
         ModelMemo memo = memoList.get(position);
 
-        holder.memoTitleTV.setText(memo.getMemoTitle());
+        holder.memoTitleTV.setText(memo.getMemoTitle() + "  -  ");
         holder.memoTV.setText(memo.getMemo());
         holder.memoDateTV.setText(memo.getDate());
 

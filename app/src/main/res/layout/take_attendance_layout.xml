@@ -56,6 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_marginTop="1dp">
 
@@ -65,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
                 android:maxLines="1"
                 android:padding="3dp"
                 android:text="StudentID"
@@ -77,18 +77,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!--<RadioButton
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="150dp"
-                android:text="Present"
-                android:id="@+id/presentBtn"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Absent"
-                android:id="@+id/absentBtn"/>-->
 
             <Button
                 android:layout_width="150dp"

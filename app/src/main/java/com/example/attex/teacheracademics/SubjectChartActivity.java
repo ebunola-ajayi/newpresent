@@ -95,11 +95,10 @@ public class SubjectChartActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         ModelAcademics subjectGrade = dataSnapshot.getValue(ModelAcademics.class);
-
-                        //populating gradeListChart for Chart
                         String studentGrade = subjectGrade.getGrade();
-                        float studentGradeFloat = Float.parseFloat(studentGrade); //converting grade value to float, for chart
-                        gradeListChart.add(studentGradeFloat); //add student grade values to gradeListChart
+                        float studentGradeFloat = Float.parseFloat(studentGrade);  //converting grade value to float, for chart
+                        gradeListChart.add(studentGradeFloat);   //add student grade values to gradeListChart
+
 
                         //populating studentNames list for the chart
                         String name = subjectGrade.getName();

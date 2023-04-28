@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="10dp"
     tools:context=".parentmain.ChildAddMedicalActivity">
 
     <LinearLayout
@@ -13,16 +13,27 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/dateButton"
+            android:layout_gravity="center"
+            android:src="@drawable/medical"
+            android:layout_marginBottom="5dp"
+            android:text="Select Date"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
             android:id="@+id/relTitle">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/title"
-                android:text="   New Medical Information"
+                android:text="Medical Information"
                 android:textColor="#504646"
                android:foregroundGravity="center"
                 android:textStyle="bold"
@@ -36,10 +47,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 app:tint="@color/black"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -98,8 +109,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="John has a severe peanut allergy..."
-            android:minLines="8"
+            android:hint="John has a severe peanut allergy.."
+            android:minLines="5"
             android:textSize="20sp"
             android:gravity="top"
             android:id="@+id/noteET"

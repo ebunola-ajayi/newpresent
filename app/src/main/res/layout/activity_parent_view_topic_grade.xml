@@ -8,37 +8,50 @@
     tools:context=".parentacademics.ParentViewTopicGradeActivity">
 
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/result"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:text="Subject - Topic"
-        android:textColor="#435EF1"
+        android:textColor="#2745E8"
         android:layout_gravity="center"
+        android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:textSize="20sp"/>
+        android:textSize="25sp"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/grade"
-        android:text="200"
-        android:textStyle="bold"
-        android:textColor="#3073A8"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="30sp"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/comment"
-        android:text="Well Done"
-        android:textStyle="bold"
-        android:textColor="#3073A8"
-        android:layout_gravity="center"
-        android:textSize="30sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grade:"
+            android:textStyle="bold"
+            android:textColor="#3073A8"
+            android:layout_gravity="center"
+            android:textSize="25sp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grade"
+            android:text=" 200%"
+            android:textStyle="bold"
+            android:textColor="#D52C3E4C"
+            android:layout_gravity="center"
+            android:textSize="25sp"/>
+
+
+    </LinearLayout>
 
 
     <TextView
@@ -46,10 +59,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/averageTV"
         android:layout_marginTop="10dp"
-        android:text="Class Average"
+        android:text="Class Average : 100%"
         android:textColor="#3073A8"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comment:"
+        android:textStyle="bold"
+        android:textColor="#3073A8"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"/>
+
+
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment"
+            android:text="John did very well. He could have improved his grade.... "
+            android:textStyle="italic"
+            android:padding="10dp"
+            android:textColor="#D52C3E4C"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"/>
+
+
+
+
+
 
 
 </LinearLayout>

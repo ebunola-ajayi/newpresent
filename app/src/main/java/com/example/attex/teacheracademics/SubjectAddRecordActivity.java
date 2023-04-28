@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -21,8 +22,8 @@ import java.util.HashMap;
 
 public class SubjectAddRecordActivity extends AppCompatActivity {
 
-    TextView nameET;
-    EditText noteET, gradeET, topicET;
+    TextView nameET, topicET;
+    EditText noteET, gradeET;
     Button saveBtn;
 
 
@@ -57,7 +58,7 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
         noteET = findViewById(R.id.noteET);
         gradeET = findViewById(R.id.gradeET);
         topicET = findViewById(R.id.topic);
-        topicET.setText(topic);
+        topicET.setText(subject + " - " + topic);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("AcademicRecord").child(schoolID).child(classGrade).child(classID).child(subject).child(topic);
 
@@ -66,9 +67,16 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String topic = topicET.getText().toString();
                 String note = noteET.getText().toString();
                 String grade = gradeET.getText().toString();
+
+                if(note.isEmpty()){
+                    Toast.makeText(SubjectAddRecordActivity.this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
+                    noteET.requestFocus();
+                } else if(grade.isEmpty() || grade.length() < 2 || grade.contains("%")){
+                    Toast.makeText(SubjectAddRecordActivity.this, "Please Enter A Grade (No % Required)", Toast.LENGTH_SHORT).show();
+                    gradeET.requestFocus();
+                }
 
 
                 HashMap<String, Object> academicHashmap = new HashMap<>();
@@ -88,6 +96,7 @@ public class SubjectAddRecordActivity extends AppCompatActivity {
 
                 ref.setValue(subjectHashmap);
                 ref.push();
+                Toast.makeText(SubjectAddRecordActivity.this, "Grade Saved", Toast.LENGTH_SHORT).show();
 
             }
         });

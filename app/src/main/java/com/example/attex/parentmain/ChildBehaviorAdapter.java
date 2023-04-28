@@ -33,7 +33,7 @@ public class ChildBehaviorAdapter extends RecyclerView.Adapter<ChildBehaviorAdap
     @Override
     public void onBindViewHolder(@NonNull ChildBehaviorAdapter.ChildBehaviorViewHolder holder, int position) {
         ModelBehaviour behaviour = behaviourList.get(position);
-        holder.dateTV.setText(behaviour.getDate());
+        holder.dateTV.setText("  - " + behaviour.getDate());
         holder.feedbackTV.setText(behaviour.getFeedback());
         holder.commentTV.setText(behaviour.getComment());
     }

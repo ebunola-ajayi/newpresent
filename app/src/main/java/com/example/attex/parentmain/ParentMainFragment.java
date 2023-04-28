@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ParentMainFragment extends Fragment {
 
     TextView childName, childNumber;
-    ImageView chat, details, behaviour, school, medical, viewAttendance, academicPro;
+    ImageView chat, details, behaviour, school, medical, viewAttendance;
 
     FirebaseAuth auth=  FirebaseAuth.getInstance();
     FirebaseUser currentUser = auth.getCurrentUser();

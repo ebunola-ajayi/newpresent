@@ -5,24 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".teachermain.ChooseDateActivity">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateButton"
+        android:src="@drawable/date"
+        android:layout_marginBottom="30dp"
+        android:text="Select Date"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
-        android:textSize="30sp"
+        android:text="Date Selected: "
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:id="@+id/textView"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dateButton"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:text="Select Date"/>
 
 
 

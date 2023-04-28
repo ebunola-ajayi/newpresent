@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/scroll"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="15dp"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/image"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/medical"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image"
+        android:id="@+id/medicalType"
+        android:text="Medical Type"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-  Medical Title"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_toEndOf="@+id/medicalType"
+        android:id="@+id/medicalTitle"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Details of medical information......................................................"
+        android:textColor="@color/black"
+        android:id="@+id/note"
+        android:textSize="18dp"
+        android:layout_below="@+id/medicalType"
+        android:layout_toEndOf="@+id/image"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/medicalType"
-            android:text="Medical Type"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="#0969B6"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/medicalTitle"
-            android:text="Medical Title"
-            android:textSize="22sp"
-            android:textColor="#1A1E33"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:id="@+id/note"
-            android:text="Note"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="#4458BA"/>
-
-    </LinearLayout>
+        android:layout_height="2dp"
+        android:id="@+id/line1"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/note"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:orientation="horizontal" />
 
 
-</ScrollView>
+
+
+</RelativeLayout>

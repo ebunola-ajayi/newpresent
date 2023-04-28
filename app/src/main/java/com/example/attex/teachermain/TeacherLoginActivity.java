@@ -26,7 +26,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_login2);
+        setContentView(R.layout.activity_teacher_login);
 
         mAuth = FirebaseAuth.getInstance();
         //if user exists or not
@@ -61,25 +61,34 @@ public class TeacherLoginActivity extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        if (email.isEmpty() || password.isEmpty()){
+       /* if (email.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             return;
+        }*/
+        if(email.isEmpty()){
+            emailET.requestFocus();
+            return;
+        } else if(password.isEmpty()){
+            passwordET.requestFocus();
+            return;
+        }else{
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                //showMainActivity();
+                                Intent intent = new Intent(TeacherLoginActivity.this, TeacherMainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(TeacherLoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
         }
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            //showMainActivity();
-                            Intent intent = new Intent(TeacherLoginActivity.this, TeacherMainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(TeacherLoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+
     }
 
     private void registerPage(){

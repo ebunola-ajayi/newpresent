@@ -42,7 +42,7 @@ public class ViewStudentsAdapter extends RecyclerView.Adapter<ViewStudentsAdapte
 
         //setting student details to text view
         holder.firstNameTxt.setText(student.getFirstName());
-        holder.lastNameTxt.setText(student.getLastName());
+        holder.lastNameTxt.setText(" " + student.getLastName());
         holder.idTxt.setText(student.getStudentID());
         holder.dobTxt.setText(student.getDateOfBirth());
 

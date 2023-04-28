@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.attex.R;
@@ -16,7 +17,7 @@ import java.util.Calendar;
 
 public class ChooseDateActivity extends AppCompatActivity {
 
-    Button dateButton;
+    ImageButton dateButton;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class ChooseDateActivity extends AppCompatActivity {
                 String year = Integer.toString(datePicker.getYear());
                 String fullDate = dayOfMonth + "-" + month + "-" + year;
                 nextActitvity(dayOfMonth, month, year, fullDate);
+                textView.setText("Date Selected: " + fullDate);
 
             }
         }, currentYear, currentMonth, day);

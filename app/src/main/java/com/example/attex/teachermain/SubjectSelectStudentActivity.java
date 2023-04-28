@@ -57,7 +57,7 @@ public class SubjectSelectStudentActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Students").child(currentUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(schoolID).child(classGrade).child(classID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

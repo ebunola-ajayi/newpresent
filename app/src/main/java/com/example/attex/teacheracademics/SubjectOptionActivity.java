@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -17,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SubjectOptionActivity extends AppCompatActivity{
 
-    Button addAcademic, viewAcademic;
+    ImageView addAcademic, viewAcademic;
     EditText topicName;
     TextView subName;
 
@@ -70,13 +72,20 @@ public class SubjectOptionActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String topic = topicName.getText().toString();
 
-                Intent intent = new Intent(SubjectOptionActivity.this, SubjectSelectStudentActivity.class);
-                intent.putExtra("topic", topic);
-                intent.putExtra("classID", classID);
-                intent.putExtra("schoolID", schoolID);
-                intent.putExtra("subject", subject);
-                intent.putExtra("classGrade", classGrade);
-                startActivity(intent);
+                if(topic.isEmpty()){
+                    Toast.makeText(SubjectOptionActivity.this, "Please Enter A Topic Name", Toast.LENGTH_SHORT).show();
+                    topicName.requestFocus();
+                } else {
+
+                    Intent intent = new Intent(SubjectOptionActivity.this, SubjectSelectStudentActivity.class);
+                    intent.putExtra("topic", topic);
+                    intent.putExtra("classID", classID);
+                    intent.putExtra("schoolID", schoolID);
+                    intent.putExtra("subject", subject);
+                    intent.putExtra("classGrade", classGrade);
+                    startActivity(intent);
+                }
+
             }
         });
 

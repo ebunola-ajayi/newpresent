@@ -8,13 +8,11 @@
     tools:context=".parentmain.EnterChildIDActivity">
 
     <ImageView
-        android:id="@+id/add"
-        android:layout_width="400dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/mainpresent" />
-
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    app:srcCompat="@drawable/childicon"/>
 
 
 

@@ -38,7 +38,7 @@ public class AdminTeacherList3Adapter extends RecyclerView.Adapter<AdminTeacherL
     public void onBindViewHolder(@NonNull AdminTeacherList3Adapter.AdminTeacherList3ViewHolder holder, int position) {
         ModelTeacher teacher = teacherList.get(position);
 
-        holder.lastName.setText(teacher.getLastName());
+        holder.lastName.setText(teacher.getTeacherName());
         String classID = teacher.getClassID();//change to classID
         holder.lastName.setOnClickListener(new View.OnClickListener() {
             @Override

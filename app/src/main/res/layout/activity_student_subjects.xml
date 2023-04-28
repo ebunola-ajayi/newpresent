@@ -13,6 +13,16 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Subjects"
+            android:layout_marginTop="10dp"
+            android:textColor="#504646"
+            android:textSize="20dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="175dp"
@@ -146,9 +156,13 @@
         </LinearLayout>
 
 
-
-<!--do one for history and art-->
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="SPACE"
+            android:visibility="invisible"
+            android:textSize="30dp"/>
 
 
 

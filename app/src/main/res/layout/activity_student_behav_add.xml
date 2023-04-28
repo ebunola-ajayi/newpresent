@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Add Behaviour Record"
             android:textStyle="bold"
-            android:textColor="#5F72DD"
+            android:textColor="#101B5C"
             android:textSize="20dp"
             android:layout_marginLeft="100dp"
             android:id="@+id/behaviourTitle"
@@ -45,17 +45,19 @@
         android:text="Student Name"
         android:id="@+id/studentName"
         android:textStyle="bold"
-        android:textColor="#5F72DD"
+        android:textColor="#101B5C"
         android:textSize="20dp"
         android:layout_marginTop="10dp"
         android:gravity="center"/>
 
-    <EditText
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:hint="Date"
+        android:layout_gravity="center"
         android:id="@+id/date"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:gravity="center"/>
 
@@ -63,23 +65,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Note"
+        android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/commentET"
         android:layout_width="350dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:hint="Note..."
+        android:minLines="8"
+        android:textSize="20sp"
+        android:gravity="top"
         android:layout_gravity="center"
-        android:inputType="textPersonName"
-        android:hint="John had an argument with a Student" />
+        android:id="@+id/commentET"
+        android:padding="12dp"
+        android:textColor="@color/black"/>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Feedback Type"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center"/>
@@ -108,13 +116,6 @@
             android:id="@+id/negative"/>
 
     </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_selected"
-        android:text="Selected: "
-        android:textSize="15sp"/>
 
 
 

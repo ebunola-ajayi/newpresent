@@ -1,83 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="15dp"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/image"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/logo12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image"
+        android:id="@+id/studentName"
+        android:text="Student Name"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:text="StudentID"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_toEndOf="@+id/studentName"
+        android:id="@+id/studentID"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="1dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grade %"
+        android:textColor="@color/black"
+        android:id="@+id/grade"
+        android:textSize="18dp"
+        android:layout_below="@+id/studentName"
+        android:layout_toEndOf="@+id/image"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:maxLines="1"
-                android:id="@+id/studentName"
-                android:text="Student Name"
-                android:textColor="#0E1F7A"
-                android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:textColor="@color/black"
+        android:id="@+id/note"
+        android:textSize="18dp"
+        android:layout_toEndOf="@+id/image"
+        android:layout_below="@+id/grade"/>
 
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="17sp"
-                android:maxLines="1"
-                android:gravity="center"
-                android:id="@+id/studentID"
-                android:layout_toEndOf="@+id/tvForeName"
-                android:layout_toStartOf="@+id/tvForeName"
-                android:text="StudentID"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:padding="3dp"
-                android:maxLines="1"
-                android:gravity="center"
-                android:id="@+id/grade"
-                android:layout_toEndOf="@+id/tvForeName"
-                android:layout_toStartOf="@+id/tvForeName"
-                android:text="Grade"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Note"
-                android:textSize="17sp"
-                android:id="@+id/note"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/line1"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/note"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:orientation="horizontal" />
 
 
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

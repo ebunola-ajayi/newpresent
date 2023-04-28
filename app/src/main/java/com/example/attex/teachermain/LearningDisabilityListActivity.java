@@ -35,35 +35,35 @@ public class LearningDisabilityListActivity extends AppCompatActivity {
 
         //setLearnList();
         // dyslexia symptoms
-        dyslexiaSymptoms.add("one");
-        dyslexiaSymptoms.add("two");
-        dyslexiaSymptoms.add("three");
+        dyslexiaSymptoms.add("Reversing the position of letters");
+        dyslexiaSymptoms.add("Struggle with reading comprehension");
+        dyslexiaSymptoms.add("Delayed speech");
 
         //dysgraphia Symptoms
-        dysgraphiaSymptoms.add("four");
-        dysgraphiaSymptoms.add("five");
-        dysgraphiaSymptoms.add("six");
+        dysgraphiaSymptoms.add("Difficulty with written expression");
+        dysgraphiaSymptoms.add("Problems organizing thoughts and ideas in writing");
+        dysgraphiaSymptoms.add("Taking a long time to write");
 
         //dyscalculia Symptoms
-        dyscalculiaSymptoms.add("seven");
-        dyscalculiaSymptoms.add("eight");
-        dyscalculiaSymptoms.add("nine");
+        dyscalculiaSymptoms.add("Being unsure of how to do basic math problems");
+        dyscalculiaSymptoms.add("Difficulty following the order of operations");
+        dyscalculiaSymptoms.add("Finding it challenging to count and group numbers together");
 
         //dyspraxia Symptoms
-        dyspraxiaSymptoms.add("ten");
-        dyspraxiaSymptoms.add("eleven");
-        dyspraxiaSymptoms.add("twelve");
+        dyspraxiaSymptoms.add("Problems with movement, coordination, and perception");
+        dyspraxiaSymptoms.add("Problems with writing, dressing, and organizing");
+        dyspraxiaSymptoms.add("Difficulty with new skills");
 
         //adhd sypmtoms
-        adhdSymptoms.add("thirteen");
-        adhdSymptoms.add("fourteen");
-        adhdSymptoms.add("fifteen");
+        adhdSymptoms.add("Inability to sit still");
+        adhdSymptoms.add("Being disorganized or forgetful");
+        adhdSymptoms.add("Difficulty staying quiet and attentive");
 
-        learnList.add(new ModelLearningDisability("Dyslexia", "dyslexia short description", dyslexiaSymptoms));
-        learnList.add(new ModelLearningDisability("Dysgraphia", "dysgraphia short description", dysgraphiaSymptoms));
-        learnList.add(new ModelLearningDisability("Dyscalculia", "dyscalculia short description", dyscalculiaSymptoms));
-        learnList.add(new ModelLearningDisability("Dyspraxia", "dyspraxia short description", dyspraxiaSymptoms));
-        learnList.add(new ModelLearningDisability("ADHD", "adhd short description", adhdSymptoms));
+        learnList.add(new ModelLearningDisability("Dyslexia", "Dyslexia is the number one learning disability that affects people of all ages. It affects a person’s reading and language processing skills.", dyslexiaSymptoms));
+        learnList.add(new ModelLearningDisability("Dysgraphia", "Dysgraphia is a learning disability that affects a person’s ability to write.", dysgraphiaSymptoms));
+        learnList.add(new ModelLearningDisability("Dyscalculia", "Dyscalculia is a learning disability that affects math skills.", dyscalculiaSymptoms));
+        learnList.add(new ModelLearningDisability("Dyspraxia", "Dyspraxia is a neurological disorder that affects a person’s ability to plan and coordinate movement.", dyspraxiaSymptoms));
+        learnList.add(new ModelLearningDisability("ADHD", "ADHD, or Attention Deficit Hyperactivity Disorder, is a neurodevelopmental disorder that affects a person’s ability to pay attention and control impulsivity.", adhdSymptoms));
 
 
         recyclerView = findViewById(R.id.recyclerView);

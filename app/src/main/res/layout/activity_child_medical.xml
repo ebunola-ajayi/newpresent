@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title"
             android:text="Medical Details"
+            android:layout_gravity="center"
             android:textColor="#504646"
             android:textStyle="bold"
             android:textSize="30sp"/>

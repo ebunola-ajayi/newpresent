@@ -38,7 +38,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"
-            android:hint="First Name" />
+            android:hint="First Name*" />
 
         <EditText
             android:id="@+id/middleName"
@@ -62,7 +62,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="LastName" />
+            android:hint="Last Name*" />
 
         <EditText
             android:id="@+id/dob"
@@ -74,7 +74,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="DD-MM-YYYY" />
+            android:hint="DD-MM-YY*" />
 
 
 
@@ -89,7 +89,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="Parent/Guardian Name 1" />
+            android:hint="Parent/Guardian Name 1*" />
 
         <EditText
             android:id="@+id/parent2Name"
@@ -113,7 +113,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="Parent/Guardian Email 1" />
+            android:hint="Parent/Guardian Email 1*" />
 
         <EditText
             android:id="@+id/parent2Email"
@@ -139,7 +139,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="Contact Number 1" />
+            android:hint="Contact Number 1*" />
 
         <EditText
             android:id="@+id/parent2No"
@@ -163,7 +163,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="Address Line 1" />
+            android:hint="Address Line 1*" />
 
         <EditText
             android:id="@+id/addressLine2"
@@ -188,7 +188,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="County" />
+            android:hint="County*" />
 
 
 

@@ -92,7 +92,7 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
                 String avgString = Float.toString(avg);
 
                 TextView averageTV = findViewById(R.id.averageTV);
-                averageTV.setText("Class Average: " + avgString);
+                averageTV.setText("Class Average: " + avgString + "%");
 
 
 

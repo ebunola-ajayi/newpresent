@@ -26,14 +26,14 @@ import java.util.HashMap;
 
 public class StudentBehavAddActivity extends AppCompatActivity {
 
-    EditText dateET, commentET;
+    EditText commentET;
     Button saveBtn;
     ImageButton delete;
 
     RadioGroup radioGroup;
     RadioButton radioButton;
     RadioButton positive, negative;
-    TextView textView, behaviourTitle;
+    TextView behaviourTitle, dateET;
 
     boolean isEditting = false;
 
@@ -57,8 +57,6 @@ public class StudentBehavAddActivity extends AppCompatActivity {
         commentET = findViewById(R.id.commentET);
 
         radioGroup = findViewById(R.id.radioGroup);
-        textView = findViewById(R.id.text_view_selected);
-
 
         Intent i = getIntent();
         String studentID = i.getStringExtra("studentID");
@@ -72,13 +70,9 @@ public class StudentBehavAddActivity extends AppCompatActivity {
         //from editing
         Intent i2 = getIntent();
         String behaviourID = i2.getStringExtra("behaviourID");
-        System.out.println(behaviourID);
         String date = i2.getStringExtra("date");
-        System.out.println(date);
         String comment = i2.getStringExtra("comment");
-        System.out.println(comment);
         String feedback = i2.getStringExtra("feedback");
-        System.out.println(feedback);
 
         if(behaviourID!=null && !behaviourID.isEmpty()){
             isEditting = true;
@@ -132,47 +126,62 @@ public class StudentBehavAddActivity extends AppCompatActivity {
                 if(isEditting){
                     int radioID1 = radioGroup.getCheckedRadioButtonId();
                     radioButton = findViewById(radioID1);
-                    textView.setText("Selected: " + radioButton.getText());
 
                     String editComment = commentET.getText().toString();
                     String editFeedback = radioButton.getText().toString();
 
-                    HashMap<String, Object> edittedHashmap = new HashMap<>();
-                    edittedHashmap.put("comment", editComment);
-                    edittedHashmap.put("feedback", editFeedback);
-                    edittedHashmap.put("date", date);
-                    edittedHashmap.put("studentID", studentID);
-                    edittedHashmap.put("firstName", firstName);
-                    edittedHashmap.put("lastName", lastName);
-                    edittedHashmap.put("classID", classID);
-                    edittedHashmap.put("behaviourID", behaviourID);
+                    if(editComment.isEmpty()){
+                        Toast.makeText(StudentBehavAddActivity.this, "Please Enter A Comment", Toast.LENGTH_SHORT).show();
+                        commentET.requestFocus();
+                    } else {
 
-                    reference.child(behaviourID).setValue(edittedHashmap);
-                    Toast.makeText(StudentBehavAddActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+                        HashMap<String, Object> edittedHashmap = new HashMap<>();
+                        edittedHashmap.put("comment", editComment);
+                        edittedHashmap.put("feedback", editFeedback);
+                        edittedHashmap.put("date", date);
+                        edittedHashmap.put("studentID", studentID);
+                        edittedHashmap.put("firstName", firstName);
+                        edittedHashmap.put("lastName", lastName);
+                        edittedHashmap.put("classID", classID);
+                        edittedHashmap.put("behaviourID", behaviourID);
+
+                        reference.child(behaviourID).setValue(edittedHashmap);
+                        Toast.makeText(StudentBehavAddActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 } else {
 
                     int radioID = radioGroup.getCheckedRadioButtonId();
                     radioButton = findViewById(radioID);
-                    textView.setText("Selected: " + radioButton.getText());
 
                     String feedback1 = radioButton.getText().toString();
-                    String date = dateET.getText().toString();
                     String comment = commentET.getText().toString();
                     String behaviourID = reference.push().getKey();
+                    String date2 = dateET.getText().toString();
 
-                    HashMap<String, Object> behaviorHashmap = new HashMap<>();
-                    behaviorHashmap.put("date", date);
-                    behaviorHashmap.put("comment", comment);
-                    behaviorHashmap.put("feedback", feedback1);
-                    behaviorHashmap.put("studentID", studentID);
-                    behaviorHashmap.put("firstName", firstName);
-                    behaviorHashmap.put("lastName", lastName);
-                    behaviorHashmap.put("classID", classID);
-                    behaviorHashmap.put("behaviourID", behaviourID);
+                    if(comment.isEmpty()){
+                        Toast.makeText(StudentBehavAddActivity.this, "Please Enter A Comment", Toast.LENGTH_SHORT).show();
+                        commentET.requestFocus();
+                    } else {
 
-                    // reference.push().setValue(behaviorHashmap);
-                    reference.child(behaviourID).setValue(behaviorHashmap);
+                        HashMap<String, Object> behaviorHashmap = new HashMap<>();
+                        behaviorHashmap.put("date", date2);
+                        behaviorHashmap.put("comment", comment);
+                        behaviorHashmap.put("feedback", feedback1);
+                        behaviorHashmap.put("studentID", studentID);
+                        behaviorHashmap.put("firstName", firstName);
+                        behaviorHashmap.put("lastName", lastName);
+                        behaviorHashmap.put("classID", classID);
+                        behaviorHashmap.put("behaviourID", behaviourID);
+
+                        // reference.push().setValue(behaviorHashmap);
+                        reference.child(behaviourID).setValue(behaviorHashmap);
+                        Toast.makeText(StudentBehavAddActivity.this, "Behaviour Entry Added", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
                 }
 
 

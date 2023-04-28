@@ -41,7 +41,7 @@ public class AdminTeacherListAdapter extends RecyclerView.Adapter<AdminTeacherLi
         ModelTeacher teachers = teacherList.get(position);
 
         String classID = teachers.getClassID();
-        holder.lastName.setText(teachers.getTeacherName() + " - " + teachers.getClassID());
+        holder.lastName.setText(teachers.getTeacherName());
 
         holder.lastName.setOnClickListener(new View.OnClickListener() {
             @Override

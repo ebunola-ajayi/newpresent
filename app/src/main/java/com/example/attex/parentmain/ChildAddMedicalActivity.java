@@ -117,17 +117,26 @@ public class ChildAddMedicalActivity extends AppCompatActivity {
                             String editMedicalTitle = medTitleET.getText().toString();
                             String editMedicalNote = noteET.getText().toString();
 
-                            HashMap<String, Object> edittedHashmap = new HashMap<>();
-                            edittedHashmap.put("note", editMedicalNote);
-                            edittedHashmap.put("medicalTitle", editMedicalTitle);
-                            edittedHashmap.put("medicalType", medicalType);
-                            edittedHashmap.put("medicalID", medicalID);
-                            reference.child(medicalID).setValue(edittedHashmap);
-                            Toast.makeText(ChildAddMedicalActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+                            if(editMedicalTitle.isEmpty()){
+                                Toast.makeText(ChildAddMedicalActivity.this, "Please Enter A Title", Toast.LENGTH_SHORT).show();
+                                medTitleET.requestFocus();
+
+                            }else if(editMedicalNote.equals("")){
+                                Toast.makeText(ChildAddMedicalActivity.this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
+                                noteET.requestFocus();
+                            }else {
+                                HashMap<String, Object> edittedHashmap = new HashMap<>();
+                                edittedHashmap.put("note", editMedicalNote);
+                                edittedHashmap.put("medicalTitle", editMedicalTitle);
+                                edittedHashmap.put("medicalType", medicalType);
+                                edittedHashmap.put("medicalID", medicalID);
+                                reference.child(medicalID).setValue(edittedHashmap);
+                                Toast.makeText(ChildAddMedicalActivity.this, "Changes Made Successfully", Toast.LENGTH_SHORT).show();
+                            }
 
 
 
-                        } else {
+                        } else {//if not editting
                             String note = noteET.getText().toString();
                             String medTitle = medTitleET.getText().toString();
                             String medicalID = reference.push().getKey();

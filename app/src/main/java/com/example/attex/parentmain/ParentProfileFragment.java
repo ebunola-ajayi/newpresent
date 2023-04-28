@@ -86,6 +86,14 @@ public class ParentProfileFragment extends Fragment {
             public void onClick(View view) {
                 String firstName = firstNameET.getText().toString();
                 String lastName = lastNameET.getText().toString();
+
+                if(firstName.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A First Name", Toast.LENGTH_SHORT).show();
+                    firstNameET.requestFocus();
+                }else if(lastName.isEmpty()){
+                    Toast.makeText(getActivity(), "Please Enter A Last Name", Toast.LENGTH_SHORT).show();
+                    lastNameET.requestFocus();
+                }
                 HashMap<String, Object> edittedHashmap = new HashMap<>();
 
                 edittedHashmap.put("firstName", firstName);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class StudentViewTopicsAdapter extends RecyclerView.Adapter<StudentViewTo
 
         holder.topic.setText(topics.getTopic());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.topic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, StudentGradeActivity.class);
@@ -66,7 +67,7 @@ public class StudentViewTopicsAdapter extends RecyclerView.Adapter<StudentViewTo
 
     public static class StudentViewTopicsViewHolder extends  RecyclerView.ViewHolder{
 
-        TextView topic;
+        Button topic;
 
         public StudentViewTopicsViewHolder(@NonNull View itemView) {
             super(itemView);

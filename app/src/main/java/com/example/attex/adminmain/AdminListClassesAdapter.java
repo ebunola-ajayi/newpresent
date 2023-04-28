@@ -40,7 +40,11 @@ public class AdminListClassesAdapter extends RecyclerView.Adapter<AdminListClass
     public void onBindViewHolder(@NonNull AdminListClassesViewHolder holder, int position) {
         ModelTeacher classes = classList.get(position);
 
-        holder.className.setText(classes.getLastName() + " - " + classes.getClassID());
+        //holder.className.setText(classes.getLastName() + " - " + classes.getClassID());
+        holder.teacherNameTV.setText(classes.getTeacherName());
+        holder.classIDTV.setText("  -  " + classes.getClassID());
+        holder.emailTV.setText(classes.getEmail());
+        holder.classGradeTV.setText(classes.getClassGrade());
     }
 
     @Override
@@ -51,12 +55,16 @@ public class AdminListClassesAdapter extends RecyclerView.Adapter<AdminListClass
 
     public static class AdminListClassesViewHolder extends RecyclerView.ViewHolder{
 
-        TextView className;
+        TextView teacherNameTV, classIDTV, emailTV, classGradeTV;
 
         public AdminListClassesViewHolder(@NonNull View itemView) {
             super(itemView);
+            teacherNameTV = itemView.findViewById(R.id.teacherNameTV);
+            classIDTV = itemView.findViewById(R.id.classIDTV);
+            emailTV = itemView.findViewById(R.id.emailTV);
+            classGradeTV = itemView.findViewById(R.id.classGradeTV);
 
-            className = itemView.findViewById(R.id.className);
+
         }
     }
 }

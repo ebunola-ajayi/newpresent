@@ -19,7 +19,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/logo6"
+            android:src="@drawable/teacher3"
             />
 
         <LinearLayout
@@ -177,7 +177,7 @@
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="DD/MM/YY*" />
+            android:hint="DD/MM/YY" />
 
         <EditText
             android:id="@+id/numberET"

@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TeacherHomeFragment extends Fragment {
 
-    ImageView viewStudents, addStudents, attendance, school, learningDisability, attendanceRecord, note;
+    ImageView viewStudents, attendance, school, learningDisability, attendanceRecord, note;
     TextView mainName;
 
     @Override
@@ -93,18 +93,6 @@ public class TeacherHomeFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(getActivity(), ChooseDateActivity.class);
-                            intent.putExtra("classID", classID);
-                            intent.putExtra("schoolID", schoolID);
-                            intent.putExtra("classGrade", classGrade);
-                            startActivity(intent);
-                        }
-                    });
-
-                    addStudents = view.findViewById(R.id.add);
-                    addStudents.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), AddStudentActivity.class);
                             intent.putExtra("classID", classID);
                             intent.putExtra("schoolID", schoolID);
                             intent.putExtra("classGrade", classGrade);

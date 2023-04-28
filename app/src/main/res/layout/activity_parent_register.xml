@@ -17,7 +17,15 @@
         android:layout_width="200dp"
         android:layout_height="140dp"
         android:layout_gravity="center"
-        android:src="@drawable/presenticon"/>
+        android:src="@drawable/logo9"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textColor="#3F51B5"
+            android:text="Enter All Fields With A *"/>
 
     <EditText
         android:id="@+id/edtxtFirstName"
@@ -27,7 +35,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingTop="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="5dp"
         android:hint="First Name *" />
 
@@ -49,35 +57,36 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:paddingTop="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:hint="Email *" />
 
-   <!-- <EditText
-        android:id="@+id/username"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingTop="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Username *" />-->
-
         <EditText
-            android:id="@+id/specialID"
+            android:id="@+id/childFirstNameET"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="textPersonName"
             android:paddingTop="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:hint="Parent Special ID *" />
+            android:hint="Child First Name*" />
+
+        <EditText
+            android:id="@+id/childLastNameET"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Child Last Name*" />
+
 
     <EditText
         android:id="@+id/edtxtChildID"
@@ -89,7 +98,7 @@
         android:paddingTop="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:hint="Child ID *" />
+        android:hint="Student ID *" />
 
         <EditText
             android:id="@+id/classGradeET"

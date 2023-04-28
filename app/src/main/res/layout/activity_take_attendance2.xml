@@ -13,12 +13,14 @@
         android:id="@+id/container"
         android:orientation="vertical">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="date"
             android:id="@+id/date"
+            android:textStyle="bold"
+            android:textColor="#504646"
+            android:textSize="20dp"
             android:layout_gravity="center"
             android:hint="DD-MM-YYYY"/>
 

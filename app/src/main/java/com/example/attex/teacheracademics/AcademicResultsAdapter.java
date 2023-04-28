@@ -34,7 +34,7 @@ public class AcademicResultsAdapter extends RecyclerView.Adapter<AcademicResults
     public void onBindViewHolder(@NonNull AcademicResultsAdapter.AcademicResultsViewHolder holder, int position) {
         ModelAcademics result = resultList.get(position);
 
-        holder.studentName.setText(result.getName());
+        holder.studentName.setText(result.getName() + " - ");
         holder.studentID.setText(result.getStudentID());
         holder.grade.setText(result.getGrade());
         holder.note.setText(result.getNote());

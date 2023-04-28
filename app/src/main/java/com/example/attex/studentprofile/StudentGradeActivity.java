@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StudentGradeActivity extends AppCompatActivity {
 
-    EditText noteET, gradeET;
+    TextView noteET, gradeET;
     TextView studentName;
 
     @Override
@@ -58,7 +58,7 @@ public class StudentGradeActivity extends AppCompatActivity {
                     noteET.setText(grades.getNote());
 
                     gradeET = findViewById(R.id.gradeET);
-                    gradeET.setText(grades.getGrade());
+                    gradeET.setText(grades.getGrade() + "%");
 
                     studentName = findViewById(R.id.studentName);
                     studentName.setText(grades.getName());

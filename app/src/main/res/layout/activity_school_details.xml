@@ -19,7 +19,7 @@
             android:id="@+id/title"
             android:text="Memos"
             android:layout_gravity="center"
-            android:textColor="#504646"
+            android:textColor="#101B5C"
             android:textStyle="bold"
             android:textSize="30sp"/>
 

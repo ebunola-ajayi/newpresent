@@ -14,35 +14,38 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:layout_gravity="center"
-            android:textColor="#3A56EF"
+            android:textColor="#504646"
             android:fontFamily="sans-serif-medium"
             android:textStyle="bold"
             android:id="@+id/subName"
             android:text="Subject Name"/>
 
-  <Button
-      android:layout_width="300dp"
-      android:layout_gravity="center"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="100dp"
-      android:id="@+id/viewAcademic"
-      android:text="View Academic Records"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/viewAcademic"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/graderecord"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/addAcademic"
-        android:text="Add Academic Records"/>
+        android:layout_marginTop="30dp"
+        android:src="@drawable/addgrade"
+        android:layout_gravity="center"/>
+
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:id="@+id/newTopic"
-        android:hint="Topic Name: E.G. Geometry"/>
-
-
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="Topic Name:"/>
 
 
 

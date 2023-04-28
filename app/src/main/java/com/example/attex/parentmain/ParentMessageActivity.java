@@ -87,6 +87,7 @@ public class ParentMessageActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         teacherUsername = findViewById(R.id.teacherUsername);
+        teacherUsername.setText(teacherEmail);
         imageView.setImageResource(R.drawable.profitem);
         send_text = findViewById(R.id.send_text);
 

@@ -8,21 +8,11 @@
     tools:context=".parentmain.ParentLoginActivity">
 
     <ImageView
-        android:layout_width="170dp"
-        android:layout_height="120dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:src="@drawable/presenticon"/>
+        android:src="@drawable/parent"/>
 
-    <TextView
-        android:id="@+id/loginTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="8dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:text="PARENT LOGIN"
-        />
 
     <EditText
         android:id="@+id/emailEdTxt"
@@ -32,7 +22,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingTop="10dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="5dp"
         android:hint="Email *" />
 
@@ -54,7 +44,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:text="login"
         android:layout_gravity="center"
         android:backgroundTint="#0FC6DD" />
@@ -66,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:textStyle="bold"
         android:layout_marginBottom="70dp"
         android:text="New Parent? Register Here"
         android:layout_gravity="center"/>

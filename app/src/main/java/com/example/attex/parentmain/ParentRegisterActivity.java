@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class ParentRegisterActivity extends AppCompatActivity {
-//WHEN VERIFYING SCHOOLID, CLASSID AND CHILDID, MAKE A NEW ACTIVITY (THAT CONFIRMS THOSE DETAILS EXIST) THAT THEN LEADS TO THIS ONE
     private FirebaseAuth newAuth;
 
     @Override
@@ -56,32 +55,30 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
 
     private void registerParent() {
-        Intent i = getIntent();
-        String schoolID = i.getStringExtra("schoolID");
         EditText edtxtFirstName =findViewById(R.id.edtxtFirstName);
         EditText edtxtLastName =findViewById(R.id.edtxtLastName);
         EditText edtxtEmail =findViewById(R.id.edtxtEmail);
         EditText edtxtPassword =findViewById(R.id.edtxtPassword);
         EditText edtxtChildID =findViewById(R.id.edtxtChildID);
-        EditText username = findViewById(R.id.username);
-        //EditText schoolIDET = findViewById(R.id.schoolIDET);
+        EditText schoolIDET = findViewById(R.id.schoolIDET);
         EditText classGradeET = findViewById(R.id.classGradeET);
         EditText classIDET = findViewById(R.id.classIDET);
+        EditText childFirstNameET = findViewById(R.id.childFirstNameET);
+        EditText childLastNameET = findViewById(R.id.childLastNameET);
 
 
         String parentFirstName = edtxtFirstName.getText().toString();
         String parentLastName = edtxtLastName.getText().toString();
         String parentEmail = edtxtEmail.getText().toString();
         String parentPassword = edtxtPassword.getText().toString();
-        String childID = edtxtChildID.getText().toString();
-       // String parentUsername = username.getText().toString();
-        //String schoolID = schoolIDET.getText().toString();
+        String studentID = edtxtChildID.getText().toString();
+        String schoolID = schoolIDET.getText().toString();
         String classGrade = classGradeET.getText().toString();
         String classID = classIDET.getText().toString();
-        //IF CHILD ID DOESNT EXIST THROW ERROR
-        //if db doesnt contail schoolid or class id throw message
+        String childLastName = childLastNameET.getText().toString();
+        String childFirstName = childFirstNameET.getText().toString();
 
-        if(parentFirstName.isEmpty() || parentLastName.isEmpty() || parentEmail.isEmpty() || parentPassword.isEmpty() || childID.isEmpty()){
+        if(parentFirstName.isEmpty() || parentLastName.isEmpty() || parentEmail.isEmpty() || parentPassword.isEmpty() || studentID.isEmpty()){
             Toast.makeText(this, "Please enter value for all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -90,7 +87,6 @@ public class ParentRegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // Parent parent = new Parent(parentFirstName, parentLastName, parentEmail, childID, parentUsername);
 
                     FirebaseUser firebaseUser = newAuth.getCurrentUser();
                     String parentID = firebaseUser.getUid();
@@ -102,8 +98,11 @@ public class ParentRegisterActivity extends AppCompatActivity {
                     parentHashmap.put("email", parentEmail);
                     parentHashmap.put("parentID", parentID);
                     parentHashmap.put("schoolID", schoolID);
+                    parentHashmap.put("studentID", studentID);
                     parentHashmap.put("classGrade", classGrade);
                     parentHashmap.put("classID", classID);
+                    parentHashmap.put("childLastName", childLastName);
+                    parentHashmap.put("childFirstName", childFirstName);
 
 
 
@@ -118,7 +117,6 @@ public class ParentRegisterActivity extends AppCompatActivity {
                                     intent.putExtra("classGrade", classGrade);
                                     intent.putExtra("classID", classID);
                                     startActivity(intent);
-                                    // enterChildIDPage();
                                 }
                             });
                 }else {
@@ -130,18 +128,6 @@ public class ParentRegisterActivity extends AppCompatActivity {
 
 
     }
-
-    /*private void enterChildIDPage(){
-        Intent intent = new Intent(this, EnterChildIDActivity.class);
-        startActivity(intent);
-
-    }*/
-
-   /* private void showMainPage(){
-        Intent intent = new Intent(this, ParentMain.class);
-        startActivity(intent);
-        finish();
-    }*/
 
     private void switchToLoginPage() {
         Intent intent = new Intent(this, ParentLoginActivity.class);

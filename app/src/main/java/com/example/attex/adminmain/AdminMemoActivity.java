@@ -33,7 +33,7 @@ public class AdminMemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_memi);
+        setContentView(R.layout.activity_admin_memo);
 
         FirebaseAuth auth= FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
