@@ -12,13 +12,14 @@ public class ModelStandardExam {
     String question8;
     String question9;
     String question10;
+    String acdemicYear;
     String title;
     String grade;
     String note;
     String studentID;
     String studentName;
 
-    public ModelStandardExam(String question1, String question2, String question3, String question4, String question5, String question6, String question7, String question8, String question9, String question10, String title, String grade, String note, String studentID, String stdentName) {
+    public ModelStandardExam(String question1, String question2, String question3, String question4, String question5, String question6, String question7, String question8, String question9, String question10, String academicYear, String title, String grade, String note, String studentID, String studentName) {
         this.question1 = question1;
         this.question2 = question2;
         this.question3 = question3;
@@ -29,6 +30,7 @@ public class ModelStandardExam {
         this.question8 = question8;
         this.question9 = question9;
         this.question10 = question10;
+        this.acdemicYear = academicYear;
         this.title = title;
         this.grade = grade;
         this.note = note;
@@ -157,5 +159,13 @@ public class ModelStandardExam {
 
     public void setQuestion10(String question10) {
         this.question10 = question10;
+    }
+
+    public String getAcdemicYear() {
+        return acdemicYear;
+    }
+
+    public void setAcdemicYear(String acdemicYear) {
+        this.acdemicYear = acdemicYear;
     }
 }

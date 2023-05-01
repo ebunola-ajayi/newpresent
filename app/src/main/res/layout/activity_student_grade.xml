@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:src="@drawable/addgrade" />
+        android:src="@drawable/graderecord" />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         android:textStyle="bold"
         android:textColor="#101B5C"
         android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"/>
 
 
@@ -31,8 +31,8 @@
         android:text="Student Name"
         android:id="@+id/studentName"
         android:textStyle="bold"
-        android:textColor="#101B5C"
-        android:textSize="20dp"
+        android:textColor="#0C1449"
+        android:textSize="18dp"
         android:layout_marginTop="10dp"
         android:gravity="center"/>
 
@@ -47,31 +47,32 @@
 
     <TextView
         android:id="@+id/noteET"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:inputType="textPersonName"
-        android:text="John found this topic difficult..." />
+        android:text="Student found this topic difficult..." />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Grade"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:gravity="center"/>
 
     <TextView
         android:id="@+id/gradeET"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:hint="            89%" />
+        android:textColor="@color/black"
+        android:hint="89%" />
 
 
 

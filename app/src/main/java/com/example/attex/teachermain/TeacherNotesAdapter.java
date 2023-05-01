@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelNote;
-import com.example.attex.models.ModelStudent;
 
 import java.util.List;
 

@@ -4,7 +4,6 @@ public class ModelTeacher {
     public String firstName;
     public String lastName;
     public String email;
-    public String password; //this will be used for sending email, must be same password as their email account! -MIGHT NOT NEED THIS, SENT FROM MY ACCOUNT
     public String schoolID;
     public String teacherName;
     public String classGrade;
@@ -14,11 +13,10 @@ public class ModelTeacher {
     public String addressLine1;
     public String addressLine2;
 
-    public ModelTeacher(String firstName, String lastName, String email, String password, String schoolID, String teacherName, String classGrade, String classID, String number, String dateOfBirth, String addressLine1, String addressLine2) {
+    public ModelTeacher(String firstName, String lastName, String email, String schoolID, String teacherName, String classGrade, String classID, String number, String dateOfBirth, String addressLine1, String addressLine2) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.schoolID = schoolID;
         this.teacherName = teacherName;
         this.classGrade = classGrade;
@@ -120,12 +118,6 @@ public class ModelTeacher {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 }

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStudent;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,32 +42,26 @@ public class TeacherStandardSelectStudentsActivity extends AppCompatActivity {
         }
 
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("Students").child(currentUser.getUid());
-
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
         String schoolID = i.getStringExtra("schoolID");
-        String teacherID = i.getStringExtra("classID");
+        String classID = i.getStringExtra("classID");
         String subject = i.getStringExtra("subject");
 
-
-
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         studentLists = new ArrayList<>();
-        adapter = new TeacherStandardSelectStudentsAdapter(studentLists, this, classGrade, schoolID, teacherID, subject);
+        adapter = new TeacherStandardSelectStudentsAdapter(studentLists, this, classGrade, schoolID, classID, subject);
         recyclerView.setAdapter(adapter);
 
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(schoolID).child(classGrade).child(classID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    System.out.println(dataSnapshot.getValue());
                     ModelStudent student = dataSnapshot.getValue(ModelStudent.class);
 
-                    String stuID = student.getStudentID();
                     studentLists.add(student);
                 }
                 adapter.notifyDataSetChanged();
@@ -79,9 +72,6 @@ public class TeacherStandardSelectStudentsActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
 

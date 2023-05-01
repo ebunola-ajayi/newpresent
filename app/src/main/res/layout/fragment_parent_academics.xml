@@ -194,9 +194,14 @@
 
 
 
-
-
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50dp"
+            android:text="SPACE"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

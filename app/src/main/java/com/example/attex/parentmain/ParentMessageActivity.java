@@ -49,7 +49,7 @@ public class ParentMessageActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
+
         if(currentUser == null){
             Intent intent = new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
@@ -99,6 +99,7 @@ public class ParentMessageActivity extends AppCompatActivity {
                 String msg = send_text.getText().toString();
                 if(!msg.equals("")){
                     sendMessage(myEmail, teacherEmail, msg);
+                    send_text.setText("");
                 } else {
                     Toast.makeText(ParentMessageActivity.this, "Please Enter a Message", Toast.LENGTH_SHORT).show();
                 }

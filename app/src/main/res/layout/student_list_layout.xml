@@ -19,6 +19,7 @@
         android:layout_toEndOf="@+id/image"
         android:id="@+id/tvForeName"
         android:text="First Name"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20dp"/>
 
@@ -27,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Last Name"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:layout_toEndOf="@+id/tvForeName"
@@ -56,10 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:id="@+id/line1"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_below="@+id/tvDOB"
         android:layout_marginTop="30dp"
-        android:background="@color/black"
+        android:background="#C86E6262"
         android:orientation="horizontal" />
 
 </RelativeLayout>

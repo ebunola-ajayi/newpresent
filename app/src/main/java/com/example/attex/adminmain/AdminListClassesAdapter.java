@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
-import com.example.attex.adminacademics.AdminSelectClassAdapter;
 import com.example.attex.models.ModelTeacher;
 
 import java.util.List;
@@ -40,7 +39,6 @@ public class AdminListClassesAdapter extends RecyclerView.Adapter<AdminListClass
     public void onBindViewHolder(@NonNull AdminListClassesViewHolder holder, int position) {
         ModelTeacher classes = classList.get(position);
 
-        //holder.className.setText(classes.getLastName() + " - " + classes.getClassID());
         holder.teacherNameTV.setText(classes.getTeacherName());
         holder.classIDTV.setText("  -  " + classes.getClassID());
         holder.emailTV.setText(classes.getEmail());

@@ -29,9 +29,6 @@ public class AdminSelectClass2Activity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=auth.getCurrentUser();
 
-       // ADMINID = currentUser.getUid();
-
-
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);

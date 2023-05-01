@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/shortDescTV"
-        android:textStyle="italic"
         android:text="short description"
         android:textColor="#C3000000"
         android:layout_marginBottom="20dp"
@@ -51,9 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linkTV"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:textColor="#958C8C"
         android:layout_gravity="center"
-        android:text="Learn More here"/>
+        android:text="Learn More Here"/>
 
 
 

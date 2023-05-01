@@ -61,32 +61,10 @@ public class EnterChildIDActivity extends AppCompatActivity {
         childIDET = findViewById(R.id.childID);
         String childID = childIDET.getText().toString();
 
-      //  tID = findViewById(R.id.teachID);
-      //  String teacherID = tID.getText().toString();
-
-       // name = findViewById(R.id.childName);
-        String childName;
-
-        /*Intent i = getIntent();
-        String schoolID = i.getStringExtra("schoolID");
-        System.out.println(schoolID);
-
-        Intent i2 = getIntent();
-        String classGrade = i2.getStringExtra("classGrade");
-        System.out.println(classGrade);*/
 
         Intent i3 = getIntent();
         String classID = i3.getStringExtra("classID");
         System.out.println(classID);
-
-        //********************
-        //Query query = FirebaseDatabase.getInstance().getReference("Students").orderByChild("studentID").equalTo(childID);
-
-/* IMPORTANT
-        Query query = FirebaseDatabase.getInstance().getReference("Students").orderByChild("studentID").equalTo(childID);
-        query.addListenerForSingleValueEvent(valueEventListener);*/
-
-
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
@@ -100,29 +78,9 @@ public class EnterChildIDActivity extends AppCompatActivity {
 
         query.addListenerForSingleValueEvent(valueEventListener);
 
-
-      /*  Query query  = FirebaseDatabase.getInstance().getReference("StudentDetails").child(teacherID).child(childID).orderByChild("studentID").equalTo(childID);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ModelStudent student = snapshot.getValue(ModelStudent.class);
-                if (student != null) {
-                    name.setText("Name of Child: " + student.getFirstName());
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });*/
-
-
-
-
-
-
     }
 
-// private List<ModelStudent> mStudents
+
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -131,10 +89,6 @@ public class EnterChildIDActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     ModelStudent student  = snapshot.getValue(ModelStudent.class);
                     mStudents.add(student);
-                    //name.setText(student.firstName);
-
-                    String child_id = childIDET.getText().toString();
-                    //String teacher_id = tID.getText().toString();
 
                     String studentID = student.getStudentID();
                     String schoolID2 = student.getSchoolID();
@@ -151,7 +105,7 @@ public class EnterChildIDActivity extends AppCompatActivity {
 
 
                 }
-                //adapter.notifyDataSetChanged();
+
             } else {
                 Toast.makeText(EnterChildIDActivity.this, "Child ID Does Not Exist", Toast.LENGTH_SHORT).show();
             }
@@ -163,38 +117,5 @@ public class EnterChildIDActivity extends AppCompatActivity {
         }
     };
 
-
-    //IMPORTANT
-   /* ValueEventListener valueEventListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            childIDET = findViewById(R.id.childID);
-            String cid = childIDET.getText().toString();
-            mStudents.clear();
-            if (snapshot.exists()) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Student student = dataSnapshot.getValue(Student.class);
-
-                    mStudents.add(student);
-
-                    //if(mStudents.contains(cid)){
-                    if(student.getStudentNo().equals(cid)){
-                        Intent intent = new Intent(EnterChildIDActivity.this, ParentMain.class);
-                        startActivity(intent);
-                    }
-
-
-                }
-                } else {
-                Toast.makeText(EnterChildIDActivity.this, "Child ID Doesn't Exist", Toast.LENGTH_SHORT).show();
-
-            }
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };*/
 
 }

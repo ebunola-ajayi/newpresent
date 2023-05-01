@@ -46,7 +46,7 @@ public class AdminStudentProfileActivity extends AppCompatActivity {
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("studentID", studentID);
-                intent.putExtra("studentName", studentFullName);
+                intent.putExtra("studentFullName", studentFullName);
                 startActivity(intent);
             }
         });

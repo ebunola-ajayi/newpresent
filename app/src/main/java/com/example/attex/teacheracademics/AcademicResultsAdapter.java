@@ -36,7 +36,7 @@ public class AcademicResultsAdapter extends RecyclerView.Adapter<AcademicResults
 
         holder.studentName.setText(result.getName() + " - ");
         holder.studentID.setText(result.getStudentID());
-        holder.grade.setText(result.getGrade());
+        holder.grade.setText(result.getGrade() + "%");
         holder.note.setText(result.getNote());
 
     }

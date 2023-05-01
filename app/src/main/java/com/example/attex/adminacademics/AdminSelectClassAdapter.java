@@ -20,13 +20,14 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
     private final List<ModelTeacher> classList;
     private final Context context;
 
-    String classGrade, schoolID;
+    String classGrade, schoolID, subject;
 
-    public AdminSelectClassAdapter(List<ModelTeacher> classList, Context context, String classGrade, String schoolID) {
+    public AdminSelectClassAdapter(List<ModelTeacher> classList, Context context, String classGrade, String schoolID, String subject) {
         this.classList = classList;
         this.context = context;
         this.classGrade = classGrade;
         this.schoolID = schoolID;
+        this.subject = subject;
     }
 
     @NonNull
@@ -48,6 +49,7 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
                 intent.putExtra("classID", className.getClassID());
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);
+                intent.putExtra("subject", subject);
                 context.startActivity(intent);
             }
         });
@@ -61,7 +63,6 @@ public class AdminSelectClassAdapter extends RecyclerView.Adapter<AdminSelectCla
 
     public static class AdminSelectClassViewHolder extends RecyclerView.ViewHolder{
         Button teacherID;
-
 
         public AdminSelectClassViewHolder(@NonNull View itemView) {
             super(itemView);

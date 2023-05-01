@@ -65,8 +65,6 @@ public class TeacherNotesActivity extends AppCompatActivity {
                     ModelNote note = dataSnapshot.getValue(ModelNote.class);
                     noteList.add(note);
 
-                    //added adapter here cus i needed the id for each note (for editing)
-
                     recyclerView.setAdapter(adapter);
                 }
                 adapter.notifyDataSetChanged();

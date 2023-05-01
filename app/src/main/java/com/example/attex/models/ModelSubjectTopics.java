@@ -12,6 +12,10 @@ public class ModelSubjectTopics {
         this.grade = grade;
     }
 
+    public ModelSubjectTopics(){
+
+    }
+
     public String getTopic() {
         return topic;
     }

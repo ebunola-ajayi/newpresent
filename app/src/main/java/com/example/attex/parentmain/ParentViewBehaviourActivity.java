@@ -1,15 +1,14 @@
 package com.example.attex.parentmain;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -121,9 +120,6 @@ public class ParentViewBehaviourActivity extends AppCompatActivity {
 
             }
         });
-        //end on click
-
-
 
 
         //setting recyclerView3 for negative behaviours

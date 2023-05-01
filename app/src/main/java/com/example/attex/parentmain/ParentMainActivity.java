@@ -1,28 +1,21 @@
 package com.example.attex.parentmain;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.databinding.ActivityMainBinding;
 import com.example.attex.databinding.ActivityParentMainBinding;
-import com.example.attex.models.ModelStudent;
 import com.example.attex.parentacademics.ParentAcademicsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.List;
 
 public class ParentMainActivity extends AppCompatActivity{
 

@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -14,7 +18,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AdminViewTestOptionsActivity extends AppCompatActivity {
 
-    Button juniorInfants, seniorInfants, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass;
+    String[] classes = {"Junior Infants", "Senior Infants", "1st Class", "2nd Class", "3rd Class", "4th Class", "5th Class", "6th Class"};
+    String [] subjects = {"English", "Irish", "Maths"};
+    AutoCompleteTextView autoCompleteTextView, autoCompleteTextView2;
+    ArrayAdapter<String> adapter, adapter2;
+
+    String classSelected;
+    String subjectSelected;
+    Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,106 +38,47 @@ public class AdminViewTestOptionsActivity extends AppCompatActivity {
         if(currentUser==null){
             Intent intent=new Intent(this, InitialLoginActivity.class);
             startActivity(intent);
-            //finish();
-            //return;
         }
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
 
-        juniorInfants = findViewById(R.id.juniorInfants);
-        juniorInfants.setOnClickListener(new View.OnClickListener() {
+        autoCompleteTextView = findViewById(R.id.autoComplete);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_classes, classes);
+
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                String classGrade = "Junior Infants";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                classSelected = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(AdminViewTestOptionsActivity.this, "Class: " + classSelected, Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        seniorInfants = findViewById(R.id.seniorInfants);
-        seniorInfants.setOnClickListener(new View.OnClickListener() {
+        autoCompleteTextView2 = findViewById(R.id.autoComplete2);
+        adapter2 = new ArrayAdapter<String>(this, R.layout.list_subjects, subjects);
+
+        autoCompleteTextView2.setAdapter(adapter2);
+        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                String classGrade = "Senior Infants";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                subjectSelected = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(AdminViewTestOptionsActivity.this, "Subject: " + subjectSelected, Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        firstClass = findViewById(R.id.firstClass);
-        firstClass.setOnClickListener(new View.OnClickListener() {
+        next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String classGrade = "1st Class";
                 Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
+                intent.putExtra("classGrade", classSelected);
                 intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        secondClass = findViewById(R.id.secondClass);
-        secondClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "2nd Class";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        thirdClass = findViewById(R.id.thirdClass);
-        thirdClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "3rd Class";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        fourthClass = findViewById(R.id.fourthClass);
-        fourthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "4th Class";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        fifthClass = findViewById(R.id.fifthClass);
-        fifthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "5th Class";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-
-        sixthClass = findViewById(R.id.sixthClass);
-        sixthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "6th Class";
-                Intent intent = new Intent(AdminViewTestOptionsActivity.this, AdminViewTestActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
+                intent.putExtra("subject", subjectSelected);
                 startActivity(intent);
             }
         });

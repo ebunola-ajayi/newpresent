@@ -15,41 +15,36 @@
         android:layout_gravity="center"
         android:src="@drawable/standardexam" />
 
-    <EditText
-        android:layout_width="350dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="Class Grade"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/classgrade"/>
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="Class">
 
-    <EditText
-        android:id="@+id/subject"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingTop="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Subject" />
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoComplete"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/year"
-        android:layout_width="350dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="number"
-        android:paddingTop="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Academic Year: (E.G. 2022/23)" />
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="Subject">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoComplete2"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button

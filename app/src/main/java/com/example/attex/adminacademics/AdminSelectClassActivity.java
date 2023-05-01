@@ -36,8 +36,6 @@ public class AdminSelectClassActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        //String userID = currentUser.getUid();
-
 
         if(currentUser == null){
             Intent intent = new Intent(this, TeacherLoginActivity.class);
@@ -49,12 +47,13 @@ public class AdminSelectClassActivity extends AppCompatActivity {
         Intent i = getIntent();
         String classGrade = i.getStringExtra("classGrade");
         String schoolID = i.getStringExtra("schoolID");
+        String subject = i.getStringExtra("subject");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         classList = new ArrayList<>();
-        adapter = new AdminSelectClassAdapter(classList, this, classGrade, schoolID);
+        adapter = new AdminSelectClassAdapter(classList, this, classGrade, schoolID, subject);
         recyclerView.setAdapter(adapter);
 
 

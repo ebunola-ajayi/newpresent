@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelLearningDisability;
-import com.example.attex.models.ModelNote;
+
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class LearningDisabilityListActivity extends AppCompatActivity {
         adhdSymptoms = new ArrayList<>();
 
 
-        //setLearnList();
+
         // dyslexia symptoms
         dyslexiaSymptoms.add("Reversing the position of letters");
         dyslexiaSymptoms.add("Struggle with reading comprehension");

@@ -1,16 +1,15 @@
 package com.example.attex.adminacademics;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.teacheracademics.SubjectViewAcademicActivity;
-import com.example.attex.teachermain.TeacherLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,10 +111,7 @@ public class AddNoteActivity extends AppCompatActivity {
                     String editNoteET = noteET.getText().toString();
                     String editSubject = subjectTitle.getText().toString();
 
-                  /*  if(!editSubject.equalsIgnoreCase("English") || !editSubject.equalsIgnoreCase("Irish") || !editSubject.equalsIgnoreCase("Maths") || !editSubject.equalsIgnoreCase("Science") || !editSubject.equalsIgnoreCase("Geography") || !editSubject.equalsIgnoreCase("History") || editSubject.isEmpty()){
-                        Toast.makeText(AddNoteActivity.this, "Please Enter A Subject", Toast.LENGTH_SHORT).show();
-
-                    } else */if(editNoteTitle.isEmpty()){
+                    if(editNoteTitle.isEmpty()){
                         Toast.makeText(AddNoteActivity.this, "Please Enter A Title", Toast.LENGTH_SHORT).show();
 
                     } else if(editNoteET.isEmpty()){
@@ -161,9 +156,7 @@ public class AddNoteActivity extends AppCompatActivity {
                     } else if (noteTitle.isEmpty()){
                         Toast.makeText(AddNoteActivity.this, "Please Enter A Title", Toast.LENGTH_SHORT).show();
                         noteTitleET.requestFocus();
-                    }/* else if(!subject.equalsIgnoreCase("English") || !subject.equalsIgnoreCase("Irish") || !subject.equalsIgnoreCase("Maths") || !subject.equalsIgnoreCase("Science") || !subject.equalsIgnoreCase("Geography") || !subject.equalsIgnoreCase("History") || subject.isEmpty()){
-                        Toast.makeText(AddNoteActivity.this, "Please Enter A Subject", Toast.LENGTH_SHORT).show();
-                    }*/ else {
+                    } else {
                         Toast.makeText(AddNoteActivity.this, "Note Added", Toast.LENGTH_SHORT).show();
 
                         HashMap<String, Object> noteHashmap = new HashMap<>();

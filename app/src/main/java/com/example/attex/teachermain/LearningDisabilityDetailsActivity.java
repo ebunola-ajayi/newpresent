@@ -1,8 +1,6 @@
 package com.example.attex.teachermain;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,8 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.attex.R;
-import com.example.attex.models.ModelLearningDisability;
-import com.example.attex.models.ModelNote;
 
 import java.util.ArrayList;
 

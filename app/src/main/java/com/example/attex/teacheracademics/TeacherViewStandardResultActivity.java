@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.models.ModelStandardExam;
-import com.example.attex.teacheracademics.TeacherStandardResultAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -34,8 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 public class TeacherViewStandardResultActivity extends AppCompatActivity {
 
     Button listView, chartView;
@@ -158,7 +155,7 @@ public class TeacherViewStandardResultActivity extends AppCompatActivity {
                     xAxis.setLabelRotationAngle(270);
 
 
-                    barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
                     barDataSet.setDrawValues(false);
                     barChart.animateY(5000);
                     barChart.getDescription().setText("Grades Per Student");

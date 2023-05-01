@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".teacheracademics.TeacherStandardSelectStudentsActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Students"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginLeft="150dp"
+        android:id="@+id/selectTV"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/selectTV"
         android:id="@+id/recyclerView" />
 
 </RelativeLayout>

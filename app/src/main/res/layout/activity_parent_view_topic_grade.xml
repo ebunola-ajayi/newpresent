@@ -19,16 +19,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:text="Subject - Topic"
-        android:textColor="#2745E8"
+        android:textColor="#1B255E"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:textSize="25sp"/>
+        android:textSize="23sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -44,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/grade"
-            android:text=" 200%"
+            android:text=" 0%"
             android:textStyle="bold"
             android:textColor="#D52C3E4C"
             android:layout_gravity="center"
@@ -54,16 +55,6 @@
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/averageTV"
-        android:layout_marginTop="10dp"
-        android:text="Class Average : 100%"
-        android:textColor="#3073A8"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textSize="20sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,10 +75,23 @@
             android:text="John did very well. He could have improved his grade.... "
             android:textStyle="italic"
             android:padding="10dp"
+            android:gravity="center"
             android:textColor="#D52C3E4C"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:textSize="25sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/averageTV"
+        android:layout_marginTop="60dp"
+        android:text="Class Average : 100%"
+        android:textColor="#2F3A43"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
 
 
 

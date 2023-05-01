@@ -69,10 +69,10 @@ public class StudentAttendanceActivity extends AppCompatActivity {
         String classID = i.getStringExtra("classID");
         String firstName = i.getStringExtra("firstName");
         String lastName = i.getStringExtra("lastName");
-        String studentName = i.getStringExtra("studentName");
+        String studentFullName = i.getStringExtra("studentFullName");
 
         studentNameTV = findViewById(R.id.studentName);
-        studentNameTV.setText(studentName);
+        studentNameTV.setText(studentFullName);
 
         //RCV
         recyclerView = findViewById(R.id.recyclerView);
@@ -127,11 +127,8 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                             }else {
                                 Toast.makeText(StudentAttendanceActivity.this, "No Data For Month Selected", Toast.LENGTH_SHORT).show();
                             }
-                        /*    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                ModelAttendance attendance = dataSnapshot.getValue(ModelAttendance.class);
-                                attendanceList.add(attendance);
-                            }
-                            attendanceAdapter.notifyDataSetChanged();*/
+
+
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -163,7 +160,7 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                         }
-                    };//close value event listener
+                    };
                     //add this to query
                     query.addListenerForSingleValueEvent(valueEventListener);
 
@@ -194,12 +191,12 @@ public class StudentAttendanceActivity extends AppCompatActivity {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    }; //close valueEventListener2
+                    };
 
                     //add valueEventLister2 to query2
                     query2.addListenerForSingleValueEvent(valueEventListener2);
 
-                }//end else
+                }
 
             }
 

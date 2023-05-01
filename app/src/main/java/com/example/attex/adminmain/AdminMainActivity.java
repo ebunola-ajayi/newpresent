@@ -1,26 +1,25 @@
 package com.example.attex.adminmain;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
 import com.example.attex.adminacademics.AdminAcademicsFragment;
-import com.example.attex.adminmain.AdminHomeFragment;
 import com.example.attex.databinding.ActivityAdminMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    //ActivityMainBinding ;
+
     ActivityAdminMainBinding binding1;
     public static String ADMINID = "admin ID";
 

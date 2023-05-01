@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -62,10 +61,19 @@ public class ChooseDateActivity extends AppCompatActivity {
                     month = start + month;
                 }
 
-                String year = Integer.toString(datePicker.getYear());
-                String fullDate = dayOfMonth + "-" + month + "-" + year;
-                nextActitvity(dayOfMonth, month, year, fullDate);
-                textView.setText("Date Selected: " + fullDate);
+                if (dayOfMonth.length() !=2){
+                    String start = "0";
+                    dayOfMonth = start + dayOfMonth;
+                }
+
+
+                    String year = Integer.toString(datePicker.getYear());
+                    String fullDate = dayOfMonth + "-" + month + "-" + year;
+                    nextActitvity(dayOfMonth, month, year, fullDate);
+                    textView.setText("Date Selected: " + fullDate);
+
+
+
 
             }
         }, currentYear, currentMonth, day);

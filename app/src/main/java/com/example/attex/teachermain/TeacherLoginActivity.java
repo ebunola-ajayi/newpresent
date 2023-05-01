@@ -1,7 +1,6 @@
 package com.example.attex.teachermain;
 
 
-//DO EMAIL NOT USERNAME
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,14 +21,12 @@ import com.google.firebase.auth.FirebaseAuth;
 public class TeacherLoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    //public static final String EXTRA_NAME2 = "username";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_login);
 
         mAuth = FirebaseAuth.getInstance();
-        //if user exists or not
         if (mAuth.getCurrentUser() != null){
             finish();
             return;
@@ -55,16 +52,11 @@ public class TeacherLoginActivity extends AppCompatActivity {
     private void authenticateUser(){
         EditText emailET = findViewById(R.id.emailET);
         EditText passwordET = findViewById(R.id.passwordET);
-        //EditText usernameET = findViewById(R.id.usernameET);
 
-       // String username = usernameET.getText().toString();
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
-       /* if (email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-            return;
-        }*/
+
         if(email.isEmpty()){
             emailET.requestFocus();
             return;

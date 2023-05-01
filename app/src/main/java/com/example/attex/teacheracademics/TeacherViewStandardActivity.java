@@ -12,16 +12,13 @@ import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
-import com.example.attex.models.ModelAttendance;
 import com.example.attex.models.ModelStandardExam;
-import com.example.attex.studentprofile.StudentAttendanceActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class TeacherViewStandardActivity extends AppCompatActivity {
@@ -39,9 +36,6 @@ public class TeacherViewStandardActivity extends AppCompatActivity {
     TextView title;
 
     Button recordResult, viewResult;
-
-
-
 
 
     @Override
@@ -77,73 +71,66 @@ public class TeacherViewStandardActivity extends AppCompatActivity {
         recordResult = findViewById(R.id.recordResult);
         viewResult = findViewById(R.id.viewResult);
 
-        //do query
-        Query query = FirebaseDatabase.getInstance().getReference("StandardExam").child(schoolID).child(classGrade)
-                .orderByChild("subject")
-                .equalTo(subject);
-
-        //declare value event listener
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExam").child(schoolID).child(classGrade).child(subject);
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //presentList.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        ModelStandardExam exam = snapshot.getValue(ModelStandardExam.class);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    ModelStandardExam exam = snapshot.getValue(ModelStandardExam.class);
+                    question1.setText(exam.getQuestion1());
+                    question2.setText(exam.getQuestion2());
+                    question3.setText(exam.getQuestion3());
+                    question4.setText(exam.getQuestion4());
+                    question5.setText(exam.getQuestion5());
+                    question6.setText(exam.getQuestion6());
+                    question7.setText(exam.getQuestion7());
+                    question8.setText(exam.getQuestion8());
+                    question9.setText(exam.getQuestion9());
+                    question10.setText(exam.getQuestion10());
 
-                        title.setText(exam.getTitle());
+                    title.setText(exam.getTitle());
 
-                        question1.setText(exam.getQuestion1());
-                        question2.setText(exam.getQuestion2());
-                        question3.setText(exam.getQuestion3());
-                        question4.setText(exam.getQuestion4());
-                        question5.setText(exam.getQuestion5());
-                        question6.setText(exam.getQuestion6());
-                        question7.setText(exam.getQuestion7());
-                        question8.setText(exam.getQuestion8());
-                        question9.setText(exam.getQuestion9());
-                        question10.setText(exam.getQuestion10());
+                    recordResult.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(TeacherViewStandardActivity.this, TeacherStandardSelectStudentsActivity.class);
+                            intent.putExtra("schoolID", schoolID);
+                            intent.putExtra("classID", classID);
+                            intent.putExtra("subject", subject);
+                            intent.putExtra("classGrade", classGrade);
+                            startActivity(intent);
+                        }
+                    });
 
-                        recordResult.setVisibility(View.VISIBLE);
-                        recordResult.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(TeacherViewStandardActivity.this, TeacherStandardSelectStudentsActivity.class);
-                                intent.putExtra("schoolID", schoolID);
-                                intent.putExtra("classID", classID);
-                                intent.putExtra("subject", subject);
-                                intent.putExtra("classGrade", classGrade);
-                                startActivity(intent);
-                            }
-                        });
+                    viewResult.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(TeacherViewStandardActivity.this, TeacherViewStandardResultActivity.class);
+                            intent.putExtra("schoolID", schoolID);
+                            intent.putExtra("classGrade", classGrade);
+                            intent.putExtra("classID", classID);
+                            intent.putExtra("subject", subject);
+                            startActivity(intent);
+                        }
+                    });
 
-                        viewResult.setVisibility(View.VISIBLE);
-                        viewResult.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(TeacherViewStandardActivity.this, TeacherViewStandardResultActivity.class);
-                                intent.putExtra("schoolID", schoolID);
-                                intent.putExtra("classGrade", classGrade);
-                                intent.putExtra("classID", classID);
-                                intent.putExtra("subject", subject);
-                                startActivity(intent);
-                            }
-                        });
-                    }
+
+
+
                 } else {
-                    System.out.println("No Present Days");
-                    Toast.makeText(TeacherViewStandardActivity.this, "No Exam Yet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeacherViewStandardActivity.this, "No Exam Created", Toast.LENGTH_SHORT).show();
+
+                    recordResult.setVisibility(View.GONE);
+                    viewResult.setVisibility(View.GONE);
+
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
-        };//close value event listener
-        //add this to query
-        query.addListenerForSingleValueEvent(valueEventListener);
-
-
+        });
 
 
     }

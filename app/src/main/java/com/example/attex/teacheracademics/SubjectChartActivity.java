@@ -121,11 +121,15 @@ public class SubjectChartActivity extends AppCompatActivity {
 
                 //calculate average
                 float averageFloat = totalAverage / gradeListChart.size();
-                String stringAverage = Float.toString(averageFloat);
+                float rounded = (float) Math.round(averageFloat);
+                System.out.println(rounded);
+
+                String avgString = Float.toString(rounded);
+
 
                 //set average to textview
                 TextView averageTV = findViewById(R.id.averageTV);
-                averageTV.setText("CLASS AVERAGE: " + stringAverage + "%");
+                averageTV.setText("CLASS AVERAGE: " + avgString + "%");
 
 
                 //1 create barEntries list, this gives the value for each bar

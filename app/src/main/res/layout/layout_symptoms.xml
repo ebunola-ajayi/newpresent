@@ -10,7 +10,7 @@
         android:text="Symptom"
         android:padding="2dp"
         android:textSize="20sp"
-        android:textColor="#B9191212"/>
+        android:textColor="#C3000000"/>
 
 
 </LinearLayout>

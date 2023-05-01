@@ -1,27 +1,34 @@
 package com.example.attex.adminacademics;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.attex.InitialLoginActivity;
-import com.example.attex.models.ModelTeacher;
 import com.example.attex.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class AdminViewResultOptionActivity extends AppCompatActivity {
 
-    Button juniorInfants, seniorInfants, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass;
+    Button next;
+
+    String[] classes = {"Junior Infants", "Senior Infants", "1st Class", "2nd Class", "3rd Class", "4th Class", "5th Class", "6th Class"};
+    String [] subjects = {"English", "Irish", "Maths"};
+    AutoCompleteTextView autoCompleteTextView, autoCompleteTextView2;
+    ArrayAdapter<String> adapter, adapter2;
+
+    String classSelected;
+    String subjectSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,119 +43,59 @@ public class AdminViewResultOptionActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference reference=database.getReference("Teachers");
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ModelTeacher teacher = snapshot.getValue(ModelTeacher.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         Intent i = getIntent();
         String schoolID = i.getStringExtra("schoolID");
 
-        juniorInfants = findViewById(R.id.juniorInfants);
-        juniorInfants.setOnClickListener(new View.OnClickListener() {
+        autoCompleteTextView = findViewById(R.id.autoComplete);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_classes, classes);
+
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                String classGrade = "Junior Infants";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                classSelected = adapterView.getItemAtPosition(i).toString();
+                System.out.println(item);
+                Toast.makeText(AdminViewResultOptionActivity.this, "Class " + item, Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        seniorInfants = findViewById(R.id.seniorInfants);
-        seniorInfants.setOnClickListener(new View.OnClickListener() {
+        autoCompleteTextView2 = findViewById(R.id.autoComplete2);
+        adapter2 = new ArrayAdapter<String>(this, R.layout.list_subjects, subjects);
+
+        autoCompleteTextView2.setAdapter(adapter2);
+        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                String classGrade = "Senior Infants";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                subjectSelected = adapterView.getItemAtPosition(i).toString();
+                System.out.println(item);
+                Toast.makeText(AdminViewResultOptionActivity.this, "Subject " + item, Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        firstClass = findViewById(R.id.firstClass);
-        firstClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "1st Class";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
 
-        secondClass = findViewById(R.id.secondClass);
-        secondClass.setOnClickListener(new View.OnClickListener() {
+        next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String classGrade = "2nd Class";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
+                Calendar calendar = Calendar.getInstance();
+                int currentYear = calendar.get(Calendar.YEAR);
+                String year = Integer.toString(currentYear);
 
-        thirdClass = findViewById(R.id.thirdClass);
-        thirdClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "3rd Class";
                 Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
+                intent.putExtra("classGrade", classSelected);
                 intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        fourthClass = findViewById(R.id.fourthClass);
-        fourthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "4th Class";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
-
-        fifthClass = findViewById(R.id.fifthClass);
-        fifthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "5th Class";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
+                intent.putExtra("subject", subjectSelected);
                 startActivity(intent);
             }
         });
 
 
-        sixthClass = findViewById(R.id.sixthClass);
-        sixthClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classGrade = "6th Class";
-                Intent intent = new Intent(AdminViewResultOptionActivity.this, AdminSelectClassActivity.class);
-                intent.putExtra("classGrade", classGrade);
-                intent.putExtra("schoolID", schoolID);
-                startActivity(intent);
-            }
-        });
+
     }
 }

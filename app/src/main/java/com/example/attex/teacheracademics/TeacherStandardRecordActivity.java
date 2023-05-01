@@ -40,7 +40,7 @@ public class TeacherStandardRecordActivity extends AppCompatActivity {
         Intent i = getIntent();
         String studentID = i.getStringExtra("studentID");
         String subject = i.getStringExtra("subject");
-        String teacherID = i.getStringExtra("classID");
+        String classID = i.getStringExtra("classID");
         String schoolID = i.getStringExtra("schoolID");
         String classGrade = i.getStringExtra("classGrade");
         String firstName = i.getStringExtra("firstName");
@@ -53,7 +53,7 @@ public class TeacherStandardRecordActivity extends AppCompatActivity {
         noteET = findViewById(R.id.noteET);
         gradeET = findViewById(R.id.gradeET);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(teacherID).child(subject).child(studentID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(subject).child(studentID);
 
 
         record = findViewById(R.id.recordBtn);
@@ -70,7 +70,7 @@ public class TeacherStandardRecordActivity extends AppCompatActivity {
                 examHashMap.put("note", note);
                 examHashMap.put("studentName", studentName);
                 examHashMap.put("studentID", studentID);
-                examHashMap.put("classID", teacherID);
+                examHashMap.put("classID", classID);
 
                 reference.setValue(examHashMap);
                 reference.push();

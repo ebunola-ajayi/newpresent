@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class TeacherRegisterActivity extends AppCompatActivity {
-//ENTER SCHOOLID FIRST
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -87,10 +87,6 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //ModelTeacher teacher = new ModelTeacher(firstName, lastName, email, tUsername, teacherName);
-
-                           // FirebaseDatabase.getInstance().getReference("Teacher").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-
                             HashMap<String, Object> teacherHashmap = new HashMap<>();
                             teacherHashmap.put("firstName", firstName);
                             teacherHashmap.put("lastName", lastName);
@@ -110,18 +106,9 @@ public class TeacherRegisterActivity extends AppCompatActivity {
 
                             //showMainActivity();
                             Intent intent = new Intent(TeacherRegisterActivity.this, TeacherMainActivity.class);
-                            // intent.putExtra(EXTRA_NAME, tUsername);
                             startActivity(intent);
                             finish();
 
-                                     /*   reference.addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-
-
-                                        }
-                                    });*/
                         } else {
                             Toast.makeText(TeacherRegisterActivity.this, "Authentication failed", Toast.LENGTH_LONG).show();
                         }
@@ -132,12 +119,6 @@ public class TeacherRegisterActivity extends AppCompatActivity {
 
     }
 
-    /*private void showMainActivity(){
-        Intent intent = new Intent(this, TeacherMainActivity.class);
-        startActivity(intent);
-
-        finish();
-    }*/
 
     private void loginPage(){
         Intent intent = new Intent(this, TeacherLoginActivity.class);

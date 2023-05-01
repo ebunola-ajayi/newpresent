@@ -1,7 +1,5 @@
 package com.example.attex.parentmain;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -35,7 +33,6 @@ public class ParentMainFragment extends Fragment {
     FirebaseAuth auth=  FirebaseAuth.getInstance();
     FirebaseUser currentUser = auth.getCurrentUser();
 
-    //private List<ModelStudent> mStudents;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

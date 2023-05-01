@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -93,6 +94,7 @@ public class AdminProfileFragment extends Fragment {
                 edittedHashmap.put("county", county);
 
                 reference.setValue(edittedHashmap);
+                Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
 
             }
         });

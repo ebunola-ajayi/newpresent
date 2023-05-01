@@ -11,15 +11,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.models.ModelStandardExam;
 import com.example.attex.R;
 import com.example.attex.teacheracademics.TeacherStandardResultAdapter;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +44,7 @@ public class AdminViewResultsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TeacherStandardResultAdapter adapter;
     ArrayList<ModelStandardExam> resultList;
-    ArrayList<Float> list = new ArrayList<>();
-    ArrayList<String> names = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,99 +64,117 @@ public class AdminViewResultsActivity extends AppCompatActivity {
         String classGrade = i.getStringExtra("classGrade");
         String schoolID = i.getStringExtra("schoolID");
         String classID = i.getStringExtra("classID");
+        String subject = i.getStringExtra("subject");
 
 
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        resultList = new ArrayList<>();
+        adapter = new TeacherStandardResultAdapter(resultList, this);
+        recyclerView.setAdapter(adapter);
 
+
+        averageTV = findViewById(R.id.averageTV);
+        barChart = findViewById(R.id.barchart);
         listView = findViewById(R.id.listView);
         listView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 recyclerView.setVisibility(View.VISIBLE);
-                barChart.setVisibility(View.INVISIBLE);
+                barChart.setVisibility(View.GONE);
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //lists for bar chart
+        ArrayList<Float> gradeListChart = new ArrayList<>();
+        ArrayList<String> studentNamesChart = new ArrayList<>();
 
-        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child("IDC133").child("2nd Class").child("FALANGE2023");
 
-        resultList = new ArrayList<>();
-        adapter = new TeacherStandardResultAdapter(resultList, this);
-        recyclerView.setAdapter(adapter);
-
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(subject);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                String grade = null;
-                String studentName;
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                if(snapshot.exists()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ModelStandardExam result = dataSnapshot.getValue(ModelStandardExam.class);
 
-                    grade = result.getGrade();
-                    studentName = result.getStudentName();
+                    //populate student grades chart
+                    String grade = result.getGrade();
+                    float studentGradeFloat = Float.parseFloat(grade);
+                    gradeListChart.add(studentGradeFloat);
 
-                    float grade3 = Float.parseFloat(grade);
+                    //populate student names chart
+                    String studentName = result.getStudentName();
+                    studentNamesChart.add(studentName);
 
 
-
-
-
-                    //for bar chart
-                    list.add(grade3);
-                    names.add(studentName);
-
-                    barChart = findViewById(R.id.barchart);
                     chartView = findViewById(R.id.chartView);
                     chartView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
                             barChart.setVisibility(View.VISIBLE);
-                            recyclerView.setVisibility(View.INVISIBLE);
+                            recyclerView.setVisibility(View.GONE);
                         }
                     });
 
-                    //for rcv
+                    //populating list for RCV
                     resultList.add(result);
                 }
+
                 adapter.notifyDataSetChanged();
 
 
-                ArrayList<BarEntry> barEntries = new ArrayList<>();
-                for(int i=0; i<list.size(); i++) {
+                //calculating average
+                float totalAverage = 0;
+                for (int i = 0; i < gradeListChart.size(); i++) {
+                    totalAverage = totalAverage + gradeListChart.get(i);
+                }
+                float avg = totalAverage / gradeListChart.size();
+                String avgString = Float.toString(avg);
 
-                    float hello = list.get(i);
-                    BarEntry barEntry = null;
-                    barEntry = new BarEntry(i, list.get(i));
+                averageTV.setText("Class Average " + avgString);
+
+                //create barEntries list
+                ArrayList<BarEntry> barEntries = new ArrayList<>();
+                for (int i = 0; i < gradeListChart.size(); i++) {
+                    BarEntry barEntry = new BarEntry(i, gradeListChart.get(i));
                     barEntries.add(barEntry);
                 }
 
-                float totalAverage = 0;
-                for (int i=0; i<list.size(); i++){
-                    totalAverage = totalAverage + list.get(i);
-                }
 
-                float avg = totalAverage / list.size();
-                System.out.println(avg);
-
-                averageTV = findViewById(R.id.averageTV);
-
-                String avgString = Float.toString(avg);
-                averageTV.setText("Class Average " + avgString);
-
-
-
+                //create bardataset object
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Grades");
+                Description description = new Description();
+                description.setText("Students");
+                barChart.setDescription(description);
+
+                BarData barData = new BarData(barDataSet);
+                barChart.setData(barData);
+
+                //setting x axis to sgow student names
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(studentNamesChart));
+
+                //setting the positions of names
+                xAxis.setPosition(XAxis.XAxisPosition.TOP);
+                xAxis.setDrawGridLines(false);
+                xAxis.setDrawAxisLine(false);
+                xAxis.setGranularity(1f);
+                xAxis.setLabelCount(studentNamesChart.size());
+                xAxis.setLabelRotationAngle(270);
+
 
                 barDataSet.setDrawValues(false);
+                barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
                 barChart.setData(new BarData(barDataSet));
                 barChart.animateY(5000);
                 barChart.getDescription().setText("Grades Per Student");
                 barChart.getDescription().setTextColor(Color.BLUE);
 
+            }else {
+                    Toast.makeText(AdminViewResultsActivity.this, "No Grades Recorded", Toast.LENGTH_SHORT).show();
+            }
 
             }
 
@@ -161,6 +183,7 @@ public class AdminViewResultsActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }

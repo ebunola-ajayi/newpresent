@@ -8,6 +8,15 @@
     android:orientation="vertical"
     tools:context=".adminacademics.AdminSelectClassActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Class"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

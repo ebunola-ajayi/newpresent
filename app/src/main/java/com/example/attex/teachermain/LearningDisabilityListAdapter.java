@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attex.R;
 import com.example.attex.models.ModelLearningDisability;
-import com.example.attex.models.ModelNote;
 
 import java.util.ArrayList;
 import java.util.List;

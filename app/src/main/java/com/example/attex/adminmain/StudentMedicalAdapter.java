@@ -36,7 +36,7 @@ public class StudentMedicalAdapter extends RecyclerView.Adapter<StudentMedicalAd
         ModelMedical medical = medicalList.get(position);
 
         holder.medicalType.setText(medical.getMedicalType());
-        holder.medicalTitle.setText(medical.getMedicalTitle());
+        holder.medicalTitle.setText(" - " + medical.getMedicalTitle());
         holder.note.setText(medical.getNote());
     }
 

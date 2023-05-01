@@ -64,19 +64,19 @@ public class StudentDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelStudent student = snapshot.getValue(ModelStudent.class);
 
-                firstNameTV.setText(student.getFirstName());
-                lastNameTV.setText(student.getLastName());
-                middleNameTV.setText(student.getMiddleName());
-                dobTV.setText(student.getDateOfBirth());
-                parent1NameTV.setText(student.getParent1Name());
-                parent2NameTV.setText(student.getParent2Name());
-                parent1NoTV.setText(student.getParent1No());
-                parent2NoTV.setText(student.getParent2No());
-                parent1EmailTV.setText(student.getParentEmail1());
-                parent2EmailTV.setText(student.getParentEmail2());
-                addressLine1TV.setText(student.getAddressLine1());
-                addressLine2TV.setText(student.getAddressLine2());
-                countyTV.setText(student.getCounty());
+                firstNameTV.setText("First Name: " + student.getFirstName());
+                lastNameTV.setText("Last Name: " + student.getLastName());
+                middleNameTV.setText("Middle Name: " + student.getMiddleName());
+                dobTV.setText("Date of Birth: " + student.getDateOfBirth());
+                parent1NameTV.setText("Parent Name 1: " + student.getParent1Name());
+                parent2NameTV.setText("Parent Name 2: " + student.getParent2Name());
+                parent1NoTV.setText("Contact 1 Number: " + student.getParent1No());
+                parent2NoTV.setText("Contact 2 Number: " + student.getParent2No());
+                parent1EmailTV.setText("Parent 1 Email: " + student.getParentEmail1());
+                parent2EmailTV.setText("Parent 2 Email: " + student.getParentEmail2());
+                addressLine1TV.setText("Address Line 1: " + student.getAddressLine1());
+                addressLine2TV.setText("Address Line 2: " + student.getAddressLine2());
+                countyTV.setText("County: " + student.getCounty());
 
             }
 

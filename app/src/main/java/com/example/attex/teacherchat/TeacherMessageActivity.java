@@ -99,6 +99,7 @@ public class TeacherMessageActivity extends AppCompatActivity {
                 String msg = sendTxt.getText().toString();
                 if(!msg.equals("")){
                     sendMessage(fUser.getEmail(), parentEmail, msg);
+                    sendTxt.setText("");
                 } else {
                     Toast.makeText(TeacherMessageActivity.this, "Please Enter a Message", Toast.LENGTH_SHORT).show();
                 }

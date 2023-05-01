@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attex.InitialLoginActivity;
 import com.example.attex.R;
@@ -41,23 +42,29 @@ public class ParentViewStandardResultActivity extends AppCompatActivity {
         String classID = i.getStringExtra("classID");
         String classGrade = i.getStringExtra("classGrade");
         String schoolID = i.getStringExtra("schoolID");
+        String subject = i.getStringExtra("subject");
         System.out.println(schoolID);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(studentID);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("StandardExamResults").child(schoolID).child(classGrade).child(classID).child(subject).child(studentID);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ModelAcademics academics = snapshot.getValue(ModelAcademics.class);
+                if(snapshot.exists()){
+                    ModelAcademics academics = snapshot.getValue(ModelAcademics.class);
 
-                title = findViewById(R.id.title);
-                title.setText("Standard Exam Result");
+                    title = findViewById(R.id.title);
+                    title.setText("Standard Exam Result - " + subject);
 
-                comment = findViewById(R.id.comment);
-                comment.setText(academics.getNote());
+                    comment = findViewById(R.id.comment);
+                    comment.setText(academics.getNote());
 
-                grade = findViewById(R.id.grade);
-                grade.setText(academics.getGrade());
+                    grade = findViewById(R.id.grade);
+                    grade.setText(academics.getGrade());
+                }else {
+                    Toast.makeText(ParentViewStandardResultActivity.this, "No Grade Recorded", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

@@ -52,13 +52,13 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelAcademics grade = snapshot.getValue(ModelAcademics.class);
                 childGrade = findViewById(R.id.grade);
-                childGrade.setText("Grade: " + grade.getGrade() + "%");
+                childGrade.setText(grade.getGrade() + "%");
 
                 title = findViewById(R.id.title);
                 title.setText(subject + " - " + topic);
 
                 comment = findViewById(R.id.comment);
-                comment.setText("Feedback: " + grade.getNote());
+                comment.setText(grade.getNote());
 
             }
 
@@ -89,12 +89,15 @@ public class ParentViewTopicGradeActivity extends AppCompatActivity {
 
                 float avg = totalAverage / list.size();
                 System.out.println(avg);
-                String avgString = Float.toString(avg);
+
+
+                float rounded = (float) Math.round(avg);
+                System.out.println(rounded);
+
+                String avgString = Float.toString(rounded);
 
                 TextView averageTV = findViewById(R.id.averageTV);
                 averageTV.setText("Class Average: " + avgString + "%");
-
-
 
             }
 

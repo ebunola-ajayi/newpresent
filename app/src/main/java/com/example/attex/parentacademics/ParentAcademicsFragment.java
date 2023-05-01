@@ -130,7 +130,7 @@ public class ParentAcademicsFragment extends Fragment {
         standardTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ParentViewStandardResultActivity.class);
+                Intent intent = new Intent(getActivity(), ChooseSubjectActivity.class);
                 intent.putExtra("classID", classID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("schoolID", schoolID);

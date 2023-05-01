@@ -36,8 +36,8 @@ public class TeacherStandardResultAdapter extends RecyclerView.Adapter<TeacherSt
         ModelStandardExam result = resultList.get(position);
 
         holder.studentName.setText(result.getStudentName());
-        holder.studentID.setText(result.getStudentID());
-        holder.grade.setText(result.getGrade());
+        holder.studentID.setText("  - " + result.getStudentID());
+        holder.grade.setText(result.getGrade() + "%");
         holder.note.setText(result.getNote());
 
     }

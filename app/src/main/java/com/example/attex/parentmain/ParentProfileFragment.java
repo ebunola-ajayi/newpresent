@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class ParentProfileFragment extends Fragment {
 
     EditText firstNameET, lastNameET;
-    TextView classGradeTV, classIDTV, schoolIDTV;
+    TextView classGradeTV, classIDTV, schoolIDTV, studentIDTV, emailIDTV, childFirstNameTV, childLastNameTV;
     Button update;
 
     @Override
@@ -61,6 +61,12 @@ public class ParentProfileFragment extends Fragment {
         classGradeTV = view.findViewById(R.id.classGradeTV);
         classIDTV = view.findViewById(R.id.classIDTV);
         schoolIDTV = view.findViewById(R.id.schoolIDTV);
+        studentIDTV = view.findViewById(R.id.studentIDTV);
+        emailIDTV = view.findViewById(R.id.emailIDTV);
+        childFirstNameTV = view.findViewById(R.id.childFirstNameTV);
+        childLastNameTV = view.findViewById(R.id.childLastNameTV);
+
+        emailIDTV.setText(currentUser.getEmail());
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Parents").child(currentUser.getUid());
@@ -72,6 +78,9 @@ public class ParentProfileFragment extends Fragment {
                 lastNameET.setText(parent.getLastName());
                 classGradeTV.setText(parent.getClassGrade());
                 classIDTV.setText(parent.getClassID());
+                studentIDTV.setText(parent.getStudentID());
+                childFirstNameTV.setText(parent.getChildFirstName());
+                childLastNameTV.setText(parent.getChildLastName());
             }
 
 
@@ -80,31 +89,53 @@ public class ParentProfileFragment extends Fragment {
             }
         });
 
+
         update = view.findViewById(R.id.update);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String childFirstName = childFirstNameTV.getText().toString();
+                String childLastName = childLastNameTV.getText().toString();
+                String email = currentUser.getEmail();
                 String firstName = firstNameET.getText().toString();
                 String lastName = lastNameET.getText().toString();
+                String parentID = currentUser.getUid();
 
                 if(firstName.isEmpty()){
-                    Toast.makeText(getActivity(), "Please Enter A First Name", Toast.LENGTH_SHORT).show();
                     firstNameET.requestFocus();
-                }else if(lastName.isEmpty()){
-                    Toast.makeText(getActivity(), "Please Enter A Last Name", Toast.LENGTH_SHORT).show();
-                    lastNameET.requestFocus();
+                    Toast.makeText(getActivity(), "Please Enter First Name", Toast.LENGTH_SHORT).show();
                 }
-                HashMap<String, Object> edittedHashmap = new HashMap<>();
 
-                edittedHashmap.put("firstName", firstName);
-                edittedHashmap.put("lastName", lastName);
+                else if(lastName.isEmpty()){
+                    lastNameET.requestFocus();
+                    Toast.makeText(getActivity(), "Please Enter Last Name", Toast.LENGTH_SHORT).show();
+                } else {
 
-                reference.updateChildren(edittedHashmap);
-                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                    HashMap<String, Object> edittedHashmap = new HashMap<>();
+
+                    edittedHashmap.put("childFirstName", childFirstName);
+                    edittedHashmap.put("childLastName", childLastName);
+                    edittedHashmap.put("classGrade", classGrade);
+                    edittedHashmap.put("classID", classID);
+                    edittedHashmap.put("email", email);
+                    edittedHashmap.put("firstName", firstName);
+                    edittedHashmap.put("lastName", lastName);
+                    edittedHashmap.put("parentID", parentID);
+                    edittedHashmap.put("schoolID", schoolID);
+                    edittedHashmap.put("studentID", studentID);
+
+                    reference.setValue(edittedHashmap);
+                    Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
+
+
+                }
+
+
             }
         });
-        
+
 
         return view;
     }
+
 }

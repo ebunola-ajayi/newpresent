@@ -28,7 +28,8 @@ public class TeacherViewStandardSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String subject = "Maths";
-                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherStandardOptionsActivity.class);
+                //Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherStandardOptionsActivity.class);
+                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherViewStandardActivity.class);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classID", classID);
                 intent.putExtra("classGrade", classGrade);
@@ -44,7 +45,7 @@ public class TeacherViewStandardSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String subject = "English";
-                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherStandardOptionsActivity.class);
+                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherViewStandardActivity.class);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("classID", classID);
@@ -59,7 +60,7 @@ public class TeacherViewStandardSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String subject = "Irish";
-                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherStandardOptionsActivity.class);
+                Intent intent = new Intent(TeacherViewStandardSubjectActivity.this, TeacherViewStandardActivity.class);
                 intent.putExtra("schoolID", schoolID);
                 intent.putExtra("classGrade", classGrade);
                 intent.putExtra("classID", classID);
