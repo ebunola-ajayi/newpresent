@@ -42,6 +42,7 @@ public class TeacherMainActivity extends AppCompatActivity {
             return;
         }
 
+
         binding.bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.homeItem:

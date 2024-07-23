@@ -61,6 +61,10 @@ public class StudentAttendanceActivity extends AppCompatActivity {
             return;
         }
 
+        //talk about the problems it solves
+        //scenario of problems it can solve
+        //what system
+
         Intent i = getIntent();
         String studentID = i.getStringExtra("studentID");
         System.out.println("HEY " + studentID);
